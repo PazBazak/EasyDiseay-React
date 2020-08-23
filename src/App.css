@@ -1,0 +1,4 @@
+#sign-up:hover {
+    color: #231f20;     /*for text new colour (not worked)*/
+    background-color: #ffffff;     /*for background new colour (it worked)*/
+}
