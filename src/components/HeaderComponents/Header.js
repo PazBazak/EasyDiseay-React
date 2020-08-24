@@ -4,7 +4,7 @@ class Header extends React.Component{
     render() {
         return (
             <div>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+                <nav className="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
                     <a className="navbar-brand" href="#">EasyDeasy</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"

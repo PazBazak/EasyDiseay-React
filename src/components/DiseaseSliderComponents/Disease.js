@@ -6,9 +6,9 @@ import {faStar as star} from '@fortawesome/free-regular-svg-icons'
 class Disease extends React.Component {
     render() {
         return (
-            <div style={this.props.style} className={'d-flex flex-row'}>
-                <p className={''}>Disease {this.props.index}</p>
-                <FontAwesomeIcon className={'ml-auto mr-2'} icon={star}/>
+            <div className={'d-flex flex-row border-bottom'} style={this.props.style} >
+                <p className={'disease-item-row align-self-center mb-0'}>Disease {this.props.index}</p>
+                <FontAwesomeIcon className={'ml-auto mr-2 align-self-center'} icon={star}/>
             </div>
         )
     }
