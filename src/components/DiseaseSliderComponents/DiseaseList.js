@@ -11,7 +11,7 @@ const Row = ({index, style}) => (
 class DiseaseList extends React.Component {
     render() {
         return (
-            <div className={'w-20'}>
+            <div className={''}>
                 <List
                     height={510}
                     itemCount={25}
