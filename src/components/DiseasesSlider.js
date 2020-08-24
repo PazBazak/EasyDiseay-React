@@ -1,22 +1,30 @@
 import React from "react";
+import {FixedSizeList as List} from 'react-window'
 import SearchBox from "./SearchBox";
-import { FixedSizeList as List} from 'react-window'
+import { FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faStar} from "@fortawesome/free-solid-svg-icons";
 
-const Row = ({ index, style }) => (
-  <div style={style}>Row {index}</div>
+
+const Row = ({index, style}) => (
+    <div style={style}>
+        <p>Disease {index}</p>
+    </div>
 );
 
-class DiseasesSlider extends React.Component{
+class DiseasesSlider extends React.Component {
     render() {
         return (
             <div>
-                <List
-                height={150}
-                itemCount={20}
-                itemSize={35}
-                width={150}>
-                    {Row}
-                </List>
+                <SearchBox />
+                <div className={'w-20'}>
+                    <List
+                        height={510}
+                        itemCount={25}
+                        itemSize={35}
+                        width={'100%'}>
+                        {Row}
+                    </List>
+                </div>
             </div>
         )
     }
