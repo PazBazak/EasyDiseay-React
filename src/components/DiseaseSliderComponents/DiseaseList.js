@@ -13,7 +13,7 @@ class DiseaseList extends React.Component {
         return (
             <div className={''}>
                 <List
-                    height={510}
+                    height={710}
                     itemCount={25}
                     itemSize={35}
                     width={'100%'}>

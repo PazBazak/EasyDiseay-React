@@ -9,9 +9,11 @@ function App() {
     return (
         <div>
             <Header/>
-            <div className={'d-flex flex-row'}>
-                <DiseasesSlider/>
-                <ArticleFeed />
+            <div className={'container-fluid'}>
+                <div className={'row'}>
+                    <DiseasesSlider/>
+                    <ArticleFeed />
+                </div>
             </div>
         </div>
     );
