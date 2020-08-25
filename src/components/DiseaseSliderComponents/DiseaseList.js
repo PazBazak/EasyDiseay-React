@@ -8,20 +8,18 @@ const Row = ({index, style}) => (
 );
 
 
-class DiseaseList extends React.Component {
-    render() {
-        return (
-            <div className={''}>
-                <List
-                    height={710}
-                    itemCount={25}
-                    itemSize={55}
-                    width={'100%'}>
-                    {Row}
-                </List>
-            </div>
-        )
-    }
+function DiseaseList() {
+    return (
+        <div>
+            <List
+                height={710}
+                itemCount={25}
+                itemSize={55}
+                width={'100%'}>
+                {Row}
+            </List>
+        </div>
+    )
 }
 
 export default DiseaseList;

@@ -1,5 +1,4 @@
 import React from "react";
-import { FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Feed from "./Feed";
 
 const feeds = [
@@ -35,25 +34,22 @@ const feeds = [
 const createFeed = (feed) => {
     return (
         <Feed
-        key={feed.id}
-        title={feed.title}
-        image={feed.image}
-        website={feed.website}
-        disease={feed.disease}
-        publishedDate={feed.publishedDate}
-        bodyText={feed.summary}/>
+            key={feed.id}
+            title={feed.title}
+            image={feed.image}
+            website={feed.website}
+            disease={feed.disease}
+            publishedDate={feed.publishedDate}
+            bodyText={feed.summary}/>
     )
 };
 
-class ArticleFeed extends React.Component {
-    render() {
-        return (
-            <div className={'col'}>
-                {feeds.map(createFeed)}
-            </div>
-        )
-    }
-
+function ArticleFeed() {
+    return (
+        <div className={'col'}>
+            {feeds.map(createFeed)}
+        </div>
+    )
 }
 
 export default ArticleFeed;
