@@ -12,7 +12,7 @@ class Header extends React.Component{
                    <Logo />
                     <NavbarTogglingButton />
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div className="navbar-nav w-100">
+                        <div className="navbar-nav tab-container">
                             <Tabs />
                             <SignTabs />
                         </div>

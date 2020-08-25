@@ -7,16 +7,6 @@ body {
     background-color: #ffffff;     /*for background new colour (it worked)*/
 }
 
-/*bootstrap modifications*/
-.w-20 {
-    width: 20%;
-}
-
-.nav-item{
-    text-align: right;
-}
-/*bootstrap modifications*/
-
 .disease-item-row {
     font-size: 130%;
 }
@@ -28,6 +18,17 @@ body {
     min-height: 120px;
 }
 
+/*bootstrap modifications*/
+.w-20 {
+    width: 20%;
+}
+
+.nav-item{
+    text-align: left;
+}
+/*bootstrap modifications END*/
+
+/*Media querries*/
 @media screen and (min-width: 601px) {
   h2.feed-title {
     font-size: 2.3rem;
@@ -63,3 +64,28 @@ body {
     font-size: 1.1rem;
   }
 }
+
+@media screen and (min-width: 600px) {
+  div.sign-up-tabs {
+    margin-left: auto;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  div.sign-up-tabs {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  div.tab-container {
+    width: 3.8rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  div.tab-container {
+    width: 100%;
+  }
+}
+/*Media querries END*/
