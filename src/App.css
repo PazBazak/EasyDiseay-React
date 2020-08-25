@@ -12,6 +12,11 @@ body {
     width: 20%;
 }
 
+.nav-item{
+    text-align: right;
+}
+/*bootstrap modifications*/
+
 .disease-item-row {
     font-size: 130%;
 }
