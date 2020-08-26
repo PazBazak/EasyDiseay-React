@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Feed from "./Feed";
 
 const feeds = [
@@ -36,18 +36,35 @@ const createFeed = (feed) => {
         <Feed
             key={feed.id}
             title={feed.title}
-            image={feed.image}
-            website={feed.website}
-            disease={feed.disease}
-            publishedDate={feed.publishedDate}
+            url={feed.url}
+            image={feed.img}
+            website={feed.source_site.name}
+            disease={"Disease X"}
+            publishedDate={feed.published_date}
             bodyText={feed.summary}/>
     )
 };
 
+
 function ArticleFeed() {
+    let [currentFeeds, setCurrentFeeds] = useState(null);
+
+
+    useEffect(() => {
+        const fetchFeeds = async () => {
+            const response = await fetch('http://127.0.0.1:8000/api/articles/', {
+                method: 'GET'
+            });
+            const fetchedFeeds = await response.json();
+            setCurrentFeeds(fetchedFeeds);
+        };
+        fetchFeeds().catch(e => console.log(e));
+    }, []);
+
     return (
         <div className={'col'}>
-            {feeds.map(createFeed)}
+            {/*{feeds.map(createFeed)}*/}
+            {currentFeeds !== null && currentFeeds.map(createFeed)}
         </div>
     )
 }
