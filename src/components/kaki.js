@@ -148,7 +148,8 @@ export default function PersistentDrawerLeft() {
             </Drawer>
             <main
                 className={clsx(classes.content, {
-                    [classes.contentShift]: open,
+                    [classes.contentShift]: open && window.screen.availWidth > 600,
+
                 })}
             >
                 <div className={classes.drawerHeader}/>
