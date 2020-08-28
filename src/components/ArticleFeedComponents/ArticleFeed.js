@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Feed from "./Feed";
 
-const feeds = [
+const preMadeFeeds = [
     {
         id: 1,
         title: "CoronaVirus might just be the end of the world, scientist claims!",
@@ -48,24 +48,22 @@ const createFeed = (feed) => {
     )
 };
 
+const fetchFeeds = async () => {
+    try {
+        const response = await fetch('http://127.0.0.1:8000/api/articles/', {
+            method: 'GET'
+        });
+        return await response.json();
+    } catch (e) {
+        return preMadeFeeds;
+    }
+};
 
 function ArticleFeed() {
     let [currentFeeds, setCurrentFeeds] = useState(null);
 
-    //Try fetching outside the useEffect
     useEffect(() => {
-        const fetchFeeds = async () => {
-            try {
-                const response = await fetch('http://127.0.0.1:8000/api/articles/', {
-                    method: 'GET'
-                });
-                const fetchedFeeds = await response.json();
-                setCurrentFeeds(fetchedFeeds);
-            } catch (e) {
-                setCurrentFeeds(feeds)
-            }
-        };
-        fetchFeeds();
+        fetchFeeds().then(feeds => setCurrentFeeds(feeds));
     }, []);
 
     return (
