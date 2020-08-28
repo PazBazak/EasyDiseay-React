@@ -2,7 +2,10 @@ import React from "react";
 
 function Logo() {
     return (
-        <a className="navbar-brand" href="#">EasyDeasy</a>
+        <a className="logo" href="#">
+            EasyDeasy
+        </a>
+        //Add brand image in the future (possibly with animation)
     )
 }
 

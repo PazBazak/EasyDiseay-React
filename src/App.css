@@ -1,91 +1,88 @@
-body {
-    padding-top: 3.5rem;
-}
-
-#sign-up:hover {
-    color: #231f20;     /*for text new colour (not worked)*/
-    background-color: #ffffff;     /*for background new colour (it worked)*/
-}
-
-.disease-item-row {
-    font-size: 130%;
-}
-
-.feed-image {
-    width: 15%;
-    min-width: 120px;
-    height: 15%;
-    min-height: 120px;
-}
-
-/*bootstrap modifications*/
-.w-20 {
-    width: 20%;
-}
-
-.nav-item{
-    text-align: left;
-}
-/*bootstrap modifications END*/
-
-/*Media querries*/
-@media screen and (min-width: 601px) {
-  h2.feed-title {
-    font-size: 2.3rem;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  h2.feed-title {
+.logo {
     font-size: 1.6rem;
-  }
+    color: white;
+    text-decoration: none;
 }
 
-@media screen and (min-width: 601px) {
-  div.feed-info-text {
-    font-size: 1.1rem;
-  }
+.logo:hover {
+    text-decoration: none;
+    color: inherit;
 }
 
-@media screen and (max-width: 600px) {
-  div.feed-info-text {
-    font-size: 0.95rem;
-  }
-}
+/*#sign-up:hover {*/
+/*    color: #231f20;     !*for text new colour (not worked)*!*/
+/*    background-color: #ffffff;     !*for background new colour (it worked)*!*/
+/*}*/
 
-@media screen and (min-width: 601px) {
-  p.feed-text {
-    font-size: 1.25rem;
-  }
-}
+/*.disease-item-row {*/
+/*    font-size: 130%;*/
+/*}*/
 
-@media screen and (max-width: 600px) {
-  p.feed-text {
-    font-size: 1.1rem;
-  }
-}
+/*.feed-image {*/
+/*    width: 15%;*/
+/*    min-width: 120px;*/
+/*    height: 15%;*/
+/*    min-height: 120px;*/
+/*}*/
 
-@media screen and (min-width: 600px) {
-  div.sign-up-tabs {
-    margin-left: auto;
-  }
-}
+/*!*Media querries*!*/
+/*@media screen and (min-width: 601px) {*/
+/*  h2.feed-title {*/
+/*    font-size: 2.3rem;*/
+/*  }*/
+/*}*/
 
-@media screen and (max-width: 600px) {
-  div.sign-up-tabs {
-    margin-left: 0;
-  }
-}
+/*@media screen and (max-width: 600px) {*/
+/*  h2.feed-title {*/
+/*    font-size: 1.6rem;*/
+/*  }*/
+/*}*/
 
-@media screen and (max-width: 600px) {
-  div.tab-container {
-    width: 3.8rem;
-  }
-}
+/*@media screen and (min-width: 601px) {*/
+/*  div.feed-info-text {*/
+/*    font-size: 1.1rem;*/
+/*  }*/
+/*}*/
 
-@media screen and (min-width: 600px) {
-  div.tab-container {
-    width: 100%;
-  }
-}
-/*Media querries END*/
+/*@media screen and (max-width: 600px) {*/
+/*  div.feed-info-text {*/
+/*    font-size: 0.95rem;*/
+/*  }*/
+/*}*/
+
+/*@media screen and (min-width: 601px) {*/
+/*  p.feed-text {*/
+/*    font-size: 1.25rem;*/
+/*  }*/
+/*}*/
+
+/*@media screen and (max-width: 600px) {*/
+/*  p.feed-text {*/
+/*    font-size: 1.1rem;*/
+/*  }*/
+/*}*/
+
+/*@media screen and (min-width: 600px) {*/
+/*  div.sign-up-tabs {*/
+/*    margin-left: auto;*/
+/*  }*/
+/*}*/
+
+/*@media screen and (max-width: 600px) {*/
+/*  div.sign-up-tabs {*/
+/*    margin-left: 0;*/
+/*  }*/
+/*}*/
+
+/*@media screen and (max-width: 600px) {*/
+/*  div.tab-container {*/
+/*    width: 3.8rem;*/
+/*  }*/
+/*}*/
+
+/*@media screen and (min-width: 600px) {*/
+/*  div.tab-container {*/
+/*    width: 100%;*/
+/*  }*/
+/*}*/
+/*!*Media querries END*!*/

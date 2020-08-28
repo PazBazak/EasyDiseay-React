@@ -1,22 +1,20 @@
 import React from "react";
-import {FixedSizeList as List} from "react-window";
-import Disease from "./Disease";
-
-
-const Row = ({index, style}) => (
-    <Disease style={style} index={index}/>
-);
-
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as Star} from "@fortawesome/free-regular-svg-icons";
 
 function DiseaseList() {
     return (
         <div>
-            <List
-                height={710}
-                itemCount={25}
-                itemSize={55}
-                width={'100%'}>
-                {Row}
+            <List>
+                {['Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease'].map((text, index) => (
+                    <ListItem button key={index}>
+                        <ListItemText primary={text + " " + index}/>
+                        <FontAwesomeIcon icon={Star} />
+                    </ListItem>
+                ))}
             </List>
         </div>
     )
