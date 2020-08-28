@@ -37,7 +37,7 @@ const headerStyle = makeStyles((theme) => ({
 function Header(props) {
     const classes = headerStyle();
 
-     const openDiseaseList = () => {
+    const openDiseaseList = () => {
         props.setDiseaseListOpened(true);
     };
 
