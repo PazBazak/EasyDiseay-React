@@ -3,23 +3,19 @@ import clsx from 'clsx';
 import {createMuiTheme, makeStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import Logo from "./HeaderComponents/Logo";
 import {blue} from "@material-ui/core/colors";
 import {ThemeProvider} from '@material-ui/styles';
 import DiseaseList from "./DiseaseSliderComponents/DiseaseList";
 import ArticleFeed from "./ArticleFeedComponents/ArticleFeed";
+import Header from "./HeaderComponents/Header";
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme) => ({
+const mainPageStyle = makeStyles((theme) => ({
     root: {
         display: 'flex',
     },
@@ -77,8 +73,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MainPage() {
-    const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
+    const classes = mainPageStyle();
+    const [diseaseListOpened, setDiseaseListOpened] = React.useState(false);
 
     const theme = createMuiTheme({
         palette: {
@@ -91,41 +87,20 @@ function MainPage() {
         },
     });
 
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-
     const handleDrawerClose = () => {
-        setOpen(false);
+        setDiseaseListOpened(false);
     };
 
     return (
         <ThemeProvider theme={theme}>
             <div className={classes.root}>
                 <CssBaseline/>
-                <AppBar
-                    position="fixed"
-                    className={clsx(classes.appBar, {
-                        [classes.appBarShift]: open,
-                    })}
-                >
-                    <Toolbar>
-                        <IconButton
-                            color="inherit"
-                            onClick={handleDrawerOpen}
-                            edge="start"
-                            className={clsx(classes.menuButton, open && classes.hide)}
-                        >
-                            <MenuIcon/>
-                        </IconButton>
-                        <Logo/>
-                    </Toolbar>
-                </AppBar>
+                <Header diseaseListOpened={diseaseListOpened} setDiseaseListOpened={setDiseaseListOpened}/>
                 <Drawer
                     className={classes.drawer}
                     variant="persistent"
                     anchor="left"
-                    open={open}
+                    open={diseaseListOpened}
                     classes={{
                         paper: classes.drawerPaper,
                     }}
@@ -140,12 +115,12 @@ function MainPage() {
                 </Drawer>
                 <main
                     className={clsx(classes.content, {
-                        [classes.contentShift]: open && window.screen.availWidth > 600,
+                        [classes.contentShift]: diseaseListOpened && window.screen.availWidth > 600,
 
                     })}
                 >
                     <div className={classes.drawerHeader}/>
-                    <ArticleFeed />
+                    <ArticleFeed/>
                 </main>
             </div>
         </ThemeProvider>
