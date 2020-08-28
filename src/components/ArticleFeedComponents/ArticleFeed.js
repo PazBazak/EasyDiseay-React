@@ -52,7 +52,7 @@ const createFeed = (feed) => {
 function ArticleFeed() {
     let [currentFeeds, setCurrentFeeds] = useState(null);
 
-
+    //Try fetching outside the useEffect
     useEffect(() => {
         const fetchFeeds = async () => {
             try {
@@ -65,13 +65,11 @@ function ArticleFeed() {
                 setCurrentFeeds(feeds)
             }
         };
-        fetchFeeds()
-            .catch(e => console.log("error is ", e));
+        fetchFeeds();
     }, []);
 
     return (
         <div className={'col'}>
-            {/*{feeds.map(createFeed)}*/}
             {currentFeeds !== null && currentFeeds.map(createFeed)}
         </div>
     )

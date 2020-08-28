@@ -4,8 +4,8 @@ import FeedBody from "./FeedBody";
 
 function Feed(props) {
     return (
-        <div className={'mt-4 w-75'}>
-            <h2 className={'feed-title'}>{props.title}</h2>
+        <div className={'mt-4'}>
+            <h2>{props.title}</h2>
             <FeedInformation disease={props.disease} website={props.website}
                              publishedDate={props.publishedDate}/>
             <FeedBody bodyText={props.bodyText} image={props.image}/>

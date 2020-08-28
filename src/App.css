@@ -9,6 +9,19 @@
     color: inherit;
 }
 
+.feed-text {
+    font-size: 1.25rem;
+}
+
+.feed-info-text {
+    font-size: 1.1rem;
+}
+
+.feed-image {
+    width: 200px;
+    height: 200px;
+}
+
 /*#sign-up:hover {*/
 /*    color: #231f20;     !*for text new colour (not worked)*!*/
 /*    background-color: #ffffff;     !*for background new colour (it worked)*!*/
@@ -47,18 +60,6 @@
 /*@media screen and (max-width: 600px) {*/
 /*  div.feed-info-text {*/
 /*    font-size: 0.95rem;*/
-/*  }*/
-/*}*/
-
-/*@media screen and (min-width: 601px) {*/
-/*  p.feed-text {*/
-/*    font-size: 1.25rem;*/
-/*  }*/
-/*}*/
-
-/*@media screen and (max-width: 600px) {*/
-/*  p.feed-text {*/
-/*    font-size: 1.1rem;*/
 /*  }*/
 /*}*/
 
