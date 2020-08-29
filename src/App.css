@@ -1,7 +1,22 @@
+#sign-up:hover {
+    color: black;
+    background-color: white;
+}
+
+#sign-up {
+    color: white;
+    border-bottom: white;
+    border-radius: 3px;
+}
+
+#login {
+    color: white;
+    border-radius: 3px;
+}
+
 .logo {
     font-size: 1.6rem;
     color: white;
-    text-decoration: none;
 }
 
 .logo:hover {
@@ -21,11 +36,6 @@
     width: 200px;
     height: 200px;
 }
-
-/*#sign-up:hover {*/
-/*    color: #231f20;     !*for text new colour (not worked)*!*/
-/*    background-color: #ffffff;     !*for background new colour (it worked)*!*/
-/*}*/
 
 /*.disease-item-row {*/
 /*    font-size: 130%;*/

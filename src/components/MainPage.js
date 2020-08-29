@@ -1,12 +1,12 @@
 import React from 'react';
 import clsx from 'clsx';
-import {createMuiTheme, makeStyles} from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import {blue} from "@material-ui/core/colors";
 import {ThemeProvider} from '@material-ui/styles';
 import ArticleFeed from "./ArticleFeedComponents/ArticleFeed";
 import Header from "./HeaderComponents/Header";
 import DiseaseMenu from "./DiseaseSliderComponents/DiseaseMenu";
+import theme from '../Themes/mainTheme'
 
 const drawerWidth = 240;
 
@@ -42,17 +42,6 @@ const mainPageStyle = makeStyles((theme) => ({
 function MainPage() {
     const classes = mainPageStyle();
     const [diseaseListOpened, setDiseaseListOpened] = React.useState(false);
-
-    const theme = createMuiTheme({
-        palette: {
-            primary: {
-                main: blue[600]
-            },
-            secondary: {
-                main: '#ffc400'
-            },
-        },
-    });
 
     return (
         <ThemeProvider theme={theme}>
