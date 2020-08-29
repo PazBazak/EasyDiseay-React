@@ -7,7 +7,7 @@ import ListItem from "@material-ui/core/ListItem";
 
 function DiseaseListItem(props) {
     return (
-        <ListItem button>
+        <ListItem button onClick={() => {console.log('got clicked')}} onMouseEnter={() => {console.log('got mouse over')}}>
             <ListItemText primary={props.diseaseName}/>
             <FontAwesomeIcon icon={Star} className={'star-icon'}/>
         </ListItem>
