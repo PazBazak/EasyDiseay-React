@@ -3,6 +3,7 @@ import List from "@material-ui/core/List";
 import DiseaseListItem from "./DiseaseListItem";
 import {ListSubheader} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
     list: {
@@ -24,12 +25,17 @@ function DiseaseList() {
     return (
         <List className={classes.list}>
             <div className={classes.container}>
-                <ListSubheader>Diseases</ListSubheader>
-                {['Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease'].map((text, index) => (
+
+                <div className={'p-3'}>
+                    <TextField label="Search" variant="filled" />
+                </div>
+
+                <ListSubheader>Followed</ListSubheader>
+                {['Disease'].map((text, index) => (
                     <DiseaseListItem key={index} diseaseName={text + " " + index}/>
                 ))}
-                <ListSubheader>Niggers</ListSubheader>
-                {['Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease'].map((text, index) => (
+                <ListSubheader>Diseases</ListSubheader>
+                {['Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease'].map((text, index) => (
                     <DiseaseListItem key={index} diseaseName={text + " " + index}/>
                 ))}
             </div>
