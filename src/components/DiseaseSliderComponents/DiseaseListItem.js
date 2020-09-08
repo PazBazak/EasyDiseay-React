@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ListItemText from "@material-ui/core/ListItemText";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar as Star} from "@fortawesome/free-regular-svg-icons";
@@ -19,6 +19,7 @@ const DiseaseItemStyle = makeStyles((theme) => ({
 
 function DiseaseListItem(props) {
     const classes = DiseaseItemStyle();
+    let [followed, setFollowed] = useState(props.followed);
 
     function handleIconClick() {
         console.log('icon clicked')
@@ -32,8 +33,8 @@ function DiseaseListItem(props) {
         }}>
             <ListItemText primary={props.diseaseName}/>
             <button style={{visibility: "hidden"}} onClick={handleIconClick} >
-                <FontAwesomeIcon icon={props.followed ? FullStar : Star}
-                                 className={clsx(classes.Icon, {[classes.Followed]: props.followed})}/>
+                <FontAwesomeIcon icon={followed ? FullStar : Star}
+                                 className={clsx(classes.Icon, {[classes.Followed]: followed})}/>
             </button>
         </ListItem>
     )
