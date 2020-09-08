@@ -8,7 +8,7 @@ function AllDiseasesList() {
         <div>
             <ListSubheader>Diseases</ListSubheader>
             {['Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease'].map((text, index) => (
-                <DiseaseListItem key={index} diseaseName={text + " " + index}/>
+                <DiseaseListItem key={index} diseaseName={text + " " + index} followed={false} />
             ))}
         </div>
     )

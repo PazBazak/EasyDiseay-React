@@ -8,7 +8,7 @@ function FollowedDiseasesList() {
         <div>
             <ListSubheader>Followed</ListSubheader>
             {['Disease'].map((text, index) => (
-                <DiseaseListItem key={index} diseaseName={text + " " + index}/>
+                <DiseaseListItem key={index} diseaseName={text + " " + index} followed={true} />
             ))}
         </div>
     )

@@ -20,7 +20,8 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "react-window": "^1.8.5",
-    "reactstrap": "^8.5.1"
+    "reactstrap": "^8.5.1",
+    "clsx": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
