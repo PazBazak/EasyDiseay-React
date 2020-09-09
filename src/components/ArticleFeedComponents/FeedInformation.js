@@ -2,11 +2,7 @@ import React from "react";
 
 function FeedInformation(props) {
     function diseasesInfo(disease, index) {
-        if (props.diseases.length - 1 === index) {
-            return disease.name;
-        } else {
-            return disease.name + ", ";
-        }
+        return (props.diseases.length - 1 !== index) ? disease.name + ", " : disease.name;
     }
 
     return (
