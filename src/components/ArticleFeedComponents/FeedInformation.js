@@ -8,7 +8,7 @@ function FeedInformation(props) {
             <p>{props.website}</p>
             <p className={'mx-2'}>|</p>
             <p>{props.disease}</p>
-            <p className={'ml-auto mr-5'}>4 min</p>
+            <p className={'ml-auto mr-5'}>{props.timeToRead} min</p>
         </div>
     )
 }
