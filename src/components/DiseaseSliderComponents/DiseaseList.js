@@ -4,6 +4,8 @@ import DiseaseListItem from "./DiseaseListItem";
 import {ListSubheader} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import FollowedDiseasesList from "./FollowedDiseasesList";
+import AllDiseasesList from "./AllDiseasesList";
 
 const useStyles = makeStyles((theme) => ({
     list: {
@@ -30,14 +32,8 @@ function DiseaseList() {
                     <TextField label="Search" variant="filled" />
                 </div>
 
-                <ListSubheader>Followed</ListSubheader>
-                {['Disease'].map((text, index) => (
-                    <DiseaseListItem key={index} diseaseName={text + " " + index}/>
-                ))}
-                <ListSubheader>Diseases</ListSubheader>
-                {['Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease'].map((text, index) => (
-                    <DiseaseListItem key={index} diseaseName={text + " " + index}/>
-                ))}
+                <FollowedDiseasesList />
+                <AllDiseasesList />
             </div>
         </List>
     )

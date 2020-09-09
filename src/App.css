@@ -14,15 +14,6 @@
     border-radius: 3px;
 }
 
-.star-icon {
-  transition: opacity 0.3s;
-  opacity: 1;
-}
-.star-icon.hide {
-  opacity: 0;
-  pointer-events:none;
-}
-
 .logo {
     font-size: 1.6rem;
     color: white;
