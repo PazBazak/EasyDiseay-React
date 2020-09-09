@@ -39,8 +39,14 @@ const mainPageStyle = makeStyles((theme) => ({
     },
 }));
 
+/**
+ * The front page of the app.
+ */
 function MainPage() {
     const classes = mainPageStyle();
+    /** The state of the DiseaseMenu.
+     * It's on the main page because many children components has to have this state.
+     */
     const [diseaseListOpened, setDiseaseListOpened] = React.useState(false);
 
     return (

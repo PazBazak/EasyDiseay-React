@@ -13,24 +13,26 @@ const headerStyle = makeStyles((theme) => ({
     },
 }));
 
+/**
+ * The bars button which is used to open the menu
+ */
 function DiseaseMenuButton(props) {
     const classes = headerStyle();
 
+    /** Function that changes the DiseaseListOpened state. */
     const openDiseaseList = () => {
         props.setDiseaseListOpened(true);
     };
 
     return (
-        <div>
-            <IconButton
-                color="inherit"
-                onClick={openDiseaseList}
-                edge="start"
-                className={clsx(classes.menuButton, props.diseaseListOpened && classes.hide)}
-            >
-                <MenuIcon/>
-            </IconButton>
-        </div>
+        <IconButton
+            color="inherit"
+            onClick={openDiseaseList}
+            edge="start"
+            className={clsx(classes.menuButton, props.diseaseListOpened && classes.hide)}
+        >
+            <MenuIcon/>
+        </IconButton>
     )
 }
 

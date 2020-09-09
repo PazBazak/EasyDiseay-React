@@ -10,7 +10,6 @@ import AccountTabs from "./AccountTabs";
 const drawerWidth = 240;
 
 const headerStyle = makeStyles((theme) => ({
-
     appBar: {
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
@@ -27,7 +26,9 @@ const headerStyle = makeStyles((theme) => ({
     },
 }));
 
-
+/**
+ * The navbar of the website.
+ * */
 function Header(props) {
     const classes = headerStyle();
 
