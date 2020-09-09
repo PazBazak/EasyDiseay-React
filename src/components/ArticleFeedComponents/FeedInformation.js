@@ -8,6 +8,7 @@ function FeedInformation(props) {
             <p>{props.disease}</p>
             <p className={'mx-2'}>|</p>
             <p>{props.publishedDate}</p>
+            <p className={'ml-auto mr-5'}>4 min</p>
         </div>
     )
 }
