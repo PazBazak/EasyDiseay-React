@@ -54,7 +54,7 @@ const createFeed = (feed) => {
             url={feed.url}
             image={feed.img}
             website={feed.source_site.name}
-            disease={"Disease X"}
+            diseases={feed.diseases}
             publishedDate={feed.published_date}
             bodyText={feed.summary}/>
     )
