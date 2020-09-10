@@ -15,11 +15,18 @@ const DiseaseItemStyle = makeStyles((theme) => ({
     Icon: {
         visibility: "visible",
     },
+    Hovered: {
+        visibility: "visible",
+    },
+    Hide: {
+        visibility: "hidden",
+    },
 }));
 
 function DiseaseListItem(props) {
     const classes = DiseaseItemStyle();
     let [followed, setFollowed] = useState(props.followed);
+    const [hovered, setHovered] = useState(false);
 
     function handleIconClick() {
         console.log('icon clicked')
@@ -27,14 +34,20 @@ function DiseaseListItem(props) {
 
     return (
         <ListItem button onClick={() => {
-            console.log('got clicked')
+            console.log('got clicked');
         }} onMouseEnter={() => {
-            console.log('got mouse over')
+            setHovered(true);
+        }}
+        onMouseLeave={() => {
+            setHovered(false);
         }}>
             <ListItemText primary={props.diseaseName}/>
-            <button style={{visibility: "hidden"}} onClick={handleIconClick} >
+            <button className={classes.Hide} onClick={handleIconClick} >
                 <FontAwesomeIcon icon={followed ? FullStar : Star}
-                                 className={clsx(classes.Icon, {[classes.Followed]: followed})}/>
+                                 className={clsx({
+                                     [classes.Followed]: followed,
+                                     [classes.Hovered]: hovered || followed
+                                 })}/>
             </button>
         </ListItem>
     )
