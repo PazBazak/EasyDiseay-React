@@ -28,6 +28,7 @@ const headerStyle = makeStyles((theme) => ({
 
 /**
  * The navbar of the website.
+ * AppBar is the headerContainer, ToolBar is the container holding the items themselves
  * */
 function Header(props) {
     const classes = headerStyle();

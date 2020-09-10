@@ -1,5 +1,8 @@
 import React from "react";
 
+/**
+ * Container holding the Sign-Up and Login buttons
+ * */
 function AccountTabs() {
     return (
         <div className={'ml-auto'}>
