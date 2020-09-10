@@ -1,8 +1,8 @@
 import React from "react";
 
 function FeedInformation(props) {
-    function diseasesInfo(disease, index) {
-        return (props.diseases.length - 1 !== index) ? disease.name + ", " : disease.name;
+    function diseasesInfo(diseases) {
+        return diseases.name;
     }
 
     return (
@@ -11,7 +11,7 @@ function FeedInformation(props) {
             <p className={'mx-2'}>|</p>
             <p>{props.website}</p>
             <p className={'mx-2'}>|</p>
-            <p>{props.diseases.map(diseasesInfo)}</p>
+            <p>{props.diseases.map(diseasesInfo).join(', ')}</p>
             <p className={'ml-auto mr-5'}>4 min</p>
         </div>
     )
