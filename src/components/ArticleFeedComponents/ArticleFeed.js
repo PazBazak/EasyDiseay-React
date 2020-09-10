@@ -60,7 +60,7 @@ const fetchFeeds = async () => {
 };
 
 function ArticleFeed() {
-    let [currentFeeds, setCurrentFeeds] = useState(null);
+    let [currentFeeds, setCurrentFeeds] = useState([]);
 
     useEffect(() => {
         fetchFeeds().then(feeds => setCurrentFeeds(feeds));
@@ -68,7 +68,7 @@ function ArticleFeed() {
 
     return (
         <div className={'col'}>
-            {currentFeeds !== null && currentFeeds.map(createFeed)}
+            {currentFeeds.map(createFeed)}
         </div>
     )
 }
