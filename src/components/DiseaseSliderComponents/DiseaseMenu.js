@@ -26,10 +26,16 @@ const DiseaseMenuStyle = makeStyles((theme) => ({
     },
 }));
 
+/**
+ * The whole DiseaseMenu drawer, it contains the header (empty space with close button), and the lists.
+ * */
 function DiseaseMenu(props) {
     const classes = DiseaseMenuStyle();
     const theme = useTheme;
 
+    /**
+     * Closes the Drawer.
+     * */
     const handleDrawerClose = () => {
         props.setDiseaseListOpened(false);
     };
