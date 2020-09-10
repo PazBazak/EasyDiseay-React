@@ -4,7 +4,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import Divider from "@material-ui/core/Divider";
-import DiseaseList from "./DiseaseList";
+import DiseasesLists from "./DiseasesLists";
 import {makeStyles, useTheme} from "@material-ui/core/styles";
 
 const drawerWidth = 240;
@@ -50,7 +50,7 @@ function DiseaseMenu(props) {
                 </IconButton>
             </div>
             <Divider/>
-            <DiseaseList/>
+            <DiseasesLists/>
         </Drawer>
     )
 }
