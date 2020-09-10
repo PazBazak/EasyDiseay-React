@@ -7,8 +7,9 @@ function Feed(props) {
         <div className={'mt-4'}>
             <h2>{props.title}</h2>
             <FeedInformation disease={props.disease} website={props.website}
-                             publishedDate={props.publishedDate}/>
-            <FeedBody bodyText={props.bodyText} image={props.image}/>
+                             publishedDate={props.publishedDate}
+                             timeToRead={props.timeToRead} />
+            <FeedBody bodyText={props.bodyText} image={props.image} />
         </div>
     )
 }

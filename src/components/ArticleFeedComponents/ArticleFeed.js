@@ -4,6 +4,7 @@ import Feed from "./Feed";
 const preMadeFeeds = [
     {
         id: 1,
+        time_to_read: 4,
         title: "CoronaVirus might just be the end of the world, scientist claims!",
         url: 'yo',
         img: "https://images.medicinenet.com/images/newsletter/specialty/oleander-plant.jpg",
@@ -14,6 +15,7 @@ const preMadeFeeds = [
     },
     {
         id: 2,
+        time_to_read: 7,
         title: "Curcumin might be the cause for cancer in some cancer patients?",
         url: 'yo',
         img: "https://5.imimg.com/data5/AF/EZ/DB/SELLER-8051866/curcumin-95-natural-extract-500x500.jpg",
@@ -24,6 +26,7 @@ const preMadeFeeds = [
     },
     {
         id: 3,
+        time_to_read: 3,
         title: "Do black people with dermatitis live less? new research found that niggers lifespan is shorter!",
         url: 'yo',
         img: "https://d279m997dpfwgl.cloudfront.net/wp/2020/07/Emmanuel-1000x776.jpg",
@@ -44,7 +47,8 @@ const createFeed = (feed) => {
             website={feed.source_site.name}
             disease={"Disease X"}
             publishedDate={feed.published_date}
-            bodyText={feed.summary}/>
+            timeToRead={feed.time_to_read}
+            bodyText={feed.summary} />
     )
 };
 
