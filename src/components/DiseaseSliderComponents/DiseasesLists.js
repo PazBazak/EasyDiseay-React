@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import List from "@material-ui/core/List";
 import {makeStyles} from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import DiseaseList from "./DiseaseList";
+import SearchBox from "./SearchBox";
 
 const useStyles = makeStyles((theme) => ({
     list: {
@@ -44,9 +44,7 @@ function DiseasesLists() {
         <List className={classes.list}>
             <div className={classes.container}>
 
-                <div className={'p-3'}>
-                    <TextField label="Search" variant="filled"/>
-                </div>
+                <SearchBox />
 
                 <DiseaseList
                     diseases={followedDiseases}
