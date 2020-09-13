@@ -26,7 +26,6 @@ const DiseaseItemStyle = makeStyles((theme) => ({
 function DiseaseListItem(props) {
     const classes = DiseaseItemStyle();
     const [hovered, setHovered] = useState(false);
-    const [isFollowed, setIsFollowed] = useState(false);
 
     function handleIconClick(event) {
         if (!props.followed) {

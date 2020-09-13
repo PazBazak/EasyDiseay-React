@@ -35,6 +35,7 @@ function DiseasesLists() {
     const classes = useStyles();
     const [diseases, setDiseases] = useState([]);
     const [followedDiseases, setFollowedDiseases] = useState([]);
+    console.log(followedDiseases);
 
     const followDisease = (disease) => {
         console.log(disease);
@@ -44,7 +45,6 @@ function DiseasesLists() {
                 return [...prevState, disease]
             }))
         }
-        console.log(followedDiseases);
     };
 
     const unFollowDisease = (disease) => {
@@ -53,10 +53,9 @@ function DiseasesLists() {
         console.log(diseaseIndex);
         console.log(followedDiseases);
 
-        setFollowedDiseases(prevFollowedDiseases => (
-            [...prevFollowedDiseases].splice(diseaseIndex, 1)
-        ));
-        console.log(followedDiseases);
+        setFollowedDiseases((prevState => {
+            return [...prevState].splice(diseaseIndex, 1);
+        }));
     };
 
     useEffect(() => {
