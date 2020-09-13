@@ -25,7 +25,6 @@ const DiseaseItemStyle = makeStyles((theme) => ({
 
 function DiseaseListItem(props) {
     const classes = DiseaseItemStyle();
-    let [followed, setFollowed] = useState(props.followed);
     const [hovered, setHovered] = useState(false);
 
     function handleIconClick() {
@@ -43,10 +42,10 @@ function DiseaseListItem(props) {
         }}>
             <ListItemText primary={props.diseaseName}/>
             <button className={classes.Hide} onClick={handleIconClick} >
-                <FontAwesomeIcon icon={followed ? FullStar : Star}
+                <FontAwesomeIcon icon={props.followed ? FullStar : Star}
                                  className={clsx({
-                                     [classes.Followed]: followed,
-                                     [classes.Hovered]: hovered || followed
+                                     [classes.Followed]: props.followed,
+                                     [classes.Hovered]: hovered || props.followed
                                  })}/>
             </button>
         </ListItem>
