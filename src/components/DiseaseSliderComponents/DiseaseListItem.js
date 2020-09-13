@@ -26,9 +26,15 @@ const DiseaseItemStyle = makeStyles((theme) => ({
 function DiseaseListItem(props) {
     const classes = DiseaseItemStyle();
     const [hovered, setHovered] = useState(false);
+    const [isFollowed, setIsFollowed] = useState(false);
 
-    function handleIconClick() {
-        console.log('icon clicked')
+    function handleIconClick(event) {
+        if (!props.followed) {
+            props.followDisease(props.disease);
+        } else {
+            props.unFollowDisease(props.disease);
+        }
+        event.stopPropagation();
     }
 
     return (
@@ -40,7 +46,7 @@ function DiseaseListItem(props) {
         onMouseLeave={() => {
             setHovered(false);
         }}>
-            <ListItemText primary={props.diseaseName}/>
+            <ListItemText primary={props.disease.name}/>
             <button className={classes.Hide} onClick={handleIconClick} >
                 <FontAwesomeIcon icon={props.followed ? FullStar : Star}
                                  className={clsx({
