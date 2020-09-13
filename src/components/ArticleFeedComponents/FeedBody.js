@@ -3,12 +3,14 @@ import React from "react";
 const altTextPreFix = "Disease and Research News - ";
 
 function FeedBody(props) {
+    const {img, title, summary} = props;
+
     return (
         <div className={'d-flex border-bottom pb-3'}>
-            <img src={props.image}
-                 alt={altTextPreFix + props.title}
+            <img src={img}
+                 alt={altTextPreFix + title}
                  className={'feed-image'}/>
-            <p className={'feed-text ml-3'}>{props.bodyText}</p>
+            <p className={'feed-text ml-3'}>{summary}</p>
         </div>
     )
 }
