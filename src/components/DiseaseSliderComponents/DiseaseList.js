@@ -7,8 +7,8 @@ function DiseaseList(props) {
     return (
         <div>
             <ListSubheader>{props.subheader}</ListSubheader>
-            {props.diseases.map((text, index) => (
-                <DiseaseListItem key={index} diseaseName={text + " " + index} followed={props.followed} />
+            {props.diseases.map((disease) => (
+                <DiseaseListItem key={disease.id} diseaseName={disease.name} followed={props.followed} />
             ))}
         </div>
     )

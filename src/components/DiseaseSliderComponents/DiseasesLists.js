@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import List from "@material-ui/core/List";
 import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -18,8 +18,27 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const preMadeDiseases = {};
+
+const fetchDiseases = async () => {
+    try {
+        const diseases = await fetch('http://127.0.0.1:8000/api/diseases/', {
+            method: 'GET'
+        });
+        return await diseases.json();
+    } catch (e) {
+        return preMadeDiseases;
+    }
+};
+
 function DiseasesLists() {
     const classes = useStyles();
+    const [diseases, setDiseases] = useState([]);
+    const [followedDiseases, setFollowedDiseases] = useState([]);
+
+    useEffect(() => {
+        fetchDiseases().then(diseases => setDiseases(diseases));
+    }, []);
 
     return (
         <List className={classes.list}>
@@ -30,11 +49,11 @@ function DiseasesLists() {
                 </div>
 
                 <DiseaseList
-                    diseases={['Disease', 'Disease']}
+                    diseases={followedDiseases}
                     followed={true}
                     subheader={'Followed'}/>
                 <DiseaseList
-                    diseases={['Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease', 'Disease']}
+                    diseases={diseases}
                     followed={false}
                     subheader={'Diseases'}/>
             </div>
