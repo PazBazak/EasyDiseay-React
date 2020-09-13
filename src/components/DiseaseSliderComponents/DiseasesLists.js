@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import List from "@material-ui/core/List";
 import {makeStyles} from '@material-ui/core/styles';
 import DiseaseList from "./DiseaseList";
@@ -36,6 +36,20 @@ function DiseasesLists() {
     const [diseases, setDiseases] = useState([]);
     const [followedDiseases, setFollowedDiseases] = useState([]);
 
+    const followDisease = (disease) => {
+        setFollowedDiseases(prevFollowedDiseases => (
+            [...prevFollowedDiseases, disease]
+        ))
+    };
+
+    const unFollowDisease = (disease) => {
+        const diseaseIndex = followedDiseases.indexOf(disease);
+
+        setFollowedDiseases(prevFollowedDiseases => (
+            [...prevFollowedDiseases].splice(diseaseIndex, 1)
+        ))
+    };
+
     useEffect(() => {
         fetchDiseases().then(diseases => setDiseases(diseases));
     }, []);
@@ -43,17 +57,17 @@ function DiseasesLists() {
     return (
         <List className={classes.list}>
             <div className={classes.container}>
-
-                <SearchBox />
-
+                <SearchBox/>
                 <DiseaseList
                     diseases={followedDiseases}
                     followed={true}
-                    subheader={'Followed'}/>
+                    subheader={'Followed'}
+                    unFollowDisease={unFollowDisease}/>
                 <DiseaseList
                     diseases={diseases}
                     followed={false}
-                    subheader={'Diseases'}/>
+                    subheader={'Diseases'}
+                    followDisease={followDisease}/>
             </div>
         </List>
     )
