@@ -18,7 +18,28 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const preMadeDiseases = {};
+const preMadeDiseases = [
+    {
+        name: "Crohn's' disease",
+        id: 0
+    },
+    {
+        name: "Colitis",
+        id: 1
+    },
+    {
+        name: "Coronavirus",
+        id: 2
+    },
+    {
+        name: "Anal cancer",
+        id: 3
+    },
+    {
+        name: "Something dermatitis",
+        id: 4
+    },
+];
 
 const fetchDiseases = async () => {
     try {
@@ -35,23 +56,19 @@ function DiseasesLists() {
     const classes = useStyles();
     const [diseases, setDiseases] = useState([]);
     const [followedDiseases, setFollowedDiseases] = useState([]);
-    console.log(followedDiseases);
 
     const followDisease = (disease) => {
         if (!followedDiseases.includes(disease)) {
-            setFollowedDiseases([...followedDiseases, disease])
+            const diseaseIndex = diseases.indexOf(disease);
+            setFollowedDiseases([...followedDiseases, disease]);
+            setDiseases(diseases.filter((disease, index) => index !== diseaseIndex && disease));
         }
     };
 
     const unFollowDisease = (disease) => {
         const diseaseIndex = followedDiseases.indexOf(disease);
-        const filtered = followedDiseases.filter((disease, index) => index !== diseaseIndex && disease);
-        console.log(disease);
-        console.log(diseaseIndex);
-        console.log(followedDiseases);
-        console.log(filtered);
-
-        setFollowedDiseases(filtered);
+        setFollowedDiseases(followedDiseases.filter((disease, index) => index !== diseaseIndex && disease));
+        setDiseases([...diseases, disease])
     };
 
     useEffect(() => {
