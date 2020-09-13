@@ -1,14 +1,16 @@
 import React from "react";
 
 function FeedInformation(props) {
+    const {publishedDate, website, diseases, timeToRead} = props;
+
     return (
         <div className={'d-flex flex-row feed-info-text'}>
-            <p>{props.publishedDate}</p>
+            <p>{publishedDate}</p>
             <p className={'mx-2'}>|</p>
-            <p>{props.website}</p>
+            <p>{website}</p>
             <p className={'mx-2'}>|</p>
-            <p>{props.diseases.map((disease) => disease.name).join(', ')}</p>
-            <p className={'ml-auto mr-5'}>{props.timeToRead} min</p>
+            <p>{diseases.map((disease) => disease.name).join(', ')}</p>
+            <p className={'ml-auto mr-5'}>{timeToRead} min</p>
         </div>
     )
 }

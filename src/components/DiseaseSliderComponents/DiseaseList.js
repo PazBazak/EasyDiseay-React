@@ -4,10 +4,12 @@ import DiseaseListItem from "./DiseaseListItem";
 
 
 function DiseaseList(props) {
+    const {subheader, diseases} = props;
+    
     return (
         <div>
-            <ListSubheader>{props.subheader}</ListSubheader>
-            {props.diseases.map((text, index) => (
+            <ListSubheader>{subheader}</ListSubheader>
+            {diseases.map((text, index) => (
                 <DiseaseListItem key={index} diseaseName={text + " " + index} followed={props.followed} />
             ))}
         </div>
