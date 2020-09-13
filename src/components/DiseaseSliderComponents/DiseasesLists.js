@@ -38,24 +38,20 @@ function DiseasesLists() {
     console.log(followedDiseases);
 
     const followDisease = (disease) => {
-        console.log(disease);
-        console.log(followedDiseases);
         if (!followedDiseases.includes(disease)) {
-            setFollowedDiseases((prevState => {
-                return [...prevState, disease]
-            }))
+            setFollowedDiseases([...followedDiseases, disease])
         }
     };
 
     const unFollowDisease = (disease) => {
         const diseaseIndex = followedDiseases.indexOf(disease);
+        const filtered = followedDiseases.filter((disease, index) => index !== diseaseIndex && disease);
         console.log(disease);
         console.log(diseaseIndex);
         console.log(followedDiseases);
+        console.log(filtered);
 
-        setFollowedDiseases((prevState => {
-            return [...prevState].splice(diseaseIndex, 1);
-        }));
+        setFollowedDiseases(filtered);
     };
 
     useEffect(() => {
