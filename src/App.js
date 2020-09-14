@@ -12,6 +12,7 @@ function App() {
         <Router>
             <Switch>
                 <Route path={'/'} exact component={MainPage}/>
+                <Route path={'/disease'} component={MainPage}/>
                 <Route path={'/login'} component={LoginPage} />
             </Switch>
         </Router>
