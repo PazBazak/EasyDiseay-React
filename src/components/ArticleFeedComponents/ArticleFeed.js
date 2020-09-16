@@ -55,12 +55,12 @@ const createFeed = (feed) => {
             key={feed.id}
             title={feed.title}
             url={feed.url}
-            image={feed.img}
+            img={feed.img}
             website={feed.source_site.name}
             diseases={feed.diseases}
             publishedDate={feed.published_date}
             timeToRead={feed.time_to_read}
-            bodyText={feed.summary} />
+            summary={feed.summary} />
     )
 };
 
