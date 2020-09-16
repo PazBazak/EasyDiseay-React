@@ -1,7 +1,9 @@
 import React from "react";
 import clsx from "clsx";
 import Toolbar from "@material-ui/core/Toolbar";
-import Logo from "./Logo";
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import AppBar from "@material-ui/core/AppBar";
 import {makeStyles} from "@material-ui/core/styles";
 import DiseaseMenuButton from "./DiseaseMenuButton";
@@ -11,6 +13,13 @@ const drawerWidth = 240;
 
 const headerStyle = makeStyles((theme) => ({
 
+    titleButton: {
+        "&:hover":{
+            backgroundColor: "transparent",
+            textDecoration: "none",
+            color: "inherit"},
+        "&:focus": {outline: "none"}
+    },
     appBar: {
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
@@ -36,12 +45,14 @@ function Header(props) {
             position="fixed"
             className={clsx(classes.appBar, {
                 [classes.appBarShift]: props.diseaseListOpened,
-            })}
-        >
+            })}>
             <Toolbar>
-                <DiseaseMenuButton setDiseaseListOpened={props.setDiseaseListOpened}
-                                   diseaseListOpened={props.diseaseListOpened}/>
-                <Logo/>
+                {/*Add icon here*/}
+                <IconButton className={classes.titleButton}  disableRipple edge={"start"} color="inherit" href={"/"}>
+                   <Typography variant={"h4"}>
+                       Easy Deasy
+                   </Typography>
+               </IconButton>
                 <AccountTabs />
             </Toolbar>
         </AppBar>
