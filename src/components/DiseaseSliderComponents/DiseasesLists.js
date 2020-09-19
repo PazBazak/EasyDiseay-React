@@ -57,13 +57,8 @@ function DiseasesLists() {
     const [diseases, setDiseases] = useState([]);
     const  [,forceUpdate]= useState();
 
-    const followDisease = diseaseIndex => {
-        diseases[diseaseIndex].isFollowing = true;
-        forceUpdate({});
-    };
-
-    const unFollowDisease = diseaseIndex => {
-        diseases[diseaseIndex].isFollowing = false;
+    const handleFollow = diseaseIndex => {
+        diseases[diseaseIndex].isFollowing = !diseases[diseaseIndex].isFollowing;
         forceUpdate({});
     };
 
@@ -84,14 +79,12 @@ function DiseasesLists() {
                     diseases={diseases}
                     subheader={'Followed'}
                     followed={true}
-                    unFollowDisease={unFollowDisease}
-                    followDisease={followDisease}/>
+                    handleFollow={handleFollow}/>
                 <DiseaseList
                     diseases={diseases}
                     subheader={'Diseases'}
                     followed={false}
-                    unFollowDisease={unFollowDisease}
-                    followDisease={followDisease}/>
+                    handleFollow={handleFollow}/>
             </div>
         </List>
     )

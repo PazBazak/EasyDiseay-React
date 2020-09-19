@@ -4,7 +4,7 @@ import DiseaseListItem from "./DiseaseListItem";
 
 
 function DiseaseList(props) {
-    const {diseases, subheader, id, followDisease, unFollowDisease, followed} = props;
+    const {diseases, subheader, id, handleFollow, followed} = props;
 
     const getDiseases = () => {
         return diseases.filter((disease, index) => {
@@ -20,8 +20,7 @@ function DiseaseList(props) {
                 <DiseaseListItem key={id}
                                  diseaseIndex={disease.diseaseIndex}
                                  disease={disease}
-                                 followDisease={followDisease}
-                                 unFollowDisease={unFollowDisease}/>
+                                 handleFollow={handleFollow}/>
             ))}
         </div>
     )
