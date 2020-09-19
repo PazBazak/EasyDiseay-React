@@ -27,7 +27,7 @@ function DiseaseListItem(props) {
     const classes = DiseaseItemStyle();
     const [hovered, setHovered] = useState(false);
 
-    function handleIconClick(event) {
+    function handleFollowIconClick(event) {
         props.handleFollow(props.disease.diseaseIndex);
         event.stopPropagation();
     }
@@ -41,7 +41,7 @@ function DiseaseListItem(props) {
                       setHovered(false);
                   }}>
             <ListItemText primary={props.disease.name}/>
-            <button className={classes.Hide} onClick={handleIconClick}>
+            <button className={classes.Hide} onClick={handleFollowIconClick}>
                 <FontAwesomeIcon icon={props.disease.isFollowing ? FullStar : Star}
                                  className={clsx({
                                      [classes.Followed]: props.disease.isFollowing,
