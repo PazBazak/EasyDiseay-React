@@ -28,12 +28,7 @@ function DiseaseListItem(props) {
     const [hovered, setHovered] = useState(false);
 
     function handleIconClick(event) {
-        if (props.disease.isFollowing) {
-            props.unFollowDisease(props.disease.diseaseIndex)
-        }
-        else {
-            props.followDisease(props.disease.diseaseIndex)
-        }
+        props.handleFollow(props.disease.diseaseIndex);
         event.stopPropagation();
     }
 
