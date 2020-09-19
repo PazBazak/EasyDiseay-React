@@ -55,24 +55,26 @@ const fetchDiseases = async () => {
 function DiseasesLists() {
     const classes = useStyles();
     const [diseases, setDiseases] = useState([]);
-    const [followedDiseases, setFollowedDiseases] = useState([]);
 
-    const followDisease = (disease) => {
-        if (!followedDiseases.includes(disease)) {
-            const diseaseIndex = diseases.indexOf(disease);
-            setFollowedDiseases([...followedDiseases, disease]);
-            setDiseases(diseases.filter((disease, index) => index !== diseaseIndex && disease));
-        }
+    const followDisease = disease => {
+        console.log("follow called");
+        disease.isFollowing = true;
+        setDiseases(diseases);
     };
 
-    const unFollowDisease = (disease) => {
-        const diseaseIndex = followedDiseases.indexOf(disease);
-        setFollowedDiseases(followedDiseases.filter((disease, index) => index !== diseaseIndex && disease));
-        setDiseases([...diseases, disease])
+    const unFollowDisease = disease => {
+        console.log("un-follow called");
+        disease.isFollowing = false;
+        setDiseases(diseases);
     };
 
     useEffect(() => {
-        fetchDiseases().then(diseases => setDiseases(diseases));
+        fetchDiseases()
+            .then(diseases => {
+                diseases.forEach(disease => disease.isFollowing = false);
+                return diseases
+            })
+            .then(diseases => setDiseases(diseases))
     }, []);
 
     return (
@@ -80,14 +82,14 @@ function DiseasesLists() {
             <div className={classes.container}>
                 <SearchBox/>
                 <DiseaseList
-                    diseases={followedDiseases}
-                    followed={true}
+                    diseases={diseases.filter(disease => disease.isFollowing)}
                     subheader={'Followed'}
-                    unFollowDisease={unFollowDisease}/>
+                    unFollowDisease={unFollowDisease}
+                    followDisease={followDisease}/>
                 <DiseaseList
-                    diseases={diseases}
-                    followed={false}
+                    diseases={diseases.filter(disease => !disease.isFollowing)}
                     subheader={'Diseases'}
+                    unFollowDisease={unFollowDisease}
                     followDisease={followDisease}/>
             </div>
         </List>

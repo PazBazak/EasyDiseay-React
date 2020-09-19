@@ -4,15 +4,15 @@ import DiseaseListItem from "./DiseaseListItem";
 
 
 function DiseaseList(props) {
+    const {diseases, subheader, id, followDisease, unFollowDisease} = props;
     return (
         <div>
-            <ListSubheader>{props.subheader}</ListSubheader>
-            {props.diseases.map((disease) => (
-                <DiseaseListItem key={disease.id}
+            <ListSubheader>{subheader}</ListSubheader>
+            {diseases.map((disease) => (
+                <DiseaseListItem key={id}
                                  disease={disease}
-                                 followed={props.followed}
-                                 followDisease={props.followDisease}
-                                 unFollowDisease={props.unFollowDisease}/>
+                                 followDisease={followDisease}
+                                 unFollowDisease={unFollowDisease}/>
             ))}
         </div>
     )

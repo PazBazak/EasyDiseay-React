@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import ListItemText from "@material-ui/core/ListItemText";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar as Star} from "@fortawesome/free-regular-svg-icons";
@@ -28,25 +28,25 @@ function DiseaseListItem(props) {
     const [hovered, setHovered] = useState(false);
 
     function handleIconClick(event) {
-        if (!props.followed) {
-            props.followDisease(props.disease);
-        } else {
-            props.unFollowDisease(props.disease);
+        if (props.disease.isFollowing) {
+            props.unFollowDisease(props.disease)
+        }
+        else {
+            props.followDisease(props.disease)
         }
         event.stopPropagation();
     }
 
     return (
-        <ListItem button onClick={() => {
-            console.log('got clicked');
-        }} onMouseEnter={() => {
-            setHovered(true);
-        }}
-        onMouseLeave={() => {
-            setHovered(false);
-        }}>
+        <ListItem button
+                  onMouseEnter={() => {
+                      setHovered(true);
+                  }}
+                  onMouseLeave={() => {
+                      setHovered(false);
+                  }}>
             <ListItemText primary={props.disease.name}/>
-            <button className={classes.Hide} onClick={handleIconClick} >
+            <button className={classes.Hide} onClick={handleIconClick}>
                 <FontAwesomeIcon icon={props.followed ? FullStar : Star}
                                  className={clsx({
                                      [classes.Followed]: props.followed,
