@@ -43,10 +43,10 @@ const preMadeDiseases = [
 
 const fetchDiseases = async () => {
     try {
-        const diseases = await fetch('http://127.0.0.1:8000/api/diseases/', {
+        const fetchedDiseases = await fetch('http://127.0.0.1:8000/api/diseases/', {
             method: 'GET'
         });
-        return await diseases.json();
+        return await fetchedDiseases.json();
     } catch (e) {
         return preMadeDiseases;
     }
@@ -78,12 +78,12 @@ function DiseasesLists() {
                 <DiseaseList
                     diseases={diseases}
                     subheader={'Followed'}
-                    followed={true}
+                    isFollowing={true}
                     handleFollow={handleFollow}/>
                 <DiseaseList
                     diseases={diseases}
                     subheader={'Diseases'}
-                    followed={false}
+                    isFollowing={false}
                     handleFollow={handleFollow}/>
             </div>
         </List>
