@@ -29,10 +29,10 @@ function DiseaseListItem(props) {
 
     function handleIconClick(event) {
         if (props.disease.isFollowing) {
-            props.unFollowDisease(props.disease)
+            props.unFollowDisease(props.disease.diseaseIndex)
         }
         else {
-            props.followDisease(props.disease)
+            props.followDisease(props.disease.diseaseIndex)
         }
         event.stopPropagation();
     }
@@ -47,10 +47,10 @@ function DiseaseListItem(props) {
                   }}>
             <ListItemText primary={props.disease.name}/>
             <button className={classes.Hide} onClick={handleIconClick}>
-                <FontAwesomeIcon icon={props.followed ? FullStar : Star}
+                <FontAwesomeIcon icon={props.disease.isFollowing ? FullStar : Star}
                                  className={clsx({
-                                     [classes.Followed]: props.followed,
-                                     [classes.Hovered]: hovered || props.followed
+                                     [classes.Followed]: props.disease.isFollowing,
+                                     [classes.Hovered]: hovered || props.disease.isFollowing
                                  })}/>
             </button>
         </ListItem>

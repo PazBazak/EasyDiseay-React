@@ -55,17 +55,16 @@ const fetchDiseases = async () => {
 function DiseasesLists() {
     const classes = useStyles();
     const [diseases, setDiseases] = useState([]);
+    const  [,forceUpdate]= useState();
 
-    const followDisease = disease => {
-        console.log("follow called");
-        disease.isFollowing = true;
-        setDiseases(diseases);
+    const followDisease = diseaseIndex => {
+        diseases[diseaseIndex].isFollowing = true;
+        forceUpdate({});
     };
 
-    const unFollowDisease = disease => {
-        console.log("un-follow called");
-        disease.isFollowing = false;
-        setDiseases(diseases);
+    const unFollowDisease = diseaseIndex => {
+        diseases[diseaseIndex].isFollowing = false;
+        forceUpdate({});
     };
 
     useEffect(() => {
@@ -82,13 +81,15 @@ function DiseasesLists() {
             <div className={classes.container}>
                 <SearchBox/>
                 <DiseaseList
-                    diseases={diseases.filter(disease => disease.isFollowing)}
+                    diseases={diseases}
                     subheader={'Followed'}
+                    followed={true}
                     unFollowDisease={unFollowDisease}
                     followDisease={followDisease}/>
                 <DiseaseList
-                    diseases={diseases.filter(disease => !disease.isFollowing)}
+                    diseases={diseases}
                     subheader={'Diseases'}
+                    followed={false}
                     unFollowDisease={unFollowDisease}
                     followDisease={followDisease}/>
             </div>
