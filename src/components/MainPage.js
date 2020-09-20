@@ -28,7 +28,6 @@ const mainPageStyle = makeStyles((theme) => ({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
-        marginLeft: -drawerWidth,
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
@@ -46,15 +45,11 @@ function MainPage() {
     return (
         <ThemeProvider theme={theme}>
             <div className={classes.root}>
-                <CssBaseline/>
-                <Header diseaseListOpened={diseaseListOpened} setDiseaseListOpened={setDiseaseListOpened}/>
-                <DiseaseMenu diseaseListOpened={diseaseListOpened}
-                             setDiseaseListOpened={setDiseaseListOpened}/>
-                <main
-                    className={clsx(classes.content, {
-                        [classes.contentShift]: diseaseListOpened && window.screen.availWidth > 600,
-                    })}
-                >
+                <Header/>
+                <DiseaseMenu/>
+                <main className={clsx(classes.content, {
+                    [classes.contentShift]: diseaseListOpened && window.screen.availWidth > 600,
+                })}>
                     <div className={classes.drawerHeader}/>
                     <ArticleFeed/>
                 </main>
