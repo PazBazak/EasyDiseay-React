@@ -17,7 +17,7 @@ const DiseaseMenuStyle = makeStyles((theme) => ({
     drawerPaper: {
         width: drawerWidth,
         zIndex: 1,
-        paddingTop: 45,
+        paddingTop: 60,
     },
     drawerHeader: {
         display: 'flex',
