@@ -16,6 +16,8 @@ const DiseaseMenuStyle = makeStyles((theme) => ({
     },
     drawerPaper: {
         width: drawerWidth,
+        zIndex: 1,
+        paddingTop: 45,
     },
     drawerHeader: {
         display: 'flex',
@@ -30,25 +32,15 @@ function DiseaseMenu(props) {
     const classes = DiseaseMenuStyle();
     const theme = useTheme;
 
-    const handleDrawerClose = () => {
-        props.setDiseaseListOpened(false);
-    };
-
     return (
         <Drawer
             className={classes.drawer}
             variant="persistent"
             anchor="left"
-            open={props.diseaseListOpened}
+            open
             classes={{
                 paper: classes.drawerPaper,
-            }}
-        >
-            <div className={classes.drawerHeader}>
-                <IconButton onClick={handleDrawerClose}>
-                    {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
-                </IconButton>
-            </div>
+            }}>
             <Divider/>
             <DiseasesLists/>
         </Drawer>
