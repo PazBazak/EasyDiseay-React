@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import ListItemText from "@material-ui/core/ListItemText";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faStar as Star} from "@fortawesome/free-regular-svg-icons";
@@ -25,28 +25,27 @@ const DiseaseItemStyle = makeStyles((theme) => ({
 
 function DiseaseListItem(props) {
     const classes = DiseaseItemStyle();
-    let [followed, setFollowed] = useState(props.followed);
     const [hovered, setHovered] = useState(false);
 
-    function handleIconClick() {
-        console.log('icon clicked')
+    function handleFollowIconClick(event) {
+        props.handleFollow(props.disease.diseaseIndex);
+        event.stopPropagation();
     }
 
     return (
-        <ListItem button onClick={() => {
-            console.log('got clicked');
-        }} onMouseEnter={() => {
-            setHovered(true);
-        }}
-        onMouseLeave={() => {
-            setHovered(false);
-        }}>
-            <ListItemText primary={props.diseaseName}/>
-            <button className={classes.Hide} onClick={handleIconClick} >
-                <FontAwesomeIcon icon={followed ? FullStar : Star}
+        <ListItem button
+                  onMouseEnter={() => {
+                      setHovered(true);
+                  }}
+                  onMouseLeave={() => {
+                      setHovered(false);
+                  }}>
+            <ListItemText primary={props.disease.name}/>
+            <button className={classes.Hide} onClick={handleFollowIconClick}>
+                <FontAwesomeIcon icon={props.disease.isFollowing ? FullStar : Star}
                                  className={clsx({
-                                     [classes.Followed]: followed,
-                                     [classes.Hovered]: hovered || followed
+                                     [classes.Followed]: props.disease.isFollowing,
+                                     [classes.Hovered]: hovered || props.disease.isFollowing
                                  })}/>
             </button>
         </ListItem>

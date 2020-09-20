@@ -66,10 +66,10 @@ const createFeed = (feed) => {
 
 const fetchFeeds = async () => {
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/articles/', {
+        const fetchedFeeds = await fetch('http://127.0.0.1:8000/api/articles/', {
             method: 'GET'
         });
-        return await response.json();
+        return await fetchedFeeds.json();
     } catch (e) {
         return preMadeFeeds;
     }
