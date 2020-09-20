@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         overflow: 'auto',
         padding: '0',
+        "&::-webkit-scrollbar": {
+            display: 'none'
+        },
     },
     container: {
         backgroundColor: 'inherit',
@@ -27,7 +30,7 @@ function DiseaseList() {
             <div className={classes.container}>
 
                 <div className={'p-3'}>
-                    <TextField label="Search" variant="filled" />
+                    <TextField label="Search" variant="filled"/>
                 </div>
 
                 <ListSubheader>Followed</ListSubheader>
