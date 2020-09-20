@@ -3,13 +3,16 @@ import FeedInformation from "./FeedInformation";
 import FeedBody from "./FeedBody";
 
 function Feed(props) {
+    const {title, diseases, summary, img, website, timeToRead, publishedDate} = props;
+
     return (
         <div className={'mt-4'}>
-            <h2>{props.title}</h2>
-            <FeedInformation diseases={props.diseases} website={props.website}
-                             publishedDate={props.publishedDate}
-                             timeToRead={props.timeToRead} />
-            <FeedBody bodyText={props.bodyText} image={props.image} />
+            <h2>{title}</h2>
+            <FeedInformation diseases={diseases}
+                             website={website}
+                             publishedDate={publishedDate}
+                             timeToRead={timeToRead} />
+            <FeedBody summary={summary} img={img} />
         </div>
     )
 }
