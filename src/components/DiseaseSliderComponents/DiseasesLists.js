@@ -58,7 +58,7 @@ const fetchDiseases = async () => {
 function DiseasesLists() {
     const classes = useStyles();
     const [diseases, setDiseases] = useState([]);
-    const  [,forceUpdate]= useState();
+    const [, forceUpdate] = useState();
 
     const handleFollow = diseaseIndex => {
         diseases[diseaseIndex].isFollowing = !diseases[diseaseIndex].isFollowing;
