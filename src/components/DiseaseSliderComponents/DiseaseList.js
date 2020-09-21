@@ -38,7 +38,7 @@ function DiseaseList(props) {
 
     return (
         <div>
-            <ListSubheader>{subheader}</ListSubheader>
+            <ListSubheader style={{backgroundColor: 'white'}}>{subheader}</ListSubheader>
             {handleDiseases().map((disease) => (
                 <DiseaseListItem key={id}
                                  diseaseIndex={disease.diseaseIndex}
