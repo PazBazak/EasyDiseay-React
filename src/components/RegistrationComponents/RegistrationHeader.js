@@ -1,7 +1,7 @@
 import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
-import React from "react";
+import React, { Fragment } from "react";
 import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -16,14 +16,14 @@ const RegistrationHeader = ({title}) => {
     const classes = useStyles();
 
     return (
-        <div>
+        <Fragment>
             <Avatar className={classes.avatar}>
                 <LockOutlinedIcon/>
             </Avatar>
             <Typography component="h1" variant="h5">
                 {title}
             </Typography>
-        </div>
+        </Fragment>
     )
 };
 
