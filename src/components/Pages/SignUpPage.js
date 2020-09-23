@@ -1,8 +1,5 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -12,6 +9,8 @@ import Copyright from "../RegistrationComponents/CopyRight";
 import RegistrationHeader from "../RegistrationComponents/RegistrationHeader";
 import PasswordField from "../RegistrationComponents/PasswordField";
 import EmailField from "../RegistrationComponents/EmailField";
+import SubmitButton from "../RegistrationComponents/SubmitButton";
+import SubmitCheckBox from "../RegistrationComponents/SubmitCheckBox";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -62,33 +61,19 @@ export default function SignUpPage() {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <EmailField />
+                            <EmailField/>
                         </Grid>
                         <Grid item xs={12}>
-                            <PasswordField />
+                            <PasswordField/>
                         </Grid>
                         <Grid item xs={12}>
-                            <FormControlLabel
-                                control={<Checkbox value="allowExtraEmails" color="primary"/>}
-                                label="I want to receive inspiration, marketing promotions and updates via email."
-                            />
+                            <SubmitCheckBox text={'I want to receive marketing promotions and updates via email.'}/>
                         </Grid>
                         <Grid item xs={12}>
-                            <FormControlLabel
-                                control={<Checkbox value="allowExtraEmails" color="primary" required/>}
-                                label="I accept terms and conditions."
-                            />
+                            <SubmitCheckBox text={'I accept terms and conditions.'}/>
                         </Grid>
                     </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        Sign Up
-                    </Button>
+                    <SubmitButton text={'Sign Up'}/>
                     <Grid container justify="flex-end">
                         <Grid item>
                             <Link to={'/login'}>

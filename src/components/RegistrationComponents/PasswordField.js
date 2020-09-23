@@ -1,19 +1,15 @@
 import React from "react";
-import TextField from "@material-ui/core/TextField";
+import SubmitField from "./SubmitField";
 
 const PasswordField = ({margin}) => {
     return (
-        <TextField
-            variant="outlined"
+        <SubmitField
             margin={margin}
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-        />
+            id={'password'}
+            label={'Password'}
+            name={'password'}
+            autoComplete={'current-password'}
+            autoFocus={false} type={'password'}/>
     )
 };
 

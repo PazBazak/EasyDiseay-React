@@ -1,19 +1,15 @@
 import React from "react";
-import TextField from "@material-ui/core/TextField";
+import SubmitField from "./SubmitField";
 
 const EmailField = ({margin, autoFocus}) => {
     return (
-        <TextField
-            variant="outlined"
+        <SubmitField
             margin={margin}
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus={autoFocus}
-        />
+            id={'email'}
+            label={'Email Address'}
+            name={'email'}
+            autoComplete={'email'}
+            autoFocus={autoFocus}/>
     )
 };
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import {Link} from "react-router-dom";
@@ -11,6 +10,8 @@ import Copyright from "../RegistrationComponents/CopyRight";
 import RegistrationHeader from "../RegistrationComponents/RegistrationHeader";
 import PasswordField from "../RegistrationComponents/PasswordField";
 import EmailField from "../RegistrationComponents/EmailField";
+import SubmitButton from "../RegistrationComponents/SubmitButton";
+import SubmitCheckBox from "../RegistrationComponents/SubmitCheckBox";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -39,19 +40,8 @@ export default function LoginPage() {
                 <form className={classes.form} noValidate>
                     <EmailField margin={'normal'} autoFocus={true}/>
                     <PasswordField margin={'normal'}/>
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary"/>}
-                        label="Remember me"
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        Login
-                    </Button>
+                    <SubmitCheckBox text={'Remember me'} />
+                    <SubmitButton text={'Login'}/>
                     <Grid container>
                         <Grid item xs>
                             <Link to={'/'}>
