@@ -2,7 +2,6 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Copyright from "../RegistrationComponents/CopyRight";
@@ -83,9 +82,7 @@ export default function SignUpPage() {
                     </Grid>
                 </form>
             </div>
-            <Box mt={5}>
-                <Copyright/>
-            </Box>
+            <Copyright/>
         </Container>
     );
 }

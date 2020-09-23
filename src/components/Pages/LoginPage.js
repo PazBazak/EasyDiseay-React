@@ -1,9 +1,6 @@
 import React from 'react';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Copyright from "../RegistrationComponents/CopyRight";
@@ -40,7 +37,7 @@ export default function LoginPage() {
                 <form className={classes.form} noValidate>
                     <EmailField margin={'normal'} autoFocus={true}/>
                     <PasswordField margin={'normal'}/>
-                    <SubmitCheckBox text={'Remember me!'} />
+                    <SubmitCheckBox text={'Remember me!'}/>
                     <SubmitButton text={'Login'}/>
                     <Grid container>
                         <Grid item xs>
@@ -56,9 +53,7 @@ export default function LoginPage() {
                     </Grid>
                 </form>
             </div>
-            <Box mt={8}>
-                <Copyright/>
-            </Box>
+            <Copyright/>
         </Container>
     );
 }
