@@ -40,7 +40,7 @@ export default function LoginPage() {
                 <form className={classes.form} noValidate>
                     <EmailField margin={'normal'} autoFocus={true}/>
                     <PasswordField margin={'normal'}/>
-                    <SubmitCheckBox text={'Remember me'} />
+                    <SubmitCheckBox text={'Remember me!'} />
                     <SubmitButton text={'Login'}/>
                     <Grid container>
                         <Grid item xs>
