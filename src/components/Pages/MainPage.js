@@ -3,10 +3,10 @@ import clsx from 'clsx';
 import {makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {ThemeProvider} from '@material-ui/styles';
-import ArticleFeed from "./ArticleFeedComponents/ArticleFeed";
-import Header from "./HeaderComponents/Header";
-import DiseaseMenu from "./DiseaseSliderComponents/DiseaseMenu";
-import theme from '../Themes/mainTheme'
+import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
+import Header from "../HeaderComponents/Header";
+import DiseaseMenu from "../DiseaseSliderComponents/DiseaseMenu";
+import theme from '../../Themes/mainTheme'
 
 const drawerWidth = 240;
 

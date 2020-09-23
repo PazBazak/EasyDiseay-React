@@ -3,13 +3,15 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
+import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Copyright from "./CopyRight";
-import RegistrationHeader from "./RegistrationHeader";
+import Copyright from "../RegistrationComponents/CopyRight";
+import RegistrationHeader from "../RegistrationComponents/RegistrationHeader";
+import PasswordField from "../RegistrationComponents/PasswordField";
+import EmailField from "../RegistrationComponents/EmailField";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -60,27 +62,10 @@ export default function SignUpPage() {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
-                            />
+                            <EmailField />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                            />
+                            <PasswordField />
                         </Grid>
                         <Grid item xs={12}>
                             <FormControlLabel
@@ -106,8 +91,8 @@ export default function SignUpPage() {
                     </Button>
                     <Grid container justify="flex-end">
                         <Grid item>
-                            <Link href="#" variant="body2">
-                                Already have an account? Login
+                            <Link to={'/login'}>
+                                {"Already have an account? Login"}
                             </Link>
                         </Grid>
                     </Grid>
