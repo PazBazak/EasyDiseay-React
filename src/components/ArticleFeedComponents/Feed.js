@@ -3,6 +3,7 @@ import FeedInformation from "./FeedInformation";
 import FeedBody from "./FeedBody";
 import Paper from "@material-ui/core/Paper";
 import {makeStyles} from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 
 const useStyle = makeStyles((theme) => ({
     paper: {
@@ -12,21 +13,18 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 
-
 function Feed(props) {
     const classes = useStyle();
     const {title, diseases, summary, img, website, timeToRead, publishedDate} = props;
 
     return (
         <Paper variant={"outlined"} className={classes.paper}>
-            <div className={''}>
-                <h2>{title}</h2>
-                <FeedInformation diseases={diseases}
-                                 website={website}
-                                 publishedDate={publishedDate}
-                                 timeToRead={timeToRead}/>
-                <FeedBody summary={summary} img={img}/>
-            </div>
+            <Typography variant={'h4'} component={'h3'}>{title}</Typography>
+            <FeedInformation diseases={diseases}
+                             website={website}
+                             publishedDate={publishedDate}
+                             timeToRead={timeToRead}/>
+            <FeedBody summary={summary} img={img}/>
         </Paper>
     )
 }
