@@ -3,21 +3,19 @@ import clsx from "clsx";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
 import AppBar from "@material-ui/core/AppBar";
 import {makeStyles} from "@material-ui/core/styles";
-import DiseaseMenuButton from "./DiseaseMenuButton";
 import AccountTabs from "./AccountTabs";
 
 const drawerWidth = 240;
 
 const headerStyle = makeStyles((theme) => ({
-
     titleButton: {
-        "&:hover":{
+        "&:hover": {
             backgroundColor: "transparent",
             textDecoration: "none",
-            color: "inherit"},
+            color: "inherit"
+        },
         "&:focus": {outline: "none"}
     },
     appBar: {
@@ -49,12 +47,12 @@ function Header(props) {
             })}>
             <Toolbar>
                 {/*Add icon here*/}
-                <IconButton className={classes.titleButton}  disableRipple edge={"start"} color="inherit" href={"/"}>
-                   <Typography variant={"h4"}>
-                       Easy Deasy
-                   </Typography>
-               </IconButton>
-                <AccountTabs />
+                <IconButton className={classes.titleButton} disableRipple edge={"start"} color="inherit" href={"/"}>
+                    <Typography variant={"h4"}>
+                        Easy Deasy
+                    </Typography>
+                </IconButton>
+                <AccountTabs/>
             </Toolbar>
         </AppBar>
     )
