@@ -6,7 +6,8 @@ import {ThemeProvider} from '@material-ui/styles';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
 import Header from "../HeaderComponents/Header";
 import DiseaseMenu from "../DiseaseSliderComponents/DiseaseMenu";
-import theme from '../../Themes/mainTheme'
+import baseTheme from '../../Themes/mainTheme'
+import {useMediaQuery} from "@material-ui/core";
 
 const drawerWidth = 240;
 
@@ -40,16 +41,14 @@ const mainPageStyle = makeStyles((theme) => ({
 
 function MainPage() {
     const classes = mainPageStyle();
-    const [diseaseListOpened, setDiseaseListOpened] = React.useState(false);
+    const [isDiseaseMenuShown, setIsDiseaseMenuShown] = React.useState(false);
 
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={baseTheme}>
             <div className={classes.root}>
-                <Header/>
-                <DiseaseMenu/>
-                <main className={clsx(classes.content, {
-                    [classes.contentShift]: diseaseListOpened && window.screen.availWidth > 600,
-                })}>
+                <Header isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}/>
+                <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}/>
+                <main className={classes.content}>
                     <div className={classes.drawerHeader}/>
                     <ArticleFeed/>
                 </main>

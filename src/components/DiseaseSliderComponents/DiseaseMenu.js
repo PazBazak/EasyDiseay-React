@@ -1,4 +1,5 @@
 import React from "react";
+import {useEffect} from 'react';
 import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -6,6 +7,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import Divider from "@material-ui/core/Divider";
 import DiseasesLists from "./DiseasesLists";
 import {makeStyles, useTheme} from "@material-ui/core/styles";
+import {useMediaQuery} from "@material-ui/core";
 
 const drawerWidth = 240;
 
@@ -31,16 +33,28 @@ const DiseaseMenuStyle = makeStyles((theme) => ({
 function DiseaseMenu(props) {
     const classes = DiseaseMenuStyle();
     const theme = useTheme;
+    const isSmallScreen = useMediaQuery(theme => theme.breakpoints.down("md"));
+    const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+
+    const drawerProps = {
+        className: classes.drawer,
+        variant: "persistent",
+        anchor: "left",
+        open: isDrawerOpen,
+        classes: {paper: classes.drawerPaper},
+    };
+
+    useEffect(() => {
+        if (isSmallScreen) {
+            setIsDrawerOpen(props.isDiseaseMenuShown);
+        } else {
+            setIsDrawerOpen(true);
+            props.setIsDiseaseMenuShown(false);
+        }
+    })
 
     return (
-        <Drawer
-            className={classes.drawer}
-            variant="persistent"
-            anchor="left"
-            open
-            classes={{
-                paper: classes.drawerPaper,
-            }}>
+        <Drawer {...drawerProps}>
             <Divider/>
             <DiseasesLists/>
         </Drawer>
