@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         overflow: 'auto',
         padding: '0',
+        "&::-webkit-scrollbar": {
+            display: 'none'
+        },
     },
     container: {
         backgroundColor: 'inherit',
