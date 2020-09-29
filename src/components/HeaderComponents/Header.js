@@ -7,6 +7,7 @@ import Hidden from '@material-ui/core/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
 import {makeStyles} from "@material-ui/core/styles";
 import AccountTabs from "./AccountTabs";
+import {Link} from 'react-router-dom';
 
 const headerStyle = makeStyles((theme) => ({
 
@@ -47,9 +48,15 @@ function Header(props) {
                     </IconButton>
                 </Hidden>
                 {/*Add icon here*/}
-                <IconButton className={classes.titleButton} disableRipple edge={"start"} color="inherit" href={"/"}>
+                <IconButton
+                    className={classes.titleButton}
+                    disableRipple
+                    edge={"start"}
+                    color="inherit"
+                    component={Link}
+                    to={'/'}>
                     <Typography variant={"h4"}>
-                        {process.env.REACT_APP_NAME}
+                        EasyDeasy
                     </Typography>
                 </IconButton>
                 <AccountTabs/>

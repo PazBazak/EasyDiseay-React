@@ -3,6 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'fontsource-roboto';
 import DiseasePage from "./components/DiseasePage";
+import NotFoundPage from "./components/NotFoundPage";
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Route, Switch} from 'react-router';
 import MainPage from "./components/Pages/MainPage";
@@ -16,6 +17,7 @@ function App() {
                 <Route path={'/'} exact component={MainPage}/>
                 <Route path={'/disease/:id'} component={DiseasePage}/>
                 <Route path={'/login'} component={LoginPage}/>
+                <Route component={NotFoundPage}/>
                 <Route path={'/signup'} component={SignUpPage}/>
             </Switch>
         </Router>
