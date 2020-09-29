@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import {makeStyles} from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import {ThemeProvider} from '@material-ui/styles';
 import ArticleFeed from "./ArticleFeedComponents/ArticleFeed";
 import Header from "./HeaderComponents/Header";
@@ -41,8 +42,6 @@ function DiseasePage({match}) {
     const classes = useStyle();
     const [diseaseListOpened, setDiseaseListOpened] = React.useState(false);
     const diseaseId = match.params.id;
-
-    console.log('rendered DiseasePage with id of - ', match.params.id);
 
     return (
         <ThemeProvider theme={theme}>
