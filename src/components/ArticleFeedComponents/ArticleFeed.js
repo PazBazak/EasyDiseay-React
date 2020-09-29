@@ -66,7 +66,7 @@ const createFeed = (feed) => {
 
 const fetchFeeds = async () => {
     try {
-        const fetchedFeeds = await fetch('http://127.0.0.1:8000/api/articles/', {
+        const fetchedFeeds = await fetch(process.env.REACT_APP_ARTICLES_API_URL, {
             method: 'GET'
         });
         return await fetchedFeeds.json();
