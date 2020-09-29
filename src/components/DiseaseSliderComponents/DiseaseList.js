@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function DiseaseList(props) {
-    const {searchInputText, messageIfEmpty, diseases, subheader, id, handleFollow, isFollowing} = props;
+    const {searchInputText, messageIfEmpty, diseases, subheader, handleFollow, isFollowing} = props;
     const classes = useStyles();
     const [haveDiseasesBeenFetched, setHaveDiseasesBeenFetched] = useState(false);
 
@@ -41,12 +41,13 @@ function DiseaseList(props) {
         })
     };
 
+
     useEffect(() => {
         setHaveDiseasesBeenFetched(diseases.length > 0);
     }, [diseases]);
 
     const diseasesList = handleDiseases().map((disease) => (
-        <DiseaseListItem key={id}
+        <DiseaseListItem key={disease.id}
                          diseaseIndex={disease.diseaseIndex}
                          disease={disease}
                          handleFollow={handleFollow}/>));
