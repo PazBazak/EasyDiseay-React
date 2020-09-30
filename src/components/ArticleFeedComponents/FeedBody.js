@@ -1,5 +1,4 @@
 import React from "react";
-import {makeStyles} from "@material-ui/core/styles";
 
 const altTextPreFix = "Disease and Research News - ";
 
@@ -7,7 +6,7 @@ function FeedBody(props) {
     const {img, title, summary} = props;
 
     return (
-        <div className={'d-flex border-bottom pb-3'}>
+        <div className={'d-flex'}>
             <img src={img}
                  alt={altTextPreFix + title}
                  className={'feed-image'}/>
