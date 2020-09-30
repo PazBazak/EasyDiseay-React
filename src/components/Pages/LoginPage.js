@@ -47,7 +47,7 @@ export default function LoginPage() {
                         </Grid>
                         <Grid item>
                             <Link to={'/signup'}>
-                                {"Don't have an account? Sign Up"}
+                                Don't have an account?
                             </Link>
                         </Grid>
                     </Grid>
