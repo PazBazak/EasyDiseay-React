@@ -6,7 +6,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import Divider from "@material-ui/core/Divider";
 import DiseasesLists from "./DiseasesLists";
-import {makeStyles, useTheme} from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 import {useMediaQuery} from "@material-ui/core";
 
 const drawerWidth = 240;
@@ -32,8 +32,6 @@ const DiseaseMenuStyle = makeStyles((theme) => ({
 
 function DiseaseMenu(props) {
     const classes = DiseaseMenuStyle();
-    const theme = useTheme;
-    const isSmallScreen = useMediaQuery(theme => theme.breakpoints.down("md"));
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
     const drawerProps = {
@@ -45,13 +43,13 @@ function DiseaseMenu(props) {
     };
 
     useEffect(() => {
-        if (isSmallScreen) {
+        if (props.isSmallScreen) {
             setIsDrawerOpen(props.isDiseaseMenuShown);
         } else {
             setIsDrawerOpen(true);
             props.setIsDiseaseMenuShown(false);
         }
-    })
+    }, [props.isSmallScreen, props.isDiseaseMenuShown]);
 
     return (
         <Drawer {...drawerProps}>

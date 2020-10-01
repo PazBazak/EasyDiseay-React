@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import clsx from 'clsx';
-import {makeStyles} from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {ThemeProvider} from '@material-ui/styles';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
@@ -42,12 +42,13 @@ const mainPageStyle = makeStyles((theme) => ({
 function MainPage() {
     const classes = mainPageStyle();
     const [isDiseaseMenuShown, setIsDiseaseMenuShown] = React.useState(false);
+    const isSmallScreen = useMediaQuery(baseTheme.breakpoints.down("md"));
 
     return (
         <ThemeProvider theme={baseTheme}>
             <div className={classes.root}>
                 <Header isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}/>
-                <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}/>
+                <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown} isSmallScreen={isSmallScreen}/>
                 <main className={classes.content}>
                     <div className={classes.drawerHeader}/>
                     <ArticleFeed/>
