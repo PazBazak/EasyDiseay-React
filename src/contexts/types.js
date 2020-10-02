@@ -1,1 +1,2 @@
 export const SET_ARTICLES = 'SET_ARTICLES';
+export const GET_ALL_ARTICLES = 'GET_ALL_ARTICLES';
