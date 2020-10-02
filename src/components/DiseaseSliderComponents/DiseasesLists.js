@@ -3,7 +3,6 @@ import List from "@material-ui/core/List";
 import {makeStyles} from '@material-ui/core/styles';
 import DiseaseList from "./DiseaseList";
 import SearchBar from "./SearchBar";
-import SearchBox from "./SearchBox";
 import DiseasesContext from "../../contexts/diseasesContext/diseasesContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 function DiseasesLists() {
     const classes = useStyles();
-    const  [,forceUpdate]= useState();
+    const [, forceUpdate] = useState();
     const diseasesContext = useContext(DiseasesContext);
     const [searchInputText, setSearchInputText] = useState('');
     const {diseases, fetchDiseases} = diseasesContext;
@@ -36,7 +35,7 @@ function DiseasesLists() {
         forceUpdate({});
     };
 
-     useEffect(() => {
+    useEffect(() => {
         fetchDiseases();
     }, []);
 
