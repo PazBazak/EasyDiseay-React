@@ -26,7 +26,7 @@ function ArticleFeed() {
 
     useEffect(() => {
         fetchArticles();
-    }, [fetchArticles]);
+    }, []);
 
     return (
         <div className={'col'}>
