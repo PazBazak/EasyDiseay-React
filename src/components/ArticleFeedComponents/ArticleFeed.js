@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import Feed from "./Feed";
 import {LoadingArticles} from "../utils/LoadingsTypes";
+import ArticlesContext from "../../contexts/articlesContext/articlesContext";
 
 const preMadeFeeds = [
     {
@@ -77,15 +78,16 @@ const fetchFeeds = async () => {
 };
 
 function ArticleFeed() {
-    let [currentFeeds, setCurrentFeeds] = useState([]);
+    const articleContext = useContext(ArticlesContext);
+    const {articles, setArticles} = articleContext;
 
     useEffect(() => {
-        fetchFeeds().then(feeds => setCurrentFeeds(feeds));
-    }, []);
+        fetchFeeds().then(feeds => setArticles(feeds));
+    }, [setArticles]);
 
     return (
         <div className={'col'}>
-            {currentFeeds.length > 0 ? currentFeeds.map(createFeed) : <LoadingArticles />}
+            {articles.length > 0 ? articles.map(createFeed) : <LoadingArticles />}
         </div>
     )
 }
