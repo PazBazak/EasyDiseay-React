@@ -22,6 +22,16 @@ const DiseaseItemStyle = makeStyles((theme) => ({
     Hide: {
         visibility: "hidden",
     },
+    Text: {
+        color: "black",
+    },
+    Item: {
+        justifyContent: 'flex-end',
+    },
+    Link: {
+        marginRight: 'auto',
+        flexGrow: 1,
+    },
 }));
 
 function DiseaseListItem(props) {
@@ -34,24 +44,25 @@ function DiseaseListItem(props) {
     }
 
     return (
-        <Link to={`/disease/${props.disease.id}`} replace style={{ textDecoration: 'none' }}>
-            <ListItem button
-                      onMouseEnter={() => {
-                          setHovered(true);
-                      }}
-                      onMouseLeave={() => {
-                          setHovered(false);
-                      }}>
-                <ListItemText primary={props.disease.name} style={{color: 'black'}}/>
-                <button className={classes.Hide} onClick={handleFollowIconClick}>
-                    <FontAwesomeIcon icon={props.disease.isFollowing ? FullStar : Star}
-                                     className={clsx({
-                                         [classes.Followed]: props.disease.isFollowing,
-                                         [classes.Hovered]: hovered || props.disease.isFollowing
-                                     })}/>
-                </button>
-            </ListItem>
-        </Link>
+        <ListItem button
+                  onMouseEnter={() => {
+                      setHovered(true);
+                  }}
+                  onMouseLeave={() => {
+                      setHovered(false);
+                  }}
+                  className={classes.Item}>
+            <Link className={classes.Link} style={{textDecoration: 'none'}} to={`/disease/${props.disease.id}`} replace>
+                <ListItemText className={classes.Text} primary={props.disease.name}/>
+            </Link>
+            <button className={classes.Hide} onClick={handleFollowIconClick}>
+                <FontAwesomeIcon icon={props.disease.isFollowing ? FullStar : Star}
+                                 className={clsx({
+                                     [classes.Followed]: props.disease.isFollowing,
+                                     [classes.Hovered]: hovered || props.disease.isFollowing
+                                 })}/>
+            </button>
+        </ListItem>
     )
 }
 
