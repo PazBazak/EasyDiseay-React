@@ -7,6 +7,7 @@ import ListItem from "@material-ui/core/ListItem";
 import {makeStyles} from "@material-ui/core/styles";
 import yellow from "@material-ui/core/colors/yellow";
 import clsx from 'clsx';
+import {Link} from 'react-router-dom'
 
 const DiseaseItemStyle = makeStyles((theme) => ({
     Followed: {
@@ -33,22 +34,24 @@ function DiseaseListItem(props) {
     }
 
     return (
-        <ListItem button
-                  onMouseEnter={() => {
-                      setHovered(true);
-                  }}
-                  onMouseLeave={() => {
-                      setHovered(false);
-                  }}>
-            <ListItemText primary={props.disease.name}/>
-            <button className={classes.Hide} onClick={handleFollowIconClick}>
-                <FontAwesomeIcon icon={props.disease.isFollowing ? FullStar : Star}
-                                 className={clsx({
-                                     [classes.Followed]: props.disease.isFollowing,
-                                     [classes.Hovered]: hovered || props.disease.isFollowing
-                                 })}/>
-            </button>
-        </ListItem>
+        <Link to={`/disease/${props.disease.id}`} replace style={{ textDecoration: 'none' }}>
+            <ListItem button
+                      onMouseEnter={() => {
+                          setHovered(true);
+                      }}
+                      onMouseLeave={() => {
+                          setHovered(false);
+                      }}>
+                <ListItemText primary={props.disease.name} style={{color: 'black'}}/>
+                <button className={classes.Hide} onClick={handleFollowIconClick}>
+                    <FontAwesomeIcon icon={props.disease.isFollowing ? FullStar : Star}
+                                     className={clsx({
+                                         [classes.Followed]: props.disease.isFollowing,
+                                         [classes.Hovered]: hovered || props.disease.isFollowing
+                                     })}/>
+                </button>
+            </ListItem>
+        </Link>
     )
 }
 

@@ -30,7 +30,7 @@ function ArticleFeed({diseaseId}) {
         } else {
             fetchArticlesForDisease(diseaseId, 10);
         }
-    }, []);
+    }, [diseaseId]);
 
     return (
         <div className={'col'}>

@@ -26,7 +26,6 @@ const ArticleState = props => {
     const fetchArticlesForDisease = async (id, numOfArticles) => {
         try {
             const fetchedArticles = await fetch(`${process.env.REACT_APP_DISEASES_API_URL}${id}/${numOfArticles}/`);
-            await console.log(`${process.env.REACT_APP_DISEASES_API_URL}/${id}/${numOfArticles}`);
             const jsonArticles = await fetchedArticles.json();
             await dispatch({type: SET_ARTICLES, payload: jsonArticles});
         } catch (e) {
