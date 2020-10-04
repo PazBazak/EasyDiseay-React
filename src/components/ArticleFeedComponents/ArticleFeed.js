@@ -20,12 +20,16 @@ const createFeed = (feed) => {
 };
 
 
-function ArticleFeed() {
+function ArticleFeed({diseaseId}) {
     const articleContext = useContext(ArticlesContext);
-    const {articles, fetchArticles} = articleContext;
+    const {articles, fetchArticles, fetchArticlesForDisease} = articleContext;
 
     useEffect(() => {
-        fetchArticles();
+        if (diseaseId === undefined) {
+            fetchArticles();
+        } else {
+            fetchArticlesForDisease(diseaseId, 10);
+        }
     }, []);
 
     return (

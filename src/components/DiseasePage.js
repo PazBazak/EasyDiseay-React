@@ -51,7 +51,7 @@ function DiseasePage({match}) {
                     [classes.contentShift]: diseaseListOpened && window.screen.availWidth > 600,
                 })}>
                     <div className={classes.drawerHeader}/>
-                    <ArticleFeed/>
+                    <ArticleFeed diseaseId={diseaseId} />
                 </main>
             </div>
         </ThemeProvider>
