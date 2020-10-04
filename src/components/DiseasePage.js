@@ -42,6 +42,8 @@ function DiseasePage({match}) {
     const [diseaseListOpened, setDiseaseListOpened] = React.useState(false);
     const diseaseId = match.params.id;
 
+    console.log('rendered DiseasePage with id of - ', match.params.id);
+
     return (
         <ThemeProvider theme={theme}>
             <div className={classes.root}>
