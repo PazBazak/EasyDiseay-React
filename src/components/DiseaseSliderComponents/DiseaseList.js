@@ -1,5 +1,4 @@
-import React, {useEffect} from "react";
-import List from "@material-ui/core/List";
+import React from "react";
 import DiseaseListItem from "./DiseaseListItem";
 import {ListSubheader} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
@@ -19,10 +18,16 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'inherit',
         padding: 0,
     },
+    notFoundMessageStyle: {
+        color: "grey",
+        paddingLeft: 15,
+    //    What about textAlign: center?
+    }
 }));
 
 function DiseaseList(props) {
-    const {searchInputText, diseases, subheader, id, handleFollow, isFollowing} = props;
+    const {searchInputText, messageIfEmpty, diseases, subheader, id, handleFollow, isFollowing} = props;
+    const classes = useStyles();
 
     /**
      * Checks the flag of the prop isFollowing, it's filtering only the relevant diseases and adding indexes to the
@@ -35,15 +40,21 @@ function DiseaseList(props) {
         })
     };
 
+    const diseasesList = handleDiseases().map((disease) => (
+        <DiseaseListItem key={id}
+                         diseaseIndex={disease.diseaseIndex}
+                         disease={disease}
+                         handleFollow={handleFollow}/>));
+
     return (
         <div>
             <ListSubheader style={{backgroundColor: 'white'}}>{subheader}</ListSubheader>
-            {handleDiseases().map((disease) => (
-                <DiseaseListItem key={id}
-                                 diseaseIndex={disease.diseaseIndex}
-                                 disease={disease}
-                                 handleFollow={handleFollow}/>
-            ))}
+            {diseasesList}
+            {diseasesList.length == 0 && messageIfEmpty !== '' ?
+                <div className={classes.notFoundMessageStyle}>
+                    {messageIfEmpty}
+                </div>
+                : null}
         </div>
     )
 }

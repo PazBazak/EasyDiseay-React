@@ -59,7 +59,7 @@ function DiseasesLists() {
     const classes = useStyles();
     const [diseases, setDiseases] = useState([]);
     const [searchInputText, setSearchInputText] = useState('');
-    const  [,forceUpdate]= useState();
+    const [, forceUpdate] = useState();
 
     const handleFollow = diseaseIndex => {
         diseases[diseaseIndex].isFollowing = !diseases[diseaseIndex].isFollowing;
@@ -80,13 +80,15 @@ function DiseasesLists() {
             <div className={classes.container}>
                 <SearchBar setSearchInputText={setSearchInputText}/>
                 <DiseaseList
-                    searchInputText={searchInputText}
+                    searchInputText={''}
+                    messageIfEmpty={''}
                     diseases={diseases}
                     subheader={process.env.REACT_APP_FOLLOWED_DISEASES_SUBHEADER}
                     isFollowing={true}
                     handleFollow={handleFollow}/>
                 <DiseaseList
                     searchInputText={searchInputText}
+                    messageIfEmpty={process.env.REACT_APP_NO_MATCHING_DISEASES_MESSAGE}
                     diseases={diseases}
                     subheader={process.env.REACT_APP_ALL_DISEASES_SUBHEADER}
                     isFollowing={false}
