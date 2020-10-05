@@ -18,7 +18,10 @@ function Feed(props) {
     const {title, diseases, summary, img, website, timeToRead, publishedDate} = props;
 
     return (
-        <Paper variant={"outlined"} className={classes.paper}>
+        <Paper variant={"elevation"}
+               className={classes.paper}
+               square
+               elevation={5}>
             <Typography variant={'h4'} component={'h3'}>{title}</Typography>
             <FeedInformation diseases={diseases}
                              website={website}

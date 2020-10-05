@@ -49,7 +49,7 @@ function Header(props) {
                 {/*Add icon here*/}
                 <IconButton className={classes.titleButton} disableRipple edge={"start"} color="inherit" href={"/"}>
                     <Typography variant={"h4"}>
-                        Easy Deasy
+                        {process.env.REACT_APP_NAME}
                     </Typography>
                 </IconButton>
                 <AccountTabs/>
