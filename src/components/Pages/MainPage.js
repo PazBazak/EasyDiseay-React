@@ -1,15 +1,12 @@
-import React, {useEffect} from 'react';
-import clsx from 'clsx';
-import {makeStyles, useTheme} from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import React from 'react';
+import {makeStyles} from '@material-ui/core/styles';
 import {ThemeProvider} from '@material-ui/styles';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
 import Header from "../HeaderComponents/Header";
 import DiseaseMenu from "../DiseaseSliderComponents/DiseaseMenu";
 import baseTheme from '../../Themes/mainTheme'
 import {useMediaQuery} from "@material-ui/core";
-
-const drawerWidth = 240;
+import clsx from 'clsx';
 
 const mainPageStyle = makeStyles((theme) => ({
     root: {
@@ -30,12 +27,8 @@ const mainPageStyle = makeStyles((theme) => ({
             duration: theme.transitions.duration.leavingScreen,
         }),
     },
-    contentShift: {
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginLeft: 0,
+    contentMobileModeStyle: {
+        marginLeft: -(process.env.REACT_APP_DISEASE_MENU_DRAWER_WIDTH),
     },
 }));
 
@@ -48,8 +41,10 @@ function MainPage() {
         <ThemeProvider theme={baseTheme}>
             <div className={classes.root}>
                 <Header isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}/>
-                <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown} isSmallScreen={isSmallScreen}/>
-                <main className={classes.content}>
+                <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}
+                             isSmallScreen={isSmallScreen}/>
+                <main className={clsx([classes.content],{
+                    [classes.contentMobileModeStyle] :isSmallScreen})}>
                     <div className={classes.drawerHeader}/>
                     <ArticleFeed/>
                 </main>

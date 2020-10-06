@@ -1,5 +1,4 @@
 import React from "react";
-import clsx from "clsx";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
@@ -8,8 +7,6 @@ import Hidden from '@material-ui/core/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
 import {makeStyles} from "@material-ui/core/styles";
 import AccountTabs from "./AccountTabs";
-
-const drawerWidth = 240;
 
 const headerStyle = makeStyles((theme) => ({
 

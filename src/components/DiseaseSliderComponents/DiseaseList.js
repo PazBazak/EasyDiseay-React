@@ -1,9 +1,7 @@
 import React from "react";
-import List from "@material-ui/core/List";
 import DiseaseListItem from "./DiseaseListItem";
 import {ListSubheader} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
     list: {
