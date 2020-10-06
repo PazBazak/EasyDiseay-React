@@ -1,15 +1,15 @@
 import React from "react";
-import clsx from "clsx";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import AppBar from "@material-ui/core/AppBar";
+import Hidden from '@material-ui/core/Hidden';
+import MenuIcon from '@material-ui/icons/Menu';
 import {makeStyles} from "@material-ui/core/styles";
 import AccountTabs from "./AccountTabs";
 
-const drawerWidth = 240;
-
 const headerStyle = makeStyles((theme) => ({
+
     titleButton: {
         "&:hover": {
             backgroundColor: "transparent",
@@ -25,13 +25,8 @@ const headerStyle = makeStyles((theme) => ({
             zIndex: 1201
         }),
     },
-    appBarShift: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
+    MenuIconStyle: {
+        color: "white",
     },
 }));
 
@@ -39,13 +34,18 @@ const headerStyle = makeStyles((theme) => ({
 function Header(props) {
     const classes = headerStyle();
 
+    const diseasesMenuClicked = () => {
+        props.setIsDiseaseMenuShown(!props.isDiseaseMenuShown);
+    }
+
     return (
-        <AppBar
-            position="fixed"
-            className={clsx(classes.appBar, {
-                [classes.appBarShift]: props.diseaseListOpened,
-            })}>
+        <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
+                <Hidden lgUp>
+                    <IconButton onClick={diseasesMenuClicked} edge={"start"}>
+                        <MenuIcon className={classes.MenuIconStyle}/>
+                    </IconButton>
+                </Hidden>
                 {/*Add icon here*/}
                 <IconButton className={classes.titleButton} disableRipple edge={"start"} color="inherit" href={"/"}>
                     <Typography variant={"h4"}>

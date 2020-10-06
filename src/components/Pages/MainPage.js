@@ -1,14 +1,12 @@
 import React from 'react';
-import clsx from 'clsx';
 import {makeStyles} from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import {ThemeProvider} from '@material-ui/styles';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
 import Header from "../HeaderComponents/Header";
 import DiseaseMenu from "../DiseaseSliderComponents/DiseaseMenu";
-import theme from '../../Themes/mainTheme'
-
-const drawerWidth = 240;
+import baseTheme from '../../Themes/mainTheme'
+import {useMediaQuery} from "@material-ui/core";
+import clsx from 'clsx';
 
 const mainPageStyle = makeStyles((theme) => ({
     root: {
@@ -29,27 +27,24 @@ const mainPageStyle = makeStyles((theme) => ({
             duration: theme.transitions.duration.leavingScreen,
         }),
     },
-    contentShift: {
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginLeft: 0,
+    contentMobileModeStyle: {
+        marginLeft: -(process.env.REACT_APP_DISEASE_MENU_DRAWER_WIDTH),
     },
 }));
 
 function MainPage() {
     const classes = mainPageStyle();
-    const [diseaseListOpened, setDiseaseListOpened] = React.useState(false);
+    const [isDiseaseMenuShown, setIsDiseaseMenuShown] = React.useState(false);
+    const isSmallScreen = useMediaQuery(baseTheme.breakpoints.down("md"));
 
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={baseTheme}>
             <div className={classes.root}>
-                <Header/>
-                <DiseaseMenu/>
-                <main className={clsx(classes.content, {
-                    [classes.contentShift]: diseaseListOpened && window.screen.availWidth > 600,
-                })}>
+                <Header isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}/>
+                <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}
+                             isSmallScreen={isSmallScreen}/>
+                <main className={clsx([classes.content],{
+                    [classes.contentMobileModeStyle] :isSmallScreen})}>
                     <div className={classes.drawerHeader}/>
                     <ArticleFeed/>
                 </main>

@@ -1,21 +1,19 @@
 import React from "react";
+import {useEffect} from 'react';
 import Drawer from "@material-ui/core/Drawer";
-import IconButton from "@material-ui/core/IconButton";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import Divider from "@material-ui/core/Divider";
 import DiseasesLists from "./DiseasesLists";
-import {makeStyles, useTheme} from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 
-const drawerWidth = 240;
-
+// Cool way to convert string to Int
+const width = +(process.env.REACT_APP_DISEASE_MENU_DRAWER_WIDTH);
 const DiseaseMenuStyle = makeStyles((theme) => ({
     drawer: {
-        width: drawerWidth,
+        width: width,
         flexShrink: 0,
     },
     drawerPaper: {
-        width: drawerWidth,
+        width: width,
         zIndex: 1,
         paddingTop: 60,
     },
@@ -30,17 +28,27 @@ const DiseaseMenuStyle = makeStyles((theme) => ({
 
 function DiseaseMenu(props) {
     const classes = DiseaseMenuStyle();
-    const theme = useTheme;
+    const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+
+    const drawerProps = {
+        className: classes.drawer,
+        variant: "persistent",
+        anchor: "left",
+        open: isDrawerOpen,
+        classes: {paper: classes.drawerPaper},
+    };
+
+    useEffect(() => {
+        if (props.isSmallScreen) {
+            setIsDrawerOpen(props.isDiseaseMenuShown);
+        } else {
+            setIsDrawerOpen(true);
+            props.setIsDiseaseMenuShown(false);
+        }
+    }, [props.isSmallScreen, props.isDiseaseMenuShown]);
 
     return (
-        <Drawer
-            className={classes.drawer}
-            variant="persistent"
-            anchor="left"
-            open
-            classes={{
-                paper: classes.drawerPaper,
-            }}>
+        <Drawer {...drawerProps}>
             <Divider/>
             <DiseasesLists/>
         </Drawer>
