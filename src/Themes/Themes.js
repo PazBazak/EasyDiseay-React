@@ -6,10 +6,20 @@ const baseTheme = createMuiTheme({
             primary: {
                 main: blue[600]
             },
+        },
+    });
+
+const darkTheme = createMuiTheme({
+        palette: {
+            type: 'dark',
+            primary: {
+                main: '#1C1C1C'
+            },
             secondary: {
                 main: '#ffc400'
             },
         },
     });
 
+export {darkTheme};
 export default baseTheme;
