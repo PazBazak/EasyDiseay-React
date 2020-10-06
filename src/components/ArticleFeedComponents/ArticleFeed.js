@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Feed from "./Feed";
+import {LoadingArticles} from "../utils/LoadingsTypes";
 
 const preMadeFeeds = [
     {
@@ -40,7 +41,7 @@ const preMadeFeeds = [
         diseases: [{
             id: 1,
             name: "disease 1"
-        },{
+        }, {
             id: 3,
             name: "disease 3"
         }],
@@ -60,7 +61,7 @@ const createFeed = (feed) => {
             diseases={feed.diseases}
             publishedDate={feed.published_date}
             timeToRead={feed.time_to_read}
-            summary={feed.summary} />
+            summary={feed.summary}/>
     )
 };
 
@@ -84,7 +85,7 @@ function ArticleFeed() {
 
     return (
         <div className={'col'}>
-            {currentFeeds.map(createFeed)}
+            {currentFeeds.length > 0 ? currentFeeds.map(createFeed) : <LoadingArticles />}
         </div>
     )
 }
