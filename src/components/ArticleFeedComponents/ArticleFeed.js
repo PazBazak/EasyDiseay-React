@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Feed from "./Feed";
-import CircularProgress from '@material-ui/core/CircularProgress';
+import {LoadingArticles} from "../utils/LoadingsTypes";
 
 const preMadeFeeds = [
     {
@@ -76,14 +76,6 @@ const fetchFeeds = async () => {
     }
 };
 
-const Loading = () => {
-    return (
-        <div className={'h-100 text-center'} >
-            <CircularProgress size={100}/>
-        </div>
-    )
-};
-
 function ArticleFeed() {
     let [currentFeeds, setCurrentFeeds] = useState([]);
 
@@ -93,7 +85,7 @@ function ArticleFeed() {
 
     return (
         <div className={'col'}>
-            {currentFeeds.length > 0 ? currentFeeds.map(createFeed) : <Loading/>}
+            {currentFeeds.length > 0 ? currentFeeds.map(createFeed) : <LoadingArticles />}
         </div>
     )
 }
