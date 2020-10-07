@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import List from "@material-ui/core/List";
 import {makeStyles} from '@material-ui/core/styles';
 import DiseaseList from "./DiseaseList";
-import SearchBox from "./SearchBox";
+import SearchBar from "./SearchBar";
 
 const useStyles = makeStyles((theme) => ({
     list: {
@@ -58,6 +58,7 @@ const fetchDiseases = async () => {
 function DiseasesLists() {
     const classes = useStyles();
     const [diseases, setDiseases] = useState([]);
+    const [searchInputText, setSearchInputText] = useState('');
     const [, forceUpdate] = useState();
 
     const handleFollow = diseaseIndex => {
@@ -77,15 +78,19 @@ function DiseasesLists() {
     return (
         <List className={classes.list}>
             <div className={classes.container}>
-                <SearchBox/>
+                <SearchBar setSearchInputText={setSearchInputText}/>
                 <DiseaseList
+                    searchInputText={''}
+                    messageIfEmpty={''}
                     diseases={diseases}
-                    subheader={'Followed'}
+                    subheader={process.env.REACT_APP_FOLLOWED_DISEASES_SUBHEADER}
                     isFollowing={true}
                     handleFollow={handleFollow}/>
                 <DiseaseList
+                    searchInputText={searchInputText}
+                    messageIfEmpty={process.env.REACT_APP_NO_MATCHING_DISEASES_MESSAGE}
                     diseases={diseases}
-                    subheader={'Diseases'}
+                    subheader={process.env.REACT_APP_ALL_DISEASES_SUBHEADER}
                     isFollowing={false}
                     handleFollow={handleFollow}/>
             </div>

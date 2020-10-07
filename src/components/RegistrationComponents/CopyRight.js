@@ -10,7 +10,7 @@ function Copyright() {
             <Typography variant="body2" color="textSecondary" align="center">
                 {'Copyright © '}
                 <Link color="inherit" to={'/'} component={RouterLink}>
-                    EasyDeasy
+                    {process.env.REACT_APP_NAME}
                 </Link>
                 {' '}
                 {new Date().getFullYear()}
