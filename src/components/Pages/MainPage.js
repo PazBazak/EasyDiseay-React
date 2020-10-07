@@ -7,6 +7,7 @@ import DiseaseMenu from "../DiseaseSliderComponents/DiseaseMenu";
 import baseTheme from '../../Themes/mainTheme'
 import {useMediaQuery} from "@material-ui/core";
 import clsx from 'clsx';
+import {DISEASE_MENU_DRAWER_WIDTH} from '../utils/Constants'
 
 const mainPageStyle = makeStyles((theme) => ({
     root: {
@@ -28,7 +29,7 @@ const mainPageStyle = makeStyles((theme) => ({
         }),
     },
     contentMobileModeStyle: {
-        marginLeft: -(process.env.REACT_APP_DISEASE_MENU_DRAWER_WIDTH),
+        marginLeft: -(DISEASE_MENU_DRAWER_WIDTH),
     },
 }));
 

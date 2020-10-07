@@ -4,16 +4,15 @@ import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
 import DiseasesLists from "./DiseasesLists";
 import {makeStyles} from "@material-ui/core/styles";
+import {DISEASE_MENU_DRAWER_WIDTH} from '../utils/Constants'
 
-// Cool way to convert string to Int
-const width = +(process.env.REACT_APP_DISEASE_MENU_DRAWER_WIDTH);
 const DiseaseMenuStyle = makeStyles((theme) => ({
     drawer: {
-        width: width,
+        width: DISEASE_MENU_DRAWER_WIDTH,
         flexShrink: 0,
     },
     drawerPaper: {
-        width: width,
+        width: DISEASE_MENU_DRAWER_WIDTH,
         zIndex: 1,
         paddingTop: 60,
     },

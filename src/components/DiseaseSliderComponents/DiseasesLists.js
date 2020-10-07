@@ -3,6 +3,7 @@ import List from "@material-ui/core/List";
 import {makeStyles} from '@material-ui/core/styles';
 import DiseaseList from "./DiseaseList";
 import SearchBar from "./SearchBar";
+import {ALL_DISEASES_SUBHEADER, FOLLOWED_DISEASES_SUBHEADER, NO_MATCHING_DISEASES_MESSAGE} from '../utils/Constants'
 import DiseasesContext from "../../contexts/diseasesContext/diseasesContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -47,14 +48,14 @@ function DiseasesLists() {
                     searchInputText={''}
                     messageIfEmpty={''}
                     diseases={diseases}
-                    subheader={process.env.REACT_APP_FOLLOWED_DISEASES_SUBHEADER}
+                    subheader={FOLLOWED_DISEASES_SUBHEADER}
                     isFollowing={true}
                     handleFollow={handleFollow}/>
                 <DiseaseList
                     searchInputText={searchInputText}
-                    messageIfEmpty={process.env.REACT_APP_NO_MATCHING_DISEASES_MESSAGE}
+                    messageIfEmpty={NO_MATCHING_DISEASES_MESSAGE}
                     diseases={diseases}
-                    subheader={process.env.REACT_APP_ALL_DISEASES_SUBHEADER}
+                    subheader={ALL_DISEASES_SUBHEADER}
                     isFollowing={false}
                     handleFollow={handleFollow}/>
             </div>
