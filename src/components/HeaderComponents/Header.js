@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
@@ -8,6 +8,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import {makeStyles} from "@material-ui/core/styles";
 import AccountTabs from "./AccountTabs";
 import {Link} from 'react-router-dom';
+import ThemeContext from "../../contexts/themeContext/themeContext";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+
 
 const headerStyle = makeStyles((theme) => ({
 
@@ -37,7 +41,10 @@ function Header(props) {
 
     const diseasesMenuClicked = () => {
         props.setIsDiseaseMenuShown(!props.isDiseaseMenuShown);
-    }
+    };
+
+    const themeContext = useContext(ThemeContext);
+    const {isDark, setDarkMode} = themeContext;
 
     return (
         <AppBar position="fixed" className={classes.appBar}>
@@ -59,6 +66,13 @@ function Header(props) {
                         EasyDeasy
                     </Typography>
                 </IconButton>
+                <FormControlLabel
+                    className={'ml-auto'}
+                    value="top"
+                    control={<Switch color="primary"/>}
+                    label="Top"
+                    labelPlacement="top"
+                />
                 <AccountTabs/>
             </Toolbar>
         </AppBar>

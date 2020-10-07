@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 function AccountTabs() {
     return (
-        <div className={'ml-auto'}>
+        <div>
             <Link to={'/login'}>
                 <input id={'login'} className="btn" type="button" value="Login"/>
             </Link>

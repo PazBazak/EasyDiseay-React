@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {ThemeProvider} from '@material-ui/styles';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
@@ -10,6 +10,7 @@ import {useMediaQuery} from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import clsx from 'clsx';
 import {DISEASE_MENU_DRAWER_WIDTH} from '../utils/Constants'
+import ThemeContext from "../../contexts/themeContext/themeContext";
 
 const mainPageStyle = makeStyles((theme) => ({
     root: {
@@ -39,7 +40,9 @@ function MainPage() {
     const classes = mainPageStyle();
     const [isDiseaseMenuShown, setIsDiseaseMenuShown] = React.useState(false);
     const isSmallScreen = useMediaQuery(baseTheme.breakpoints.down("md"));
-    const [isDark, setDarkTheme] = useState(true);
+
+    const themeContext = useContext(ThemeContext);
+    const {isDark} = themeContext;
 
     return (
         <ThemeProvider theme={isDark ? darkTheme : baseTheme}>
