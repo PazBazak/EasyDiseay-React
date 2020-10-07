@@ -4,7 +4,7 @@ import {ThemeProvider} from '@material-ui/styles';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
 import Header from "../HeaderComponents/Header";
 import DiseaseMenu from "../DiseaseSliderComponents/DiseaseMenu";
-import baseTheme from '../../Themes/mainTheme'
+import baseTheme from '../../Themes/Themes'
 import {useMediaQuery} from "@material-ui/core";
 import clsx from 'clsx';
 

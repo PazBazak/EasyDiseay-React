@@ -56,7 +56,7 @@ function DiseaseList(props) {
         <div>
             <ListSubheader style={{backgroundColor: 'white'}}>{subheader}</ListSubheader>
             {diseasesList}
-            {diseasesList.length == 0 && messageIfEmpty !== '' && haveDiseasesBeenFetched ?
+            {diseasesList.length === 0 && messageIfEmpty !== '' && haveDiseasesBeenFetched ?
                 <div className={classes.notFoundMessageStyle}>
                     {messageIfEmpty}
                 </div>

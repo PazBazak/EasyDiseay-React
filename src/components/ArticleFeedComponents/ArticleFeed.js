@@ -24,7 +24,6 @@ function ArticleFeed({diseaseId}) {
     const articleContext = useContext(ArticlesContext);
     const {articles, fetchArticles, fetchArticlesForDisease} = articleContext;
 
-    console.log('rendered id', diseaseId);
     useEffect(() => {
         if (diseaseId === undefined) {
             fetchArticles();
