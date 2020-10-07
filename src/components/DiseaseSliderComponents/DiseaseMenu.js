@@ -29,7 +29,7 @@ const DiseaseMenuStyle = makeStyles((theme) => ({
 function DiseaseMenu(props) {
     const classes = DiseaseMenuStyle();
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
-
+    const {setIsDiseaseMenuShown} = props;
     const drawerProps = {
         className: classes.drawer,
         variant: "persistent",
@@ -43,7 +43,7 @@ function DiseaseMenu(props) {
             setIsDrawerOpen(props.isDiseaseMenuShown);
         } else {
             setIsDrawerOpen(true);
-            props.setIsDiseaseMenuShown(false);
+            setIsDiseaseMenuShown(false);
         }
     }, [props.isSmallScreen, props.isDiseaseMenuShown]);
 

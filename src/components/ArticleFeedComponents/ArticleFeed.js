@@ -1,5 +1,4 @@
 import React, {useEffect, useState, useContext} from "react";
-import React, {useEffect, useContext} from "react";
 import Feed from "./Feed";
 import {LoadingArticles} from "../utils/LoadingsTypes";
 import ArticlesContext from "../../contexts/articlesContext/articlesContext";
@@ -25,6 +24,7 @@ function ArticleFeed({diseaseId}) {
     const articleContext = useContext(ArticlesContext);
     const {articles, fetchArticles, fetchArticlesForDisease} = articleContext;
 
+    console.log('rendered id', diseaseId);
     useEffect(() => {
         if (diseaseId === undefined) {
             fetchArticles();
