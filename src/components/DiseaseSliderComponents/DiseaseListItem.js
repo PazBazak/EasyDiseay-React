@@ -7,6 +7,7 @@ import ListItem from "@material-ui/core/ListItem";
 import {makeStyles} from "@material-ui/core/styles";
 import yellow from "@material-ui/core/colors/yellow";
 import clsx from 'clsx';
+import {Link} from 'react-router-dom'
 
 const DiseaseItemStyle = makeStyles((theme) => ({
     Followed: {
@@ -20,6 +21,16 @@ const DiseaseItemStyle = makeStyles((theme) => ({
     },
     Hide: {
         visibility: "hidden",
+    },
+    Text: {
+        color: "black",
+    },
+    Item: {
+        justifyContent: 'flex-end',
+    },
+    Link: {
+        marginRight: 'auto',
+        flexGrow: 1,
     },
 }));
 
@@ -39,8 +50,11 @@ function DiseaseListItem(props) {
                   }}
                   onMouseLeave={() => {
                       setHovered(false);
-                  }}>
-            <ListItemText primary={props.disease.name}/>
+                  }}
+                  className={classes.Item}>
+            <Link className={classes.Link} style={{textDecoration: 'none'}} to={`/disease/${props.disease.id}`} replace>
+                <ListItemText className={classes.Text} primary={props.disease.name}/>
+            </Link>
             <button className={classes.Hide} onClick={handleFollowIconClick}>
                 <FontAwesomeIcon icon={props.disease.isFollowing ? FullStar : Star}
                                  className={clsx({
