@@ -49,6 +49,14 @@ function Header(props) {
     const themeContext = useContext(ThemeContext);
     const {isDark, setDarkMode} = themeContext;
 
+    const handleDarkModeSwitch = () => {
+        if (isDark) {
+            setDarkMode(false)
+        } else {
+            setDarkMode(true)
+        }
+    };
+
     return (
         <AppBar
             position="fixed"
@@ -76,11 +84,12 @@ function Header(props) {
                     </IconButton>
                 </div>
                 <FormControlLabel
-                    className={'ml-auto'}
+                    className={'ml-auto mt-3 mr-2'}
                     value="top"
                     control={<Switch color="primary"/>}
-                    label="Top"
-                    labelPlacement="top"
+                    label="Dark Mode"
+                    labelPlacement="start"
+                    onChange={handleDarkModeSwitch}
                 />
                 <SearchBarAppBar/>
                 <AccountTabs/>
