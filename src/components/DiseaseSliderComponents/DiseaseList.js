@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import DiseaseListItem from "./DiseaseListItem";
 import {ListSubheader} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
@@ -21,13 +21,14 @@ const useStyles = makeStyles((theme) => ({
     notFoundMessageStyle: {
         color: "grey",
         paddingLeft: 15,
-    //    What about textAlign: center?
+        //    What about textAlign: center?
     }
 }));
 
 function DiseaseList(props) {
     const {searchInputText, messageIfEmpty, diseases, subheader, id, handleFollow, isFollowing} = props;
     const classes = useStyles();
+    const [haveDiseasesBeenFetched, setHaveDiseasesBeenFetched] = useState(false);
 
     /**
      * Checks the flag of the prop isFollowing, it's filtering only the relevant diseases and adding indexes to the
@@ -40,6 +41,10 @@ function DiseaseList(props) {
         })
     };
 
+    useEffect(() => {
+        setHaveDiseasesBeenFetched(diseases.length > 0);
+    }, [diseases]);
+
     const diseasesList = handleDiseases().map((disease) => (
         <DiseaseListItem key={id}
                          diseaseIndex={disease.diseaseIndex}
@@ -50,7 +55,9 @@ function DiseaseList(props) {
         <div>
             <ListSubheader style={{backgroundColor: 'white'}}>{subheader}</ListSubheader>
             {diseasesList}
-            {diseasesList.length == 0 && messageIfEmpty !== '' ?
+            {console.log(haveDiseasesBeenFetched)}
+            {console.log(diseasesList)}
+            {diseasesList.length == 0 && messageIfEmpty !== '' && haveDiseasesBeenFetched ?
                 <div className={classes.notFoundMessageStyle}>
                     {messageIfEmpty}
                 </div>
