@@ -3,7 +3,7 @@ import DiseasesContext from "./diseasesContext";
 import diseasesReducer from "./diseasesReducer";
 import preMadeDiseases from "../../dataSources/diseases";
 
-import {GET_ALL_DISEASES, SET_DISEASES} from "../types";
+import {SET_DISEASES} from "../types";
 
 const DiseasesState = props => {
     const initialState = {
