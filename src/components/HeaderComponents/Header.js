@@ -54,6 +54,7 @@ function Header(props) {
         setDarkMode(!isDark)
     };
 
+
     return (
         <AppBar
             position="fixed"
@@ -89,7 +90,7 @@ function Header(props) {
                     onChange={handleDarkModeSwitch}
                 />
                 <SearchBarAppBar/>
-                <AccountTabs/>
+                <AccountTabs setFormPopupOpened={props.setFormPopupOpened}/>
             </Toolbar>
         </AppBar>
     )
