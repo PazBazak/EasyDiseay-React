@@ -14,6 +14,7 @@ import ThemeContext from "../../contexts/themeContext/themeContext";
 import { createMuiTheme} from "@material-ui/core";
 import Popup from "../utils/Popup";
 import LoginPage from "./LoginPage";
+import SignUpPage from "./SignUpPage";
 
 const mainPageStyle = makeStyles((theme) => ({
     root: {
@@ -43,7 +44,9 @@ function MainPage() {
     const classes = mainPageStyle();
     const [isDiseaseMenuShown, setIsDiseaseMenuShown] = useState(false);
     const isSmallScreen = useMediaQuery(baseTheme.breakpoints.down("md"));
-    const [formPopupOpened, setFormPopupOpened] = useState(false);
+
+    const [signInOpened, setSignInOpened] = useState(false);
+    const [signupOpened, setSignUpOpened] = useState(false);
 
     const themeContext = useContext(ThemeContext);
     const {isDark} = themeContext;
@@ -54,7 +57,8 @@ function MainPage() {
             <Paper className={classes.root} >
                 <Header isDiseaseMenuShown={isDiseaseMenuShown}
                         setIsDiseaseMenuShown={setIsDiseaseMenuShown}
-                        setFormPopupOpened={setFormPopupOpened}
+                        setSignInOpened={setSignInOpened}
+                        setSignUpOpened={setSignUpOpened}
                 />
                 <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}
                              isSmallScreen={isSmallScreen}/>
@@ -65,9 +69,13 @@ function MainPage() {
                     <ArticleFeed/>
                 </main>
             </Paper>
-             <Popup opened={formPopupOpened}
-                   setOpened={setFormPopupOpened}>
+             <Popup opened={signInOpened}
+                   setOpened={setSignInOpened}>
                 <LoginPage />
+            </Popup>
+            <Popup opened={signupOpened}
+                   setOpened={setSignUpOpened}>
+                <SignUpPage />
             </Popup>
         </ThemeProvider>
     );

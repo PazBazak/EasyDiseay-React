@@ -41,9 +41,10 @@ const headerStyle = makeStyles((theme) => ({
 
 function Header(props) {
     const classes = headerStyle();
+    const {setIsDiseaseMenuShown, isDiseaseMenuShown, setSignInOpened, setSignUpOpened} = props;
 
     const diseasesMenuClicked = () => {
-        props.setIsDiseaseMenuShown(!props.isDiseaseMenuShown);
+        setIsDiseaseMenuShown(!isDiseaseMenuShown);
     };
 
     const themeContext = useContext(ThemeContext);
@@ -90,7 +91,9 @@ function Header(props) {
                     onChange={handleDarkModeSwitch}
                 />
                 <SearchBarAppBar/>
-                <AccountTabs setFormPopupOpened={props.setFormPopupOpened}/>
+                <AccountTabs
+                    setSignInOpened={setSignInOpened}
+                    setSignUpOpened={setSignUpOpened}/>
             </Toolbar>
         </AppBar>
     )

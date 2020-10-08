@@ -1,9 +1,13 @@
 import React from "react";
 
-function AccountTabs({setFormPopupOpened}) {
+function AccountTabs({setSignInOpened, setSignUpOpened}) {
 
-    const handleClick = () => {
-        setFormPopupOpened(true);
+    const signInClick = () => {
+        setSignInOpened(true);
+    };
+
+    const signUpClick = () => {
+        setSignUpOpened(true);
     };
 
     return (
@@ -12,12 +16,12 @@ function AccountTabs({setFormPopupOpened}) {
                    className="btn"
                    type="button"
                    value="Login"
-                   onClick={handleClick}/>
+                   onClick={signInClick}/>
             <input id={'sign-up'}
                    className="btn border-bottom"
                    type="button"
                    value="Sign-Up"
-                   onClick={handleClick}/>
+                   onClick={signUpClick}/>
         </div>
     )
 }
