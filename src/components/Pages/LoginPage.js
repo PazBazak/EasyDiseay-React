@@ -47,7 +47,7 @@ export default function LoginPage({openSignUp}) {
                     <SubmitButton text={'Login'}/>
                     <Grid container>
                         <Grid item xs>
-                            <Typography variant={"body1"} className={classes.link}>
+                            <Typography variant={"body1"} className={classes.link} display={'inline'}>
                                 Forgot password?
                             </Typography>
                         </Grid>
