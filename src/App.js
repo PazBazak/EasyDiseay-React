@@ -22,8 +22,6 @@ function App() {
                         <Switch>
                             <Route path={'/'} exact component={MainPage}/>
                             <Route path={'/disease/:id'} component={DiseasePage}/>
-                            <Route path={'/signup'} component={SignUpPage}/>
-                            <Route path={'/login'} component={LoginPage}/>
                             <Route component={NotFoundPage}/>
                         </Switch>
                     </Router>

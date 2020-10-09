@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -9,6 +8,7 @@ import PasswordField from "../RegistrationComponents/PasswordField";
 import EmailField from "../RegistrationComponents/EmailField";
 import SubmitButton from "../RegistrationComponents/SubmitButton";
 import SubmitCheckBox from "../RegistrationComponents/SubmitCheckBox";
+import Typography from "@material-ui/core/Typography";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,9 +24,16 @@ const useStyles = makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    link: {
+        color: "#2f76ee",
+        cursor: "pointer",
+        "&:hover": {
+            textDecoration: "underline",
+        }
+    },
 }));
 
-export default function LoginPage() {
+export default function LoginPage({openSignUp}) {
     const classes = useStyles();
 
     return (
@@ -40,14 +47,14 @@ export default function LoginPage() {
                     <SubmitButton text={'Login'}/>
                     <Grid container>
                         <Grid item xs>
-                            <Link to={'/'}>
+                            <Typography variant={"body1"} className={classes.link}>
                                 Forgot password?
-                            </Link>
+                            </Typography>
                         </Grid>
                         <Grid item>
-                            <Link to={'/signup'}>
+                            <Typography variant={"body1"} onClick={openSignUp} className={classes.link}>
                                 Don't have an account?
-                            </Link>
+                            </Typography>
                         </Grid>
                     </Grid>
                 </form>

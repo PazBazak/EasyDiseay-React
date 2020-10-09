@@ -1,6 +1,5 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -10,6 +9,7 @@ import PasswordField from "../RegistrationComponents/PasswordField";
 import EmailField from "../RegistrationComponents/EmailField";
 import SubmitButton from "../RegistrationComponents/SubmitButton";
 import SubmitCheckBox from "../RegistrationComponents/SubmitCheckBox";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -24,9 +24,16 @@ const useStyles = makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    link: {
+        color: "#2f76ee",
+        cursor: "pointer",
+        "&:hover": {
+            textDecoration: "underline",
+        }
+    },
 }));
 
-export default function SignUpPage() {
+export default function SignUpPage({openSignIn}) {
     const classes = useStyles();
 
     return (
@@ -74,9 +81,9 @@ export default function SignUpPage() {
                     <SubmitButton text={'Sign Up'}/>
                     <Grid container justify="flex-end">
                         <Grid item>
-                            <Link to={'/login'}>
-                                Already have an account?
-                            </Link>
+                            <Typography variant={"body1"} onClick={openSignIn} className={classes.link}>
+                                Already have an account? Login
+                            </Typography>
                         </Grid>
                     </Grid>
                 </form>

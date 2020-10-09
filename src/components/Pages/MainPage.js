@@ -48,6 +48,16 @@ function MainPage() {
     const [signInOpened, setSignInOpened] = useState(false);
     const [signupOpened, setSignUpOpened] = useState(false);
 
+    const openSignUp = () => {
+        setSignInOpened(false);
+        setSignUpOpened(true);
+    };
+
+    const openSignIn = () => {
+        setSignUpOpened(false);
+        setSignInOpened(true);
+    };
+
     const themeContext = useContext(ThemeContext);
     const {isDark} = themeContext;
 
@@ -71,11 +81,11 @@ function MainPage() {
             </Paper>
              <Popup opened={signInOpened}
                    setOpened={setSignInOpened}>
-                <LoginPage />
+                <LoginPage openSignUp={openSignUp}/>
             </Popup>
             <Popup opened={signupOpened}
                    setOpened={setSignUpOpened}>
-                <SignUpPage />
+                <SignUpPage openSignIn={openSignIn}/>
             </Popup>
         </ThemeProvider>
     );
