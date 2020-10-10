@@ -22,7 +22,7 @@ const mainPageStyle = makeStyles((theme) => ({
         justifyContent: 'flex-end',
     },
     content: {
-        height: "100%",
+        minHeight: "100vh",
         flexGrow: 1,
         padding: theme.spacing(3),
         transition: theme.transitions.create('margin', {
