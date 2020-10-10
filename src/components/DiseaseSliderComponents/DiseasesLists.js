@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import List from "@material-ui/core/List";
 import {makeStyles} from '@material-ui/core/styles';
 import DiseaseList from "./DiseaseList";
-import SearchBar from "./SearchBar";
+import {SearchBar} from "./SearchBar";
 import {ALL_DISEASES_SUBHEADER, FOLLOWED_DISEASES_SUBHEADER, NO_MATCHING_DISEASES_MESSAGE} from '../utils/Constants'
 import DiseasesContext from "../../contexts/diseasesContext/diseasesContext";
 
@@ -43,7 +43,9 @@ function DiseasesLists() {
     return (
         <List className={classes.list}>
             <div className={classes.container}>
-                <SearchBar setSearchInputText={setSearchInputText}/>
+                <div className={'p-3'}>
+                    <SearchBar setSearchInputText={setSearchInputText}/>
+                </div>
                 <DiseaseList
                     searchInputText={''}
                     messageIfEmpty={''}
