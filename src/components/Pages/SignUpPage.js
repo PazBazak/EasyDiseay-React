@@ -60,7 +60,10 @@ export default function SignUpPage({openSignIn}) {
         try {
             const responses = await fetch(process.env.REACT_APP_USERS_API_URL, {
                 method: 'POST',
-                body: JSON.stringify(formData)
+                body: JSON.stringify(formData),
+                headers: {
+                    "Content-Type": "application/json",
+                },
             });
             console.log(responses);
         } catch (e) {
