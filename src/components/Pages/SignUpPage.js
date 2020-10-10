@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import {makeStyles} from '@material-ui/core/styles';
@@ -35,23 +35,57 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUpPage({openSignIn}) {
     const classes = useStyles();
+    const [formData, setFormData] = useState(
+        {
+            first_name: "",
+            last_name: "",
+            email: "",
+            password: "",
+            marketing: false,
+            terms: false
+        });
+
+    const {first_name, last_name, email, password, marketing, terms} = formData;
+
+    const onChange = e => {
+        setFormData({...formData, [e.target.name]: e.target.value});
+    };
+
+    const onChangeCheckbox = e => {
+        setFormData({...formData, [e.target.name]: e.target.checked});
+    };
+
+    const handleRegister = async event => {
+        event.preventDefault();
+        try {
+            const responses = await fetch(process.env.REACT_APP_USERS_API_URL, {
+                method: 'POST',
+                body: JSON.stringify(formData)
+            });
+            console.log(responses);
+        } catch (e) {
+            console.log('error when registering (POST) :', e.message());
+        }
+    };
 
     return (
         <Container component="main" maxWidth="xs">
             <div className={classes.paper}>
                 <RegistrationHeader title={'Sign-Up'}/>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} noValidate onSubmit={handleRegister}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 autoComplete="fname"
-                                name="firstName"
+                                name="first_name"
                                 variant="outlined"
                                 required
                                 fullWidth
                                 id="firstName"
                                 label="First Name"
                                 autoFocus
+                                value={first_name}
+                                onChange={onChange}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -61,21 +95,31 @@ export default function SignUpPage({openSignIn}) {
                                 fullWidth
                                 id="lastName"
                                 label="Last Name"
-                                name="lastName"
+                                name="last_name"
                                 autoComplete="lname"
+                                value={last_name}
+                                onChange={onChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <EmailField/>
+                            <EmailField value={email} onChange={onChange}/>
                         </Grid>
                         <Grid item xs={12}>
-                            <PasswordField/>
+                            <PasswordField value={password} onChange={onChange}/>
                         </Grid>
                         <Grid item xs={12}>
-                            <SubmitCheckBox text={'I want to receive marketing promotions and updates via email.'}/>
+                            <SubmitCheckBox
+                                text={'I want to receive marketing promotions and updates via email.'}
+                                checked={marketing}
+                                name={'marketing'}
+                                onChange={onChangeCheckbox}/>
                         </Grid>
                         <Grid item xs={12}>
-                            <SubmitCheckBox text={'I accept terms and conditions.'}/>
+                            <SubmitCheckBox
+                                text={'I accept terms and conditions.'}
+                                checked={terms}
+                                name={'terms'}
+                                onChange={onChangeCheckbox}/>
                         </Grid>
                     </Grid>
                     <SubmitButton text={'Sign Up'}/>
