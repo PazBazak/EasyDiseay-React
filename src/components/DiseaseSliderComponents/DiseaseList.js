@@ -11,9 +11,6 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         overflow: 'auto',
         padding: '0',
-        "&::-webkit-scrollbar": {
-            display: 'none'
-        },
     },
     container: {
         backgroundColor: 'inherit',
@@ -59,8 +56,6 @@ function DiseaseList(props) {
         <div>
             <ListSubheader style={{backgroundColor: 'white'}}>{subheader}</ListSubheader>
             {diseasesList}
-            {console.log(haveDiseasesBeenFetched)}
-            {console.log(diseasesList)}
             {diseasesList.length == 0 && messageIfEmpty !== '' && haveDiseasesBeenFetched ?
                 <div className={classes.notFoundMessageStyle}>
                     {messageIfEmpty}

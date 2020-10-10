@@ -5,13 +5,16 @@
 
 #sign-up {
     color: white;
-    border-bottom: white;
-    border-radius: 3px;
+    margin: 6px;
 }
 
 #login {
     color: white;
-    border-radius: 3px;
+}
+
+#login:hover {
+    color: black;
+    background-color: white;
 }
 
 .logo {

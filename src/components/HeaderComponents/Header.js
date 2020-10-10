@@ -5,12 +5,16 @@ import IconButton from '@material-ui/core/IconButton';
 import AppBar from "@material-ui/core/AppBar";
 import Hidden from '@material-ui/core/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
-import {makeStyles} from "@material-ui/core/styles";
+import {makeStyles, fade} from "@material-ui/core/styles";
 import AccountTabs from "./AccountTabs";
 import {Link} from 'react-router-dom';
+import {SearchBarAppBar} from "../DiseaseSliderComponents/SearchBar";
+import {APP_NAME} from "../utils/Constants";
 
 const headerStyle = makeStyles((theme) => ({
-
+    title: {
+        flexGrow: 1,
+    },
     titleButton: {
         "&:hover": {
             backgroundColor: "transparent",
@@ -37,28 +41,35 @@ function Header(props) {
 
     const diseasesMenuClicked = () => {
         props.setIsDiseaseMenuShown(!props.isDiseaseMenuShown);
-    }
+    };
 
     return (
-        <AppBar position="fixed" className={classes.appBar}>
+        <AppBar
+            position="fixed"
+            className={classes.appBar}>
             <Toolbar>
-                <Hidden lgUp>
-                    <IconButton onClick={diseasesMenuClicked} edge={"start"}>
-                        <MenuIcon className={classes.MenuIconStyle}/>
+                <div className={classes.title}>
+                    <Hidden lgUp>
+                        <IconButton
+                            onClick={diseasesMenuClicked}
+                            edge={"start"}>
+                            <MenuIcon className={classes.MenuIconStyle}/>
+                        </IconButton>
+                    </Hidden>
+                    {/*Add icon here*/}
+                    <IconButton
+                        className={classes.titleButton}
+                        disableRipple
+                        edge={"start"}
+                        color="inherit"
+                        component={Link}
+                        to={'/'}>
+                        <Typography variant={"h4"}>
+                            {APP_NAME}
+                        </Typography>
                     </IconButton>
-                </Hidden>
-                {/*Add icon here*/}
-                <IconButton
-                    className={classes.titleButton}
-                    disableRipple
-                    edge={"start"}
-                    color="inherit"
-                    component={Link}
-                    to={'/'}>
-                    <Typography variant={"h4"}>
-                        EasyDeasy
-                    </Typography>
-                </IconButton>
+                </div>
+                <SearchBarAppBar/>
                 <AccountTabs/>
             </Toolbar>
         </AppBar>
