@@ -41,9 +41,10 @@ const headerStyle = makeStyles((theme) => ({
 
 function Header(props) {
     const classes = headerStyle();
+    const {setIsDiseaseMenuShown, isDiseaseMenuShown, setIsLoginOpened, setIsSignUpOpened} = props;
 
     const diseasesMenuClicked = () => {
-        props.setIsDiseaseMenuShown(!props.isDiseaseMenuShown);
+        setIsDiseaseMenuShown(!isDiseaseMenuShown);
     };
 
     const themeContext = useContext(ThemeContext);
@@ -53,6 +54,7 @@ function Header(props) {
     const handleDarkModeSwitch = () => {
         setDarkMode(!isDark)
     };
+
 
     return (
         <AppBar
@@ -89,7 +91,9 @@ function Header(props) {
                     onChange={handleDarkModeSwitch}
                 />
                 <SearchBarAppBar/>
-                <AccountTabs/>
+                <AccountTabs
+                    setIsLoginOpened={setIsLoginOpened}
+                    setIsSignUpOpened={setIsSignUpOpened}/>
             </Toolbar>
         </AppBar>
     )

@@ -1,15 +1,27 @@
 import React from "react";
-import {Link} from "react-router-dom";
 
-function AccountTabs() {
+function AccountTabs({setIsLoginOpened, setIsSignUpOpened}) {
+
+    const loginClick = () => {
+        setIsLoginOpened(true);
+    };
+
+    const signUpClick = () => {
+        setIsSignUpOpened(true);
+    };
+
     return (
-        <div>
-            <Link to={'/login'}>
-                <input id={'login'} className="btn border" type="button" value="Login"/>
-            </Link>
-            <Link to={'/signup'}>
-                <input id={'sign-up'} className="btn border" type="button" value="Sign-Up"/>
-            </Link>
+        <div className={'ml-auto'}>
+            <input id={'login'}
+                   className="btn border"
+                   type="button"
+                   value="Login"
+                   onClick={loginClick}/>
+            <input id={'sign-up'}
+                   className="btn border"
+                   type="button"
+                   value="Sign-Up"
+                   onClick={signUpClick}/>
         </div>
     )
 }
