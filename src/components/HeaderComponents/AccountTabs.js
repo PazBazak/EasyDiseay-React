@@ -1,9 +1,9 @@
 import React from "react";
 
-function AccountTabs({setSignInOpened, setSignUpOpened}) {
+function AccountTabs({setLoginOpened, setSignUpOpened}) {
 
-    const signInClick = () => {
-        setSignInOpened(true);
+    const loginClick = () => {
+        setLoginOpened(true);
     };
 
     const signUpClick = () => {
@@ -16,7 +16,7 @@ function AccountTabs({setSignInOpened, setSignUpOpened}) {
                    className="btn border"
                    type="button"
                    value="Login"
-                   onClick={signInClick}/>
+                   onClick={loginClick}/>
             <input id={'sign-up'}
                    className="btn border"
                    type="button"

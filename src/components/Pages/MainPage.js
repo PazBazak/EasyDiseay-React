@@ -45,17 +45,17 @@ function MainPage() {
     const [isDiseaseMenuShown, setIsDiseaseMenuShown] = useState(false);
     const isSmallScreen = useMediaQuery(baseTheme.breakpoints.down("md"));
 
-    const [signInOpened, setSignInOpened] = useState(false);
-    const [signupOpened, setSignUpOpened] = useState(false);
+    const [isLoginOpened, setLoginOpened] = useState(false);
+    const [isSignupOpened, setSignUpOpened] = useState(false);
 
     const openSignUp = () => {
-        setSignInOpened(false);
+        setLoginOpened(false);
         setSignUpOpened(true);
     };
 
-    const openSignIn = () => {
+    const openLogin = () => {
         setSignUpOpened(false);
-        setSignInOpened(true);
+        setLoginOpened(true);
     };
 
     const themeContext = useContext(ThemeContext);
@@ -67,7 +67,7 @@ function MainPage() {
             <Paper className={classes.root} >
                 <Header isDiseaseMenuShown={isDiseaseMenuShown}
                         setIsDiseaseMenuShown={setIsDiseaseMenuShown}
-                        setSignInOpened={setSignInOpened}
+                        setLoginOpened={setLoginOpened}
                         setSignUpOpened={setSignUpOpened}
                 />
                 <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}
@@ -79,13 +79,13 @@ function MainPage() {
                     <ArticleFeed/>
                 </main>
             </Paper>
-             <Popup opened={signInOpened}
-                   setOpened={setSignInOpened}>
+             <Popup isOpened={isLoginOpened}
+                   setOpened={setLoginOpened}>
                 <LoginPage openSignUp={openSignUp}/>
             </Popup>
-            <Popup opened={signupOpened}
+            <Popup isOpened={isSignupOpened}
                    setOpened={setSignUpOpened}>
-                <SignUpPage openSignIn={openSignIn}/>
+                <SignUpPage openSignIn={openLogin}/>
             </Popup>
         </ThemeProvider>
     );

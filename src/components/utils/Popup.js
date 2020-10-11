@@ -1,20 +1,11 @@
 import React from "react";
-import {Dialog, DialogTitle, DialogContent} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
+import {Dialog, DialogContent} from "@material-ui/core";
 
-const useStyle = makeStyles((theme) => ({
-    dialog: {
 
-    },
-}));
-
-const Popup = ({title, children, opened, setOpened}) => {
-    const classes = useStyle();
-
+const Popup = ({title, children, isOpened, setOpened}) => {
     return (
-        <Dialog open={opened}
-                onClose={() => setOpened(false)}
-                classes={{paper: classes.dialog}}>
+        <Dialog open={isOpened}
+                onClose={() => setOpened(false)}>
             <DialogContent>
                 {children}
             </DialogContent>
