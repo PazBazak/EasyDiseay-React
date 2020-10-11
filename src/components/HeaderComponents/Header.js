@@ -86,7 +86,7 @@ function Header(props) {
                 <FormControlLabel
                     className={'ml-auto mt-3 mr-2'}
                     value="top"
-                    control={<Switch color="primary"/>}
+                    control={<Switch checked={isDark}/>}
                     label="Dark Mode"
                     labelPlacement="start"
                     onChange={handleDarkModeSwitch}
