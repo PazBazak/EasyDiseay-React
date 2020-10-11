@@ -41,11 +41,11 @@ export default function SignUpPage({openSignIn}) {
             last_name: "",
             email: "",
             password: "",
-            marketing: false,
-            terms: false
+            is_accepting_marketing: false,
+            has_agreed_to_terms: false
         });
 
-    const {first_name, last_name, email, password, marketing, terms} = formData;
+    const {first_name, last_name, email, password, is_accepting_marketing, has_agreed_to_terms} = formData;
 
     const onChange = e => {
         setFormData({...formData, [e.target.name]: e.target.value});
@@ -65,7 +65,7 @@ export default function SignUpPage({openSignIn}) {
                     "Content-Type": "application/json",
                 },
             });
-            console.log(responses);
+            await console.log(responses);
         } catch (e) {
             console.log('error when registering (POST) :', e.message());
         }
@@ -113,15 +113,15 @@ export default function SignUpPage({openSignIn}) {
                         <Grid item xs={12}>
                             <SubmitCheckBox
                                 text={'I want to receive marketing promotions and updates via email.'}
-                                checked={marketing}
-                                name={'marketing'}
+                                checked={is_accepting_marketing}
+                                name={'is_accepting_marketing'}
                                 onChange={onChangeCheckbox}/>
                         </Grid>
                         <Grid item xs={12}>
                             <SubmitCheckBox
                                 text={'I accept terms and conditions.'}
-                                checked={terms}
-                                name={'terms'}
+                                checked={has_agreed_to_terms}
+                                name={'has_agreed_to_terms'}
                                 onChange={onChangeCheckbox}/>
                         </Grid>
                     </Grid>
