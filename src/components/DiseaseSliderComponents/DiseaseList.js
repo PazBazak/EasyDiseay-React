@@ -19,8 +19,10 @@ const useStyles = makeStyles((theme) => ({
     notFoundMessageStyle: {
         color: "grey",
         paddingLeft: 15,
-        //    What about textAlign: center?
-    }
+    },
+    subheader: {
+      backgroundColor:  theme.palette.background.paper
+    },
 }));
 
 function DiseaseList(props) {
@@ -54,9 +56,9 @@ function DiseaseList(props) {
 
     return (
         <div>
-            <ListSubheader style={{backgroundColor: 'white'}}>{subheader}</ListSubheader>
+            <ListSubheader className={classes.subheader}>{subheader}</ListSubheader>
             {diseasesList}
-            {diseasesList.length == 0 && messageIfEmpty !== '' && haveDiseasesBeenFetched ?
+            {diseasesList.length === 0 && messageIfEmpty !== '' && haveDiseasesBeenFetched ?
                 <div className={classes.notFoundMessageStyle}>
                     {messageIfEmpty}
                 </div>

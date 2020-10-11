@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import {ThemeProvider} from '@material-ui/styles';
+import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import Header from "../HeaderComponents/Header";
 import DiseaseMenu from "../DiseaseSliderComponents/DiseaseMenu";
-import baseTheme from '../../Themes/mainTheme'
+import baseTheme from '../../Themes/Themes'
+import {darkTheme} from "../../Themes/Themes";
 import {useMediaQuery} from "@material-ui/core";
+import Paper from "@material-ui/core/Paper";
 import clsx from 'clsx';
 import {DISEASE_MENU_DRAWER_WIDTH} from '../utils/Constants'
+import ThemeContext from "../../contexts/themeContext/themeContext";
+import { createMuiTheme} from "@material-ui/core";
 
 const mainPageStyle = makeStyles((theme) => ({
     root: {
@@ -38,9 +43,13 @@ function MainPage() {
     const [isDiseaseMenuShown, setIsDiseaseMenuShown] = React.useState(false);
     const isSmallScreen = useMediaQuery(baseTheme.breakpoints.down("md"));
 
+    const themeContext = useContext(ThemeContext);
+    const {isDark} = themeContext;
+
     return (
-        <ThemeProvider theme={baseTheme}>
-            <div className={classes.root}>
+        <ThemeProvider theme={createMuiTheme(isDark ? darkTheme : baseTheme)}>
+            <CssBaseline />
+            <Paper className={classes.root} >
                 <Header isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}/>
                 <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}
                              isSmallScreen={isSmallScreen}/>
@@ -49,7 +58,7 @@ function MainPage() {
                     <div className={classes.drawerHeader}/>
                     <ArticleFeed/>
                 </main>
-            </div>
+            </Paper>
         </ThemeProvider>
     );
 }

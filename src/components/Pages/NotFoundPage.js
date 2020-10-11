@@ -2,7 +2,7 @@ import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {ThemeProvider} from '@material-ui/styles';
 import Header from "../HeaderComponents/Header";
-import theme from '../../Themes/mainTheme'
+import theme from '../../Themes/Themes'
 
 
 const useStyle = makeStyles((theme) => ({

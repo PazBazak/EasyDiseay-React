@@ -23,7 +23,7 @@ const DiseaseItemStyle = makeStyles((theme) => ({
         visibility: "hidden",
     },
     Text: {
-        color: "black",
+        color: theme.palette.type === "light" ? "black" : "white",
     },
     Item: {
         justifyContent: 'flex-end',
