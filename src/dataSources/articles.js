@@ -39,7 +39,7 @@ const preMadeFeeds = [
             name: "dermatitis"
         },{
             id: 3,
-            name: "Anal cancer"
+            name: "Acne"
         }],
         published_date: "Sunday February 27, 2021",
         summary: "osit voluptatem accusantdicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur"
@@ -47,9 +47,9 @@ const preMadeFeeds = [
     {
         id: 4,
         time_to_read: 5,
-        title: "Do black people with dermatitis live less? new research found that niggers lifespan is shorter!",
+        title: "Do black people with dermathorter!",
         url: 'yo',
-        img: "https://d279m997dpfwgl.cloudfront.net/wp/2020/07/Emmanuel-1000x776.jpg",
+        img: "https://www.mayoclinic.org/-/media/kcms/gbs/patient-consumer/images/2013/08/26/10/24/ds00852_im03656_c7_anal_canalthu_jpg.png",
         source_site: {name: "health.com"},
         diseases: [{
             id: 1,
@@ -66,14 +66,11 @@ const preMadeFeeds = [
         time_to_read: 9,
         title: "Do black people with dermatitis live less? new research found that niggers lifespan is shorter!",
         url: 'yo',
-        img: "https://d279m997dpfwgl.cloudfront.net/wp/2020/07/Emmanuel-1000x776.jpg",
+        img: "https://res.cloudinary.com/pcf/image/upload/f_auto,q_auto/v1525465796/AnatomyProstateGland_pizky6.png",
         source_site: {name: "cdc.gov"},
         diseases: [{
-            id: 1,
-            name: "dermatitis"
-        },{
-            id: 3,
-            name: "Anal cancer"
+            id: 2,
+            name: "Prostate cancer"
         }],
         published_date: "November 15, 2021",
         summary: "osit voluptatem accusantdicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur"
