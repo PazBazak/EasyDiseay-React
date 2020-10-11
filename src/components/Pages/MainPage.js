@@ -45,17 +45,17 @@ function MainPage() {
     const [isDiseaseMenuShown, setIsDiseaseMenuShown] = useState(false);
     const isSmallScreen = useMediaQuery(baseTheme.breakpoints.down("md"));
 
-    const [isLoginOpened, setLoginOpened] = useState(false);
-    const [isSignupOpened, setSignUpOpened] = useState(false);
+    const [isLoginOpened, setIsLoginOpened] = useState(false);
+    const [isSignupOpened, setIsSignUpOpened] = useState(false);
 
     const openSignUp = () => {
-        setLoginOpened(false);
-        setSignUpOpened(true);
+        setIsLoginOpened(false);
+        setIsSignUpOpened(true);
     };
 
     const openLogin = () => {
-        setSignUpOpened(false);
-        setLoginOpened(true);
+        setIsSignUpOpened(false);
+        setIsLoginOpened(true);
     };
 
     const themeContext = useContext(ThemeContext);
@@ -67,8 +67,8 @@ function MainPage() {
             <Paper className={classes.root} >
                 <Header isDiseaseMenuShown={isDiseaseMenuShown}
                         setIsDiseaseMenuShown={setIsDiseaseMenuShown}
-                        setLoginOpened={setLoginOpened}
-                        setSignUpOpened={setSignUpOpened}
+                        setIsLoginOpened={setIsLoginOpened}
+                        setIsSignUpOpened={setIsSignUpOpened}
                 />
                 <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}
                              isSmallScreen={isSmallScreen}/>
@@ -80,11 +80,11 @@ function MainPage() {
                 </main>
             </Paper>
              <Popup isOpened={isLoginOpened}
-                   setOpened={setLoginOpened}>
+                   setIsOpened={setIsLoginOpened}>
                 <LoginPage openSignUp={openSignUp}/>
             </Popup>
             <Popup isOpened={isSignupOpened}
-                   setOpened={setSignUpOpened}>
+                   setIsOpened={setIsSignUpOpened}>
                 <SignUpPage openSignIn={openLogin}/>
             </Popup>
         </ThemeProvider>

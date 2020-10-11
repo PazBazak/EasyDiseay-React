@@ -41,7 +41,7 @@ const headerStyle = makeStyles((theme) => ({
 
 function Header(props) {
     const classes = headerStyle();
-    const {setIsDiseaseMenuShown, isDiseaseMenuShown, setLoginOpened, setSignUpOpened} = props;
+    const {setIsDiseaseMenuShown, isDiseaseMenuShown, setIsLoginOpened, setIsSignUpOpened} = props;
 
     const diseasesMenuClicked = () => {
         setIsDiseaseMenuShown(!isDiseaseMenuShown);
@@ -92,8 +92,8 @@ function Header(props) {
                 />
                 <SearchBarAppBar/>
                 <AccountTabs
-                    setLoginOpened={setLoginOpened}
-                    setSignUpOpened={setSignUpOpened}/>
+                    setIsLoginOpened={setIsLoginOpened}
+                    setIsSignUpOpened={setIsSignUpOpened}/>
             </Toolbar>
         </AppBar>
     )

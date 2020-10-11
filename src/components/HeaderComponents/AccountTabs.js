@@ -1,13 +1,13 @@
 import React from "react";
 
-function AccountTabs({setLoginOpened, setSignUpOpened}) {
+function AccountTabs({setIsLoginOpened, setIsSignUpOpened}) {
 
     const loginClick = () => {
-        setLoginOpened(true);
+        setIsLoginOpened(true);
     };
 
     const signUpClick = () => {
-        setSignUpOpened(true);
+        setIsSignUpOpened(true);
     };
 
     return (
