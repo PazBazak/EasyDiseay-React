@@ -1,5 +1,4 @@
-import React from "react";
-import {useEffect} from 'react';
+import React, {useEffect} from "react";
 import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
 import DiseasesLists from "./DiseasesLists";
@@ -15,7 +14,9 @@ const DiseaseMenuStyle = makeStyles((theme) => ({
         width: DISEASE_MENU_DRAWER_WIDTH,
         zIndex: 1,
         paddingTop: 60,
-        left: PAGE_WHITESPACES,
+        [theme.breakpoints.up('lg')]: {
+            left: PAGE_WHITESPACES,
+        },
         border: 'none',
     },
     drawerHeader: {

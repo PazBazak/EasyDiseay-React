@@ -6,12 +6,11 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Header from "../HeaderComponents/Header";
 import DiseaseMenu from "../DiseaseSliderComponents/DiseaseMenu";
 import baseTheme, {darkTheme} from '../../Themes/Themes'
-import {useMediaQuery} from "@material-ui/core";
+import {createMuiTheme, useMediaQuery} from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import clsx from 'clsx';
 import {DISEASE_MENU_DRAWER_WIDTH, PAGE_WHITESPACES} from '../utils/Constants'
 import ThemeContext from "../../contexts/themeContext/themeContext";
-import { createMuiTheme} from "@material-ui/core";
 import Popup from "../utils/Popup";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
@@ -19,8 +18,10 @@ import SignUpPage from "./SignUpPage";
 const mainPageStyle = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        paddingLeft: PAGE_WHITESPACES,
-        paddingRight: PAGE_WHITESPACES,
+        [theme.breakpoints.up('lg')]: {
+            paddingLeft: PAGE_WHITESPACES,
+            paddingRight: PAGE_WHITESPACES,
+        },
     },
     drawerHeader: {
         display: 'flex',

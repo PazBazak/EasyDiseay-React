@@ -17,8 +17,10 @@ import SignUpPage from "./SignUpPage";
 const mainPageStyle = makeStyles((theme) => ({
     root: {
         display: 'flex',
-         paddingLeft: PAGE_WHITESPACES,
-         paddingRight: PAGE_WHITESPACES,
+        [theme.breakpoints.up('lg')]: {
+            paddingLeft: PAGE_WHITESPACES,
+            paddingRight: PAGE_WHITESPACES,
+        },
     },
     drawerHeader: {
         display: 'flex',
