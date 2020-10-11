@@ -9,6 +9,7 @@ import {createMuiTheme, useMediaQuery} from "@material-ui/core";
 import clsx from 'clsx';
 import ThemeContext from "../../contexts/themeContext/themeContext";
 import Paper from "@material-ui/core/Paper";
+import {PAGE_WHITESPACES} from "../utils/Constants";
 import Popup from "../utils/Popup";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
@@ -16,6 +17,8 @@ import SignUpPage from "./SignUpPage";
 const mainPageStyle = makeStyles((theme) => ({
     root: {
         display: 'flex',
+         paddingLeft: PAGE_WHITESPACES,
+         paddingRight: PAGE_WHITESPACES,
     },
     drawerHeader: {
         display: 'flex',
