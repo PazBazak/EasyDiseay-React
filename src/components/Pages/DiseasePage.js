@@ -45,7 +45,7 @@ function DiseasePage({match}) {
     const {isDark} = themeContext;
 
     return (
-        <ThemeProvider theme={isDark ? createMuiTheme(darkTheme) : createMuiTheme(baseTheme)}>
+        <ThemeProvider theme={createMuiTheme(isDark ? darkTheme : baseTheme)}>
             <div className={classes.root}>
                 <Header isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}/>
                 <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}

@@ -47,7 +47,7 @@ function MainPage() {
     const {isDark} = themeContext;
 
     return (
-        <ThemeProvider theme={isDark ? createMuiTheme(darkTheme) : createMuiTheme(baseTheme)}>
+        <ThemeProvider theme={createMuiTheme(isDark ? darkTheme : baseTheme)}>
             <CssBaseline />
             <Paper className={classes.root} >
                 <Header isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}/>

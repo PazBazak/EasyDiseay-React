@@ -7,7 +7,7 @@ const baseTheme = createMuiTheme({
                 main: blue[600]
             },
         },
-    });
+});
 
 const darkTheme = createMuiTheme({
         palette: {
@@ -22,7 +22,7 @@ const darkTheme = createMuiTheme({
                 main: '#ffc400'
             },
         },
-    });
+});
 
 export {darkTheme};
 export default baseTheme;

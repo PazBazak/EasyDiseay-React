@@ -49,12 +49,9 @@ function Header(props) {
     const themeContext = useContext(ThemeContext);
     const {isDark, setDarkMode} = themeContext;
 
+    // Toggles the dark mode, if the current theme is dark, then switch it to non-dark, and vice versa
     const handleDarkModeSwitch = () => {
-        if (isDark) {
-            setDarkMode(false)
-        } else {
-            setDarkMode(true)
-        }
+        setDarkMode(!isDark)
     };
 
     return (
