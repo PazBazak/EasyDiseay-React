@@ -13,12 +13,12 @@ function AccountTabs({setSignInOpened, setSignUpOpened}) {
     return (
         <div className={'ml-auto'}>
             <input id={'login'}
-                   className="btn"
+                   className="btn border"
                    type="button"
                    value="Login"
                    onClick={signInClick}/>
             <input id={'sign-up'}
-                   className="btn border-bottom"
+                   className="btn border"
                    type="button"
                    value="Sign-Up"
                    onClick={signUpClick}/>
