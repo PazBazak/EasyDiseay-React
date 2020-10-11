@@ -3,7 +3,7 @@ import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
 import DiseasesLists from "./DiseasesLists";
 import {makeStyles} from "@material-ui/core/styles";
-import {DISEASE_MENU_DRAWER_WIDTH, PAGE_WHITESPACES} from '../utils/Constants'
+import {DISEASE_MENU_DRAWER_WIDTH, PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from '../utils/Constants'
 
 const DiseaseMenuStyle = makeStyles((theme) => ({
     drawer: {
@@ -14,8 +14,14 @@ const DiseaseMenuStyle = makeStyles((theme) => ({
         width: DISEASE_MENU_DRAWER_WIDTH,
         zIndex: 1,
         paddingTop: 60,
-        [theme.breakpoints.up('lg')]: {
-            left: PAGE_WHITESPACES,
+        [theme.breakpoints.up('xl')]: {
+            left: PAGE_WHITESPACES_XL,
+        },
+        [theme.breakpoints.down('lg')]: {
+            left: PAGE_WHITESPACES_LG,
+        },
+        [theme.breakpoints.down('md')]: {
+            left: 0,
         },
         border: 'none',
     },

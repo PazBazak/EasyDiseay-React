@@ -12,7 +12,7 @@ import {SearchBarAppBar} from "../DiseaseSliderComponents/SearchBar";
 import ThemeContext from "../../contexts/themeContext/themeContext";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import {PAGE_WHITESPACES} from "../utils/Constants";
+import {PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from "../utils/Constants";
 
 
 const headerStyle = makeStyles((theme) => ({
@@ -38,11 +38,19 @@ const headerStyle = makeStyles((theme) => ({
         color: "white",
     },
     ToolBar: {
-        [theme.breakpoints.up('lg')]: {
-            paddingLeft: PAGE_WHITESPACES,
-            paddingRight: PAGE_WHITESPACES
-        }
-    }
+        [theme.breakpoints.up('xl')]: {
+            paddingLeft: parseInt(PAGE_WHITESPACES_XL + 16),
+            paddingRight: parseInt(PAGE_WHITESPACES_XL + 32),
+        },
+        [theme.breakpoints.down('lg')]: {
+            paddingLeft: parseInt(PAGE_WHITESPACES_LG + 16),
+            paddingRight: parseInt(PAGE_WHITESPACES_LG + 32),
+        },
+        [theme.breakpoints.down('md')]: {
+            paddingLeft: 16,
+            paddingRight: 32,
+        },
+    },
 }));
 
 
