@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React from "react";
 import Chip from '@material-ui/core/Chip';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import {emphasize, makeStyles, withStyles} from '@material-ui/core/styles';
@@ -27,6 +27,15 @@ const useStyle = makeStyles((theme) => ({
         alignItems: 'flex-start',
         marginTop: '5px'
     },
+    timeToRead: {
+        display: 'inline',
+        fontSize: '1.1rem',
+        marginLeft: 'auto',
+        marginRight: '25px',
+    },
+    breadcrumbs: {
+        display: 'inline-block',
+    },
 }));
 
 
@@ -35,10 +44,11 @@ function FeedInformation(props) {
     const classes = useStyle();
 
     return (
-        <Fragment>
+        <div className={'flex d-flex'}>
             <Breadcrumbs aria-label={"breadcrumb"}
                          separator={'|'}
                          classes={{ol: classes.infoBar}}
+                         className={classes.breadcrumbs}
             >
                 <p>{publishedDate}</p>
                 <StyledBreadcrumb
@@ -52,7 +62,8 @@ function FeedInformation(props) {
                         label={disease.name}
                     />)}
             </Breadcrumbs>
-        </Fragment>
+            <p className={classes.timeToRead}>{timeToRead} min</p>
+        </div>
     )
 }
 
