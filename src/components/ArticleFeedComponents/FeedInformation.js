@@ -2,6 +2,7 @@ import React from "react";
 import Chip from '@material-ui/core/Chip';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import {emphasize, makeStyles, withStyles} from '@material-ui/core/styles';
+import {Link} from 'react-router-dom'
 
 const StyledBreadcrumb = withStyles((theme) => ({
     root: {
@@ -43,6 +44,10 @@ function FeedInformation(props) {
     const {publishedDate, website, diseases, timeToRead} = props;
     const classes = useStyle();
 
+    const handleDiseaseClick = () => {
+
+    };
+
     return (
         <div className={'flex d-flex'}>
             <Breadcrumbs aria-label={"breadcrumb"}
@@ -52,14 +57,18 @@ function FeedInformation(props) {
             >
                 <p>{publishedDate}</p>
                 <StyledBreadcrumb
-                    component="p"
+                    component={"p"}
                     label={website}
+                    clickable
                 />
                 {diseases.map((disease) =>
                     <StyledBreadcrumb
                         key={disease.id}
-                        component="p"
+                        component={Link}
+                        to={`/disease/${disease.id}`}
                         label={disease.name}
+                        clickable
+                        style={{textDecoration: 'none', color: "#424242"}}
                     />)}
             </Breadcrumbs>
             <p className={classes.timeToRead}>{timeToRead} min</p>

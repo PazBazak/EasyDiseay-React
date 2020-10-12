@@ -58,7 +58,7 @@ const preMadeFeeds = [
             id: 3,
             name: "Anal cancer"
         }],
-        published_date: "October 21, 2021",
+        published_date: "Saturday August 4, 2020",
         summary: "osit voluptatem accusantdicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur"
     },
     {
@@ -72,7 +72,7 @@ const preMadeFeeds = [
             id: 2,
             name: "Prostate cancer"
         }],
-        published_date: "November 15, 2021",
+        published_date: "Friday October 24, 2021",
         summary: "osit voluptatem accusantdicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur"
     },
 ];
