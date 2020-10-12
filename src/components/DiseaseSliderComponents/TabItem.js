@@ -2,19 +2,11 @@ import React from "react";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItem from "@material-ui/core/ListItem";
 import {ListItemIcon} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
 
 
-const useStyles = makeStyles((theme) => ({
-
-}));
-
-
-const TabItem = ({text, icon}) => {
-    const classes = useStyles();
-
+const TabItem = ({text, icon, isSelected, onClick}) => {
     return (
-        <ListItem button>
+        <ListItem button selected={isSelected} onClick={onClick}>
             <ListItemIcon>
                 {icon}
             </ListItemIcon>

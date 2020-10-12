@@ -8,3 +8,7 @@ export const PAGE_WHITESPACES_LG = 100;
 export const FOLLOWED_DISEASES_SUBHEADER = "Followed";
 export const ALL_DISEASES_SUBHEADER = "Diseases";
 export const NO_MATCHING_DISEASES_MESSAGE = "NO MATCHING DISEASES";
+
+export const HOT_TAB = 0;
+export const TRENDING_TAB = 1;
+export const NEW_TAB = 2;
