@@ -12,6 +12,7 @@ import {SearchBarAppBar} from "../DiseaseSliderComponents/SearchBar";
 import ThemeContext from "../../contexts/themeContext/themeContext";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import {PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from "../utils/Constants";
 
 
 const headerStyle = makeStyles((theme) => ({
@@ -30,11 +31,25 @@ const headerStyle = makeStyles((theme) => ({
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
-            zIndex: 1201
+            zIndex: 1201,
         }),
     },
     MenuIconStyle: {
         color: "white",
+    },
+    ToolBar: {
+        [theme.breakpoints.up('xl')]: {
+            paddingLeft: parseInt(PAGE_WHITESPACES_XL + 16),
+            paddingRight: parseInt(PAGE_WHITESPACES_XL + 32),
+        },
+        [theme.breakpoints.down('lg')]: {
+            paddingLeft: parseInt(PAGE_WHITESPACES_LG + 16),
+            paddingRight: parseInt(PAGE_WHITESPACES_LG + 32),
+        },
+        [theme.breakpoints.down('md')]: {
+            paddingLeft: 16,
+            paddingRight: 32,
+        },
     },
 }));
 
@@ -60,7 +75,7 @@ function Header(props) {
         <AppBar
             position="fixed"
             className={classes.appBar}>
-            <Toolbar>
+            <Toolbar className={classes.ToolBar}>
                 <div className={classes.title}>
                     <Hidden lgUp>
                         <IconButton
