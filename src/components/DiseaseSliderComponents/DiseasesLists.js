@@ -5,6 +5,7 @@ import DiseaseList from "./DiseaseList";
 import {SearchBar} from "./SearchBar";
 import {ALL_DISEASES_SUBHEADER, FOLLOWED_DISEASES_SUBHEADER, NO_MATCHING_DISEASES_MESSAGE} from '../utils/Constants'
 import DiseasesContext from "../../contexts/diseasesContext/diseasesContext";
+import FilterTabs from "./FilterTabs";
 
 const useStyles = makeStyles((theme) => ({
     list: {
@@ -12,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
         position: 'relative',
         overflow: 'auto',
-        padding: '0',
+        padding: 0,
         "&::-webkit-scrollbar": {
             display: 'none'
         },
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     container: {
         backgroundColor: 'inherit',
         padding: 0,
+        paddingTop: '20px'
     },
 }));
 
@@ -43,6 +45,7 @@ function DiseasesLists() {
     return (
         <List className={classes.list}>
             <div className={classes.container}>
+                <FilterTabs />
                 <div className={'p-3'}>
                     <SearchBar setSearchInputText={setSearchInputText}/>
                 </div>
