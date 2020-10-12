@@ -1,11 +1,11 @@
-import React from "react";
+import React, {Fragment} from "react";
 import Chip from '@material-ui/core/Chip';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import {emphasize, withStyles} from '@material-ui/core/styles';
+import {emphasize, makeStyles, withStyles} from '@material-ui/core/styles';
 
 const StyledBreadcrumb = withStyles((theme) => ({
     root: {
-        backgroundColor: theme.palette.grey[100],
+        backgroundColor: theme.palette.grey[200],
         height: theme.spacing(3),
         color: theme.palette.grey[800],
         fontWeight: theme.typography.fontWeightRegular,
@@ -17,32 +17,42 @@ const StyledBreadcrumb = withStyles((theme) => ({
             backgroundColor: emphasize(theme.palette.grey[300], 0.12),
         },
     },
+    label: {
+        fontSize: '1.1rem',
+    },
 }))(Chip);
+
+const useStyle = makeStyles((theme) => ({
+    infoBar: {
+        alignItems: 'flex-start',
+        marginTop: '5px'
+    },
+}));
 
 
 function FeedInformation(props) {
     const {publishedDate, website, diseases, timeToRead} = props;
+    const classes = useStyle();
 
     return (
-        // <div className={'d-flex flex-row feed-info-text'}>
-        //     <p>{publishedDate}</p>
-        //     <p className={'mx-2'}>|</p>
-        //     <p>{website}</p>
-        //     <p className={'mx-2'}>|</p>
-        //     <p>{diseases.map((disease) => disease.name).join(', ')}</p>
-        //     <p className={'ml-auto mr-5'}>{timeToRead} min</p>
-        // </div>
-        <Breadcrumbs aria-label={"breadcrumb"}>
-            <p>{publishedDate}</p>
-            <StyledBreadcrumb
-                component="p"
-                label="Website"
-            />
-            <StyledBreadcrumb
-                component="p"
-                label="Diseases"
-            />
-        </Breadcrumbs>
+        <Fragment>
+            <Breadcrumbs aria-label={"breadcrumb"}
+                         separator={'|'}
+                         classes={{ol: classes.infoBar}}
+            >
+                <p>{publishedDate}</p>
+                <StyledBreadcrumb
+                    component="p"
+                    label={website}
+                />
+                {diseases.map((disease) =>
+                    <StyledBreadcrumb
+                        key={disease.id}
+                        component="p"
+                        label={disease.name}
+                    />)}
+            </Breadcrumbs>
+        </Fragment>
     )
 }
 
