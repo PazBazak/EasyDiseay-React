@@ -24,11 +24,13 @@ function FeedBody(props) {
     const {id, img, title, summary} = props;
 
 
-    const ellipsisContinue = <span>...
-                <Link color="inherit"
-                      className={classes.readMoreStyle}
-                      to={`articles/${id}`}
-                      component={RouterLink}> Read more</Link></span>;
+    const ellipsisContinue = (
+        <span>...<Link color="inherit"
+                       className={classes.readMoreStyle}
+                       to={`articles/${id}`}
+                       component={RouterLink}> Read more</Link>
+        </span>
+    );
 
     return (
         <div className={'d-flex'}>

@@ -12,7 +12,7 @@ const createFeed = (feed) => {
             title={feed.title}
             url={feed.url}
             img={feed.img}
-            website={feed.source_site.name}
+            website={feed.source_site}
             diseases={feed.diseases}
             publishedDate={feed.published_date}
             timeToRead={feed.time_to_read}
