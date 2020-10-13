@@ -63,7 +63,7 @@ function DiseasePage({match}) {
     const [isLoginOpened, setIsLoginOpened] = useState(false);
     const [isSignupOpened, setIsSignUpOpened] = useState(false);
 
-     const openSignUp = () => {
+    const openSignUp = () => {
         setIsLoginOpened(false);
         setIsSignUpOpened(true);
     };
@@ -75,7 +75,7 @@ function DiseasePage({match}) {
 
     return (
         <ThemeProvider theme={createMuiTheme(isDark ? darkTheme : baseTheme)}>
-            <div className={classes.root}>
+            <Paper className={classes.root}>
                 <Header isDiseaseMenuShown={isDiseaseMenuShown}
                         setIsDiseaseMenuShown={setIsDiseaseMenuShown}
                         setIsLoginOpened={setIsLoginOpened}
@@ -83,13 +83,13 @@ function DiseasePage({match}) {
                 />
                 <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}
                              isSmallScreen={isSmallScreen}/>
-                <Paper className={clsx([classes.content], {
+                <main className={clsx([classes.content], {
                     [classes.contentMobileModeStyle]: isSmallScreen
                 })}>
                     <div className={classes.drawerHeader}/>
                     <ArticleFeed diseaseId={diseaseId}/>
-                </Paper>
-            </div>
+                </main>
+            </Paper>
             <Popup isOpened={isLoginOpened}
                    setIsOpened={setIsLoginOpened}>
                 <LoginPage openSignUp={openSignUp}/>

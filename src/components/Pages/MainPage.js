@@ -2,7 +2,6 @@ import React, {useContext, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Header from "../HeaderComponents/Header";
 import DiseaseMenu from "../DiseaseSliderComponents/DiseaseMenu";
 import baseTheme, {darkTheme} from '../../Themes/Themes'
@@ -74,8 +73,7 @@ function MainPage() {
 
     return (
         <ThemeProvider theme={createMuiTheme(isDark ? darkTheme : baseTheme)}>
-            <CssBaseline />
-            <Paper className={classes.root} >
+            <Paper className={classes.root}>
                 <Header isDiseaseMenuShown={isDiseaseMenuShown}
                         setIsDiseaseMenuShown={setIsDiseaseMenuShown}
                         setIsLoginOpened={setIsLoginOpened}
@@ -90,7 +88,7 @@ function MainPage() {
                     <ArticleFeed/>
                 </main>
             </Paper>
-             <Popup isOpened={isLoginOpened}
+            <Popup isOpened={isLoginOpened}
                    setIsOpened={setIsLoginOpened}>
                 <LoginPage openSignUp={openSignUp}/>
             </Popup>
