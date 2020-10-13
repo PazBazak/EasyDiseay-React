@@ -82,7 +82,7 @@ export default function SignUpPage({openSignIn}) {
                     <Grid container justify="flex-end">
                         <Grid item>
                             <Typography variant={"body1"} onClick={openSignIn} className={classes.link}>
-                                Already have an account? Login
+                                Already have an account?
                             </Typography>
                         </Grid>
                     </Grid>

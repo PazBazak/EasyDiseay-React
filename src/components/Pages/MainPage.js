@@ -77,8 +77,7 @@ function MainPage() {
                 <Header isDiseaseMenuShown={isDiseaseMenuShown}
                         setIsDiseaseMenuShown={setIsDiseaseMenuShown}
                         setIsLoginOpened={setIsLoginOpened}
-                        setIsSignUpOpened={setIsSignUpOpened}
-                />
+                        setIsSignUpOpened={setIsSignUpOpened}/>
                 <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}
                              isSmallScreen={isSmallScreen}/>
                 <main className={clsx([classes.content], {
