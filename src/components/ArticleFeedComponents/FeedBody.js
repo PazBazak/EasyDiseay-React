@@ -21,14 +21,14 @@ const altTextPreFix = "Disease and Research News - ";
 
 function FeedBody(props) {
     const classes = useStyle();
-    const {key, img, title, summary} = props;
+    const {id, img, title, summary} = props;
 
 
     const ellipsisContinue = <span>...
                 <Link color="inherit"
                       className={classes.readMoreStyle}
-                      to={`articles/${key}`}
-                      component={RouterLink}>Read more</Link></span>;
+                      to={`articles/${id}`}
+                      component={RouterLink}> Read more</Link></span>;
 
     return (
         <div className={'d-flex'}>

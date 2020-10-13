@@ -53,14 +53,12 @@ function FeedInformation(props) {
             <Breadcrumbs aria-label={"breadcrumb"}
                          separator={'|'}
                          classes={{ol: classes.infoBar}}
-                         className={classes.breadcrumbs}
-            >
+                         className={classes.breadcrumbs}>
                 <p>{publishedDate}</p>
                 <StyledBreadcrumb
                     component={"p"}
                     label={website}
-                    clickable
-                />
+                    clickable/>
                 {diseases.map((disease) =>
                     <StyledBreadcrumb
                         key={disease.id}
@@ -68,8 +66,7 @@ function FeedInformation(props) {
                         to={`/disease/${disease.id}`}
                         label={disease.name}
                         clickable
-                        style={{textDecoration: 'none', color: "#424242"}}
-                    />)}
+                        style={{textDecoration: 'none', color: "#424242"}}/>)}
             </Breadcrumbs>
             <p className={classes.timeToRead}>{timeToRead} min</p>
         </div>

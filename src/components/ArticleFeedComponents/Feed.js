@@ -14,7 +14,7 @@ const useStyle = makeStyles((theme) => ({
 
 function Feed(props) {
     const classes = useStyle();
-    const {key, title, diseases, summary, img, website, timeToRead, publishedDate} = props;
+    const {id, title, diseases, summary, img, website, timeToRead, publishedDate} = props;
 
     return (
         <Paper variant={"elevation"}
@@ -28,7 +28,7 @@ function Feed(props) {
                              website={website}
                              publishedDate={publishedDate}
                              timeToRead={timeToRead}/>
-            <FeedBody key={key}
+            <FeedBody id={id}
                       summary={summary}
                       img={img}/>
         </Paper>
