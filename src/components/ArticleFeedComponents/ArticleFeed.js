@@ -8,6 +8,7 @@ const createFeed = (feed) => {
     return (
         <Feed
             key={feed.id}
+            id={feed.id}
             title={feed.title}
             url={feed.url}
             img={feed.img}
@@ -34,7 +35,7 @@ function ArticleFeed({diseaseId}) {
 
     return (
         <div className={'col'}>
-            {articles.length > 0 ? articles.map(createFeed) : <LoadingArticles />}
+            {articles.length > 0 ? articles.map(createFeed) : <LoadingArticles/>}
         </div>
     )
 }
