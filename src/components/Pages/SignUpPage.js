@@ -67,7 +67,7 @@ export default function SignUpPage({openSignIn}) {
             });
             await console.log(responses);
         } catch (e) {
-            console.log('error when registering (POST) :', e.message());
+            console.log('error when registering (POST) :', e);
         }
     };
 
