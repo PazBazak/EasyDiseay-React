@@ -55,6 +55,18 @@ export default function SignUpPage({openSignIn}) {
         setFormData({...formData, [e.target.name]: e.target.checked});
     };
 
+    const validateEmail = email => {
+        // Allows anything@anything.anything
+        let re = /\S+@\S+\.\S+/;
+        return re.test(email)
+    };
+
+    const validateForm = async () => {
+        if (!validateEmail(email)) {
+
+        }
+    };
+
     const handleRegister = async event => {
         event.preventDefault();
         try {
