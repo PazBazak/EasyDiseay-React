@@ -103,8 +103,7 @@ function Header(props) {
                     control={<Switch checked={isDark}/>}
                     label="Dark Mode"
                     labelPlacement="start"
-                    onChange={handleDarkModeSwitch}
-                />
+                    onChange={handleDarkModeSwitch}/>
                 <SearchBarAppBar/>
                 <AccountTabs
                     setIsLoginOpened={setIsLoginOpened}
