@@ -38,6 +38,7 @@ function DiseaseMenu(props) {
     const classes = DiseaseMenuStyle();
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
     const {setIsDiseaseMenuShown} = props;
+
     const drawerProps = {
         className: classes.drawer,
         variant: "persistent",

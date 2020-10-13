@@ -44,6 +44,31 @@ const preMadeDiseases = [
         isFollowing: false,
         id: 8
     },
+    {
+        name: "Acne",
+        isFollowing: false,
+        id: 9
+    },
+    {
+        name: "Eye cancer",
+        isFollowing: false,
+        id: 10
+    },
+    {
+        name: "Anxiety",
+        isFollowing: false,
+        id: 11
+    },
+    {
+        name: "IBS",
+        isFollowing: false,
+        id: 12
+    },
+    {
+        name: "Actinic keratosis",
+        isFollowing: false,
+        id: 13
+    },
 ];
 
 export default preMadeDiseases;
