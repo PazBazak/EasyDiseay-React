@@ -44,10 +44,6 @@ function FeedInformation(props) {
     const {publishedDate, website, diseases, timeToRead} = props;
     const classes = useStyle();
 
-    const handleDiseaseClick = () => {
-
-    };
-
     return (
         <div className={'flex d-flex'}>
             <Breadcrumbs aria-label={"breadcrumb"}
@@ -56,8 +52,10 @@ function FeedInformation(props) {
                          className={classes.breadcrumbs}>
                 <p>{publishedDate}</p>
                 <StyledBreadcrumb
-                    component={"p"}
-                    label={website}
+                    component={Link}
+                    to={`/sites/${website.id}`}
+                    label={website.name}
+                    style={{textDecoration: 'none', color: "#424242"}}
                     clickable/>
                 {diseases.map((disease) =>
                     <StyledBreadcrumb
