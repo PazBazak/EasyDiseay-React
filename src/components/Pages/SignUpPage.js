@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import TextField from '@material-ui/core/TextField';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -10,6 +9,9 @@ import EmailField from "../RegistrationComponents/EmailField";
 import SubmitButton from "../RegistrationComponents/SubmitButton";
 import SubmitCheckBox from "../RegistrationComponents/SubmitCheckBox";
 import Typography from "@material-ui/core/Typography";
+import {Form, Formik} from "formik";
+import CustomTextField from "../RegistrationComponents/CustomTextField";
+import * as yup from 'yup';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -33,119 +35,119 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
+const validationSchema = yup.object({
+    firstName: yup.string()
+        .required()
+        .max(14)
+});
+
+
 export default function SignUpPage({openSignIn}) {
     const classes = useStyles();
-    const [formData, setFormData] = useState(
-        {
-            first_name: "",
-            last_name: "",
-            email: "",
-            password: "",
-            is_accepting_marketing: false,
-            has_agreed_to_terms: false
-        });
 
-    const {first_name, last_name, email, password, is_accepting_marketing, has_agreed_to_terms} = formData;
-
-    const onChange = e => {
-        setFormData({...formData, [e.target.name]: e.target.value});
-    };
-
-    const onChangeCheckbox = e => {
-        setFormData({...formData, [e.target.name]: e.target.checked});
-    };
-
-    const validateEmail = email => {
-        // Allows anything@anything.anything
-        let re = /\S+@\S+\.\S+/;
-        return re.test(email)
-    };
-
-    const validateForm = async () => {
-        if (!validateEmail(email)) {
-
-        }
-    };
-
-    const handleRegister = async event => {
-        event.preventDefault();
-        try {
-            const responses = await fetch(process.env.REACT_APP_USERS_API_URL, {
-                method: 'POST',
-                body: JSON.stringify(formData),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-            await console.log(responses);
-        } catch (e) {
-            console.log('error when registering (POST) :', e);
-        }
-    };
+    // const handleRegister = async event => {
+    //     event.preventDefault();
+    //     try {
+    //         const responses = await fetch(process.env.REACT_APP_USERS_API_URL, {
+    //             method: 'POST',
+    //             body: JSON.stringify(formData),
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //         });
+    //         await console.log(responses);
+    //     } catch (e) {
+    //         console.log('error when registering (POST) :', e);
+    //     }
+    // };
 
     return (
         <Container component="main" maxWidth="xs">
             <div className={classes.paper}>
                 <RegistrationHeader title={'Sign-Up'}/>
-                <form className={classes.form} noValidate onSubmit={handleRegister}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                autoComplete="fname"
-                                name="first_name"
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="firstName"
-                                label="First Name"
-                                autoFocus
-                                value={first_name}
-                                onChange={onChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="lastName"
-                                label="Last Name"
-                                name="last_name"
-                                autoComplete="lname"
-                                value={last_name}
-                                onChange={onChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <EmailField value={email} onChange={onChange}/>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <PasswordField value={password} onChange={onChange}/>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <SubmitCheckBox
-                                text={'I want to receive marketing promotions and updates via email.'}
-                                checked={is_accepting_marketing}
-                                name={'is_accepting_marketing'}
-                                onChange={onChangeCheckbox}/>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <SubmitCheckBox
-                                text={'I accept terms and conditions.'}
-                                checked={has_agreed_to_terms}
-                                name={'has_agreed_to_terms'}
-                                onChange={onChangeCheckbox}/>
-                        </Grid>
-                    </Grid>
-                    <SubmitButton text={'Sign Up'}/>
-                    <Grid container justify="flex-end">
-                        <Grid item>
-                            <Typography variant={"body1"} onClick={openSignIn} className={classes.link}>
-                                Already have an account?
-                            </Typography>
-                        </Grid>
-                    </Grid>
-                </form>
+                <Formik initialValues={{
+                    firstName: "",
+                    lastName: "",
+                    email: "",
+                    password: "",
+                    is_accepting_marketing: false,
+                    has_agreed_to_terms: false
+                }}
+                        onSubmit={(data, {setSubmitting}) => {
+                            setSubmitting(true);
+                            console.log(data);
+                            setSubmitting(false);
+                        }}
+                        // validate={(values) => {
+                        //     const errors = {};
+                        //
+                        //     if (values.firstName.length < 3) {
+                        //         errors.firstName = "First name must be 3 characters!"
+                        //     }
+                        //
+                        //     return errors;
+                        // }}
+                    validationSchema={validationSchema}
+                >
+                    {({values, handleChange, handleBlur, isSubmitting, errors}) => (
+                        <Form className={classes.form} noValidate>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} sm={6}>
+                                    <CustomTextField
+                                        placeholder={"First Name"}
+                                        name={'firstName'}
+                                        type={'input'}
+                                        label="First Name"
+                                        fullWidth
+                                        required
+                                        variant="outlined"
+                                        autoFocus
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <CustomTextField
+                                        variant="outlined"
+                                        required
+                                        fullWidth
+                                        label="Last Name"
+                                        name="lastName"
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <EmailField value={values.email} onChange={handleChange} onBlur={handleBlur}/>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <PasswordField value={values.password} onChange={handleChange} onBlur={handleBlur}/>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <SubmitCheckBox
+                                        text={'I want to receive marketing promotions and updates via email.'}
+                                        checked={values.is_accepting_marketing}
+                                        name={'is_accepting_marketing'}
+                                        onChange={handleChange}/>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <SubmitCheckBox
+                                        text={'I accept terms and conditions.'}
+                                        checked={values.has_agreed_to_terms}
+                                        name={'has_agreed_to_terms'}
+                                        onChange={handleChange}/>
+                                </Grid>
+                            </Grid>
+                            <SubmitButton text={'Sign Up'} disabled={isSubmitting}/>
+                            <Grid container justify="flex-end">
+                                <Grid item>
+                                    <Typography variant={"body1"} onClick={openSignIn} className={classes.link}>
+                                        Already have an account? Login
+                                    </Typography>
+                                </Grid>
+                            </Grid>
+                            <pre>{JSON.stringify(values, null, 2)}</pre>
+                            <pre>{JSON.stringify(errors, null, 2)}</pre>
+                        </Form>
+                    )}
+                </Formik>
             </div>
             <Copyright/>
         </Container>

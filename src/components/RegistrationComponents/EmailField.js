@@ -2,7 +2,7 @@ import React from "react";
 import TextField from '@material-ui/core/TextField';
 
 
-const EmailField = ({margin, autoFocus, value, onChange}) => {
+const EmailField = ({margin, autoFocus, value, onChange, onBlur}) => {
     return (
         <TextField
             variant={'outlined'}
@@ -14,6 +14,7 @@ const EmailField = ({margin, autoFocus, value, onChange}) => {
             autoComplete={'email'}
             autoFocus={autoFocus}
             value={value}
+            onBlur={onBlur}
             onChange={onChange}/>
     )
 };
