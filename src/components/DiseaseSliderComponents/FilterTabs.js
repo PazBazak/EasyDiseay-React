@@ -9,7 +9,7 @@ import {blue} from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
     hottestStyle: {
-        color: 'red',
+        color: 'orange',
     },
     trendingStyle: {
         color: 'green'
