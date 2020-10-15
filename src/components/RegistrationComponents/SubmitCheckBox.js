@@ -6,8 +6,7 @@ const SubmitCheckBox = ({text}) => {
     return (
         <FormControlLabel
             control={<Checkbox color="primary"/>}
-            label={text}
-        />
+            label={text}/>
     )
 };
 

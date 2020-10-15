@@ -38,7 +38,6 @@ function FeedBody(props) {
                  alt={altTextPreFix + title}
                  className={'feed-image'}/>
             <Truncate lines={2}
-                      trimWhitespace={'true'}
                       ellipsis={ellipsisContinue}
                       className={'feed-text ml-3'}>{summary}</Truncate>
         </div>

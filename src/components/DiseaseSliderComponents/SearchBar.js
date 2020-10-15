@@ -1,6 +1,8 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import {makeStyles} from "@material-ui/core/styles";
+import SearchIcon from "@material-ui/icons/Search";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -14,14 +16,14 @@ const useStyles = makeStyles((theme) => ({
     },
 
     cssLabel: {
-        color: 'white'
+        color: 'white !important',
     },
 
     cssOutlinedInput: {
         '&$cssFocused $notchedOutline': {
             borderColor: `white!important`,
         },
-        color: 'white',
+        color: 'white !important',
     },
 
     notchedOutline: {
@@ -41,6 +43,13 @@ function SearchBar(props) {
             placeholder="Search..."
             type="search"
             onChange={handleSearchInput}
+            InputProps={{
+                startAdornment: (
+                    <InputAdornment position="start">
+                        <SearchIcon/>
+                    </InputAdornment>
+                )
+            }}
             variant="filled"/>
     )
 }
@@ -56,6 +65,7 @@ function SearchBarAppBar(props) {
 
     return (
         <TextField
+            id={'Search'}
             type="search"
             placeholder='Search...'
             size="small"
@@ -67,6 +77,11 @@ function SearchBarAppBar(props) {
                 },
             }}
             InputProps={{
+                startAdornment: (
+                    <InputAdornment position="start">
+                        <SearchIcon/>
+                    </InputAdornment>
+                ),
                 classes: {
                     root: classes.cssOutlinedInput,
                     notchedOutline: classes.notchedOutline,
