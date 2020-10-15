@@ -45,7 +45,7 @@ function DiseasesLists() {
     return (
         <List className={classes.list}>
             <div className={classes.container}>
-                <FilterTabs />
+                <FilterTabs/>
                 <div className={'p-3'}>
                     <SearchBar setSearchInputText={setSearchInputText}/>
                 </div>
