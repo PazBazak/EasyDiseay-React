@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const SubmitButton = ({text}) => {
+const SubmitButton = ({text, disabled}) => {
     const classes = useStyles();
 
     return (
@@ -17,7 +17,9 @@ const SubmitButton = ({text}) => {
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}>
+            className={classes.submit}
+            disabled={disabled}
+        >
             {text}
         </Button>
     )

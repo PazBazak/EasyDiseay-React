@@ -2,7 +2,7 @@ import React from "react";
 import TextField from '@material-ui/core/TextField';
 
 
-const PasswordField = ({margin}) => {
+const PasswordField = ({margin, value, onChange, onBlur}) => {
     return (
         <TextField
             variant={'outlined'}
@@ -12,7 +12,10 @@ const PasswordField = ({margin}) => {
             label={'Password'}
             name={'password'}
             autoComplete={'current-password'}
-            type={'password'}/>
+            type={'password'}
+            value={value}
+            onBlur={onBlur}
+            onChange={onChange}/>
     )
 };
 
