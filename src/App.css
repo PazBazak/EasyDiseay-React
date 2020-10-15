@@ -84,6 +84,6 @@ input[type="search"]:focus::-webkit-search-cancel-button {
 }
 
 .mini-feed-image {
-    width: 150px;
-    height: 150px;
+    width: 105px;
+    height: 105px;
 }
