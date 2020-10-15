@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import {Form, Formik} from "formik";
 import CustomTextField from "../RegistrationComponents/CustomTextField";
 import * as yup from 'yup';
-import {lowerCaseRegex, numericRegex, upperCaseRegex} from '../utils/Constants'
+import {lowerCaseRegex, numericRegex} from '../utils/Constants'
 import CustomCheckBox from "../RegistrationComponents/CustomCheckBox";
 
 const useStyles = makeStyles((theme) => ({
@@ -49,7 +49,6 @@ const validationSchema = yup.object({
     password: yup.string()
         .required()
         .matches(lowerCaseRegex, 'The password must contain at least 1 lowercase character!')
-        .matches(upperCaseRegex, 'The password must contain at least 1 uppercase character!')
         .matches(numericRegex, 'The password must contain at least 1 number!')
         .min(6)
         .max(14),
