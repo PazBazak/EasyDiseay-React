@@ -4,14 +4,13 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Copyright from "../RegistrationComponents/CopyRight";
 import RegistrationHeader from "../RegistrationComponents/RegistrationHeader";
-import PasswordField from "../RegistrationComponents/PasswordField";
-import EmailField from "../RegistrationComponents/EmailField";
 import SubmitButton from "../RegistrationComponents/SubmitButton";
-import SubmitCheckBox from "../RegistrationComponents/SubmitCheckBox";
 import Typography from "@material-ui/core/Typography";
 import {Form, Formik} from "formik";
 import CustomTextField from "../RegistrationComponents/CustomTextField";
 import * as yup from 'yup';
+import {lowerCaseRegex, numericRegex, upperCaseRegex} from '../utils/Constants'
+import CustomCheckBox from "../RegistrationComponents/CustomCheckBox";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -35,40 +34,56 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
 const validationSchema = yup.object({
-    firstName: yup.string()
+    first_name: yup.string()
         .required()
-        .max(14)
+        .min(3)
+        .max(14),
+    last_name: yup.string()
+        .required()
+        .min(3)
+        .max(12),
+    email: yup.string()
+        .email('Must be a valid email!')
+        .required(),
+    password: yup.string()
+        .required()
+        .matches(lowerCaseRegex, 'The password must contain at least 1 lowercase character!')
+        .matches(upperCaseRegex, 'The password must contain at least 1 uppercase character!')
+        .matches(numericRegex, 'The password must contain at least 1 number!')
+        .min(6)
+        .max(14),
+    has_agreed_to_terms: yup.bool()
+        .required()
+        .oneOf([true], 'Must Accept Terms and Conditions!')
 });
 
 
 export default function SignUpPage({openSignIn}) {
     const classes = useStyles();
 
-    // const handleRegister = async event => {
-    //     event.preventDefault();
-    //     try {
-    //         const responses = await fetch(process.env.REACT_APP_USERS_API_URL, {
-    //             method: 'POST',
-    //             body: JSON.stringify(formData),
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //         });
-    //         await console.log(responses);
-    //     } catch (e) {
-    //         console.log('error when registering (POST) :', e);
-    //     }
-    // };
+    const handleRegister = async data => {
+        try {
+            const response = await fetch(process.env.REACT_APP_USERS_API_URL, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": 'application/json',
+                },
+            });
+            return response.status;
+        } catch (e) {
+            console.log('error when registering (POST) :', e);
+        }
+    };
 
     return (
         <Container component="main" maxWidth="xs">
             <div className={classes.paper}>
                 <RegistrationHeader title={'Sign-Up'}/>
                 <Formik initialValues={{
-                    firstName: "",
-                    lastName: "",
+                    first_name: "",
+                    last_name: "",
                     email: "",
                     password: "",
                     is_accepting_marketing: false,
@@ -76,27 +91,20 @@ export default function SignUpPage({openSignIn}) {
                 }}
                         onSubmit={(data, {setSubmitting}) => {
                             setSubmitting(true);
-                            console.log(data);
+                            handleRegister(data).then(status => status === 201 ?
+                                alert("Successfully registered!") :
+                                console.log('failed to register'));
                             setSubmitting(false);
                         }}
-                        // validate={(values) => {
-                        //     const errors = {};
-                        //
-                        //     if (values.firstName.length < 3) {
-                        //         errors.firstName = "First name must be 3 characters!"
-                        //     }
-                        //
-                        //     return errors;
-                        // }}
-                    validationSchema={validationSchema}
+                        validationSchema={validationSchema}
                 >
-                    {({values, handleChange, handleBlur, isSubmitting, errors}) => (
+                    {({isSubmitting}) => (
                         <Form className={classes.form} noValidate>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
                                     <CustomTextField
                                         placeholder={"First Name"}
-                                        name={'firstName'}
+                                        name={'first_name'}
                                         type={'input'}
                                         label="First Name"
                                         fullWidth
@@ -111,28 +119,42 @@ export default function SignUpPage({openSignIn}) {
                                         required
                                         fullWidth
                                         label="Last Name"
-                                        name="lastName"
+                                        name="last_name"
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <EmailField value={values.email} onChange={handleChange} onBlur={handleBlur}/>
+                                    <CustomTextField
+                                        name={'email'}
+                                        placeholder={'Email Address'}
+                                        label={'Email Address'}
+                                        required
+                                        variant={'outlined'}
+                                        fullWidth
+                                        type={'email'}
+                                    />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <PasswordField value={values.password} onChange={handleChange} onBlur={handleBlur}/>
+                                    <CustomTextField
+                                        name={'password'}
+                                        placeholder={'Password'}
+                                        label={'Password'}
+                                        required
+                                        variant={'outlined'}
+                                        fullWidth
+                                        type={'password'}
+                                    />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <SubmitCheckBox
-                                        text={'I want to receive marketing promotions and updates via email.'}
-                                        checked={values.is_accepting_marketing}
+                                    <CustomCheckBox
+                                        label={'I want to receive marketing promotions and updates via email.'}
                                         name={'is_accepting_marketing'}
-                                        onChange={handleChange}/>
+                                    />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <SubmitCheckBox
-                                        text={'I accept terms and conditions.'}
-                                        checked={values.has_agreed_to_terms}
+                                    <CustomCheckBox
+                                        label={'I accept terms and conditions.'}
                                         name={'has_agreed_to_terms'}
-                                        onChange={handleChange}/>
+                                    />
                                 </Grid>
                             </Grid>
                             <SubmitButton text={'Sign Up'} disabled={isSubmitting}/>
@@ -143,8 +165,6 @@ export default function SignUpPage({openSignIn}) {
                                     </Typography>
                                 </Grid>
                             </Grid>
-                            <pre>{JSON.stringify(values, null, 2)}</pre>
-                            <pre>{JSON.stringify(errors, null, 2)}</pre>
                         </Form>
                     )}
                 </Formik>
