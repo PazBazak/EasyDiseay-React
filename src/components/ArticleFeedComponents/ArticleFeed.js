@@ -31,7 +31,7 @@ function ArticleFeed({diseaseId}) {
                         summary={article.summary}
                     />)
                 :
-                <LoadingArticles/>})
+                <LoadingArticles/>}
 
         </div>
     )
