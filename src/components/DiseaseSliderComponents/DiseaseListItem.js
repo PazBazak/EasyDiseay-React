@@ -60,7 +60,8 @@ function DiseaseListItem(props) {
                 <FontAwesomeIcon icon={props.disease.isFollowing ? FullStar : Star}
                                  className={clsx({
                                      [classes.Followed]: props.disease.isFollowing,
-                                     [classes.Hovered]: hovered || props.disease.isFollowing})}/>
+                                     [classes.Hovered]: hovered || props.disease.isFollowing
+                                 })}/>
             </button>
         </ListItem>
     )

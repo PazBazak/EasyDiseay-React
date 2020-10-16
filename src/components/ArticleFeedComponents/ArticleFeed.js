@@ -1,25 +1,7 @@
-import React, {useEffect, useContext} from "react";
-import Feed from "./Feed";
+import React, {useContext, useEffect} from "react";
 import {LoadingArticles} from "../utils/LoadingsTypes";
 import ArticlesContext from "../../contexts/articlesContext/articlesContext";
-
-
-const createFeed = (feed) => {
-    return (
-        <Feed
-            key={feed.id}
-            id={feed.id}
-            title={feed.title}
-            url={feed.url}
-            img={feed.img}
-            website={feed.source_site}
-            diseases={feed.diseases}
-            publishedDate={feed.published_date}
-            timeToRead={feed.time_to_read}
-            summary={feed.summary}/>
-    )
-};
-
+import Feed from "./Feed";
 
 function ArticleFeed({diseaseId}) {
     const articleContext = useContext(ArticlesContext);
@@ -33,9 +15,24 @@ function ArticleFeed({diseaseId}) {
         }
     }, [diseaseId]);
 
+
     return (
         <div className={'col'}>
-            {articles.length > 0 ? articles.map(createFeed) : <LoadingArticles/>}
+            {articles.length > 0 ? articles.map(article =>
+                    <Feed
+                        key={article.id}
+                        title={article.title}
+                        url={article.url}
+                        img={article.img}
+                        website={article.source_site}
+                        diseases={article.diseases}
+                        publishedDate={article.published_date}
+                        timeToRead={article.time_to_read}
+                        summary={article.summary}
+                    />)
+                :
+                <LoadingArticles/>}
+
         </div>
     )
 }

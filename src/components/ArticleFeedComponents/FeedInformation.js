@@ -25,7 +25,7 @@ const StyledBreadcrumb = withStyles((theme) => ({
 
 const useStyle = makeStyles((theme) => ({
     infoBar: {
-        alignItems: 'flex-start',
+        alignItems: 'flex-end',
         marginTop: '5px'
     },
     timeToRead: {
@@ -37,6 +37,9 @@ const useStyle = makeStyles((theme) => ({
     breadcrumbs: {
         display: 'inline-block',
     },
+    date: {
+        marginBottom: 0,
+    },
 }));
 
 
@@ -45,12 +48,12 @@ function FeedInformation(props) {
     const classes = useStyle();
 
     return (
-        <div className={'flex d-flex'}>
+        <div className={'flex d-flex align-items-end'}>
             <Breadcrumbs aria-label={"breadcrumb"}
                          separator={'|'}
                          classes={{ol: classes.infoBar}}
                          className={classes.breadcrumbs}>
-                <p>{publishedDate}</p>
+                <p className={classes.date}>{publishedDate}</p>
                 <StyledBreadcrumb
                     component={Link}
                     to={`/sites/${website.id}`}

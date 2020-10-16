@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
         paddingLeft: 15,
     },
     subheader: {
-      backgroundColor:  theme.palette.background.paper
+        backgroundColor: theme.palette.background.paper
     },
 }));
 
