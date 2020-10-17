@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from "react";
-import {LoadingArticles} from "../utils/LoadingsTypes";
+import {BoxLoading} from "../utils/LoadingsTypes";
 import ArticlesContext from "../../contexts/articlesContext/articlesContext";
 import Feed from "./Feed";
 
@@ -31,7 +31,7 @@ function ArticleFeed({diseaseId}) {
                         summary={article.summary}
                     />)
                 :
-                <LoadingArticles/>}
+                <BoxLoading/>}
 
         </div>
     )
