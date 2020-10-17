@@ -1,7 +1,8 @@
 import CircularProgress from "@material-ui/core/CircularProgress";
 import React from "react";
+import {BoxLoading} from 'react-loadingg';
 
-const LoadingArticles = () => {
+const Circle = () => {
     return (
         <div style={{marginTop: '25vh'}} className={'text-center'}>
             <CircularProgress size={100}/>
@@ -9,4 +10,13 @@ const LoadingArticles = () => {
     )
 };
 
-export {LoadingArticles};
+const Box = () => {
+    return (
+        <div style={{marginTop: '25vh'}} className={'text-center'}>
+            <BoxLoading size='large'/>
+        </div>
+    )
+};
+
+
+export {Circle as LoadingCircle, Box as BoxLoading};
