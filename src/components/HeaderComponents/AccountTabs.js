@@ -20,7 +20,7 @@ function AccountTabs({setIsLoginOpened, setIsSignUpOpened}) {
             <input id={'sign-up'}
                    className="btn border"
                    type="button"
-                   value="Sign-Up"
+                   value="Register"
                    onClick={signUpClick}/>
         </div>
     )
