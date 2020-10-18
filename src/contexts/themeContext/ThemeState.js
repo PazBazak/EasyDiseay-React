@@ -11,14 +11,14 @@ const ThemeState = props => {
 
     const [state, dispatch] = useReducer(themeReducer, initialState);
 
-    const setDarkMode = isDark => {
+    const setIsDarkMode = isDark => {
       dispatch({type: SET_DARK_THEME, payload: isDark})
     };
 
     return (
         <ThemeContext.Provider value={{
             isDark: state.isDark,
-            setDarkMode,
+            setIsDarkMode,
         }}>
             {props.children}
         </ThemeContext.Provider>

@@ -13,6 +13,7 @@ import ThemeContext from "../../contexts/themeContext/themeContext";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import {PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from "../utils/Constants";
+import DarkModeToggle from "./DarkModeToggle";
 
 
 const headerStyle = makeStyles((theme) => ({
@@ -63,13 +64,12 @@ function Header(props) {
     };
 
     const themeContext = useContext(ThemeContext);
-    const {isDark, setDarkMode} = themeContext;
+    const {isDark, setIsDarkMode} = themeContext;
 
     // Toggles the dark mode, if the current theme is dark, then switch it to non-dark, and vice versa
-    const handleDarkModeSwitch = () => {
-        setDarkMode(!isDark)
+    const toggleDarkMode = () => {
+        setIsDarkMode(!isDark)
     };
-
 
     return (
         <AppBar
@@ -97,14 +97,8 @@ function Header(props) {
                         </Typography>
                     </IconButton>
                 </div>
-                <FormControlLabel
-                    className={'ml-auto mt-3 mr-2'}
-                    value="top"
-                    control={<Switch checked={isDark}/>}
-                    label="Dark Mode"
-                    labelPlacement="start"
-                    onChange={handleDarkModeSwitch}/>
                 <SearchBarAppBar/>
+                <DarkModeToggle toggleDarkMode={toggleDarkMode} isDark={isDark}/>
                 <AccountTabs
                     setIsLoginOpened={setIsLoginOpened}
                     setIsSignUpOpened={setIsSignUpOpened}/>
