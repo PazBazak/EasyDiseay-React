@@ -75,7 +75,7 @@ function Header(props) {
         <AppBar
             position="fixed"
             className={classes.appBar}>
-            <Toolbar className={classes.ToolBar}>
+            <Toolbar className={classes.ToolBar} variant={'dense'}>
                 <div className={classes.title}>
                     <Hidden lgUp>
                         <IconButton
