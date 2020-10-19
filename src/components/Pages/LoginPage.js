@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -10,6 +10,10 @@ import {Form, Formik} from "formik";
 import CustomTextField from "../RegistrationComponents/CustomTextField";
 import CustomCheckBox from "../RegistrationComponents/CustomCheckBox";
 import * as yup from "yup";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -45,6 +49,12 @@ const validationSchema = yup.object({
 
 export default function LoginPage({openSignUp}) {
     const classes = useStyles();
+    const [isShowingPassword, setIsShowingPassword] = useState(false);
+
+    const togglePasswordEye = () => setIsShowingPassword(!isShowingPassword);
+
+    // For preventing black outline on btn click
+    const handlePasswordMouseDown = e => e.preventDefault();
 
     return (
         <Container component="main" maxWidth="xs">
@@ -83,7 +93,21 @@ export default function LoginPage({openSignUp}) {
                                         required
                                         variant={'outlined'}
                                         fullWidth
-                                        type={'password'}
+                                        type={isShowingPassword ? 'text' : 'password'}
+                                        inputProps={{
+                                            endAdornment:
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                        aria-label="toggle password visibility"
+                                                        onClick={togglePasswordEye}
+                                                        onMouseDown={handlePasswordMouseDown}
+                                                    >
+                                                        {isShowingPassword ?
+                                                            <Visibility fontSize={"small"}/>
+                                                            : <VisibilityOff fontSize={"small"}/>}
+                                                    </IconButton>
+                                                </InputAdornment>,
+                                        }}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
