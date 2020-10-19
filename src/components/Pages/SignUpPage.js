@@ -160,7 +160,9 @@ export default function SignUpPage({openSignIn}) {
                                                         onClick={togglePassword}
                                                         onMouseDown={togglePasswordMouseDown}
                                                     >
-                                                        {isShowingPassword ? <Visibility/> : <VisibilityOff/>}
+                                                        {isShowingPassword ?
+                                                            <Visibility fontSize={"small"}/>
+                                                            : <VisibilityOff fontSize={"small"}/>}
                                                     </IconButton>
                                                 </InputAdornment>,
                                         }}
