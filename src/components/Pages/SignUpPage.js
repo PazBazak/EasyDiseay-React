@@ -90,7 +90,7 @@ export default function SignUpPage({openSignIn}) {
     return (
         <Container component="main" maxWidth="xs">
             <div className={classes.paper}>
-                <RegistrationHeader title={'Sign-Up'}/>
+                <RegistrationHeader title={'Register'}/>
                 <Formik initialValues={{
                     first_name: "",
                     last_name: "",

@@ -4,11 +4,12 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Copyright from "../RegistrationComponents/CopyRight";
 import RegistrationHeader from "../RegistrationComponents/RegistrationHeader";
-import PasswordField from "../RegistrationComponents/PasswordField";
-import EmailField from "../RegistrationComponents/EmailField";
 import SubmitButton from "../RegistrationComponents/SubmitButton";
-import SubmitCheckBox from "../RegistrationComponents/SubmitCheckBox";
 import Typography from "@material-ui/core/Typography";
+import {Form, Formik} from "formik";
+import CustomTextField from "../RegistrationComponents/CustomTextField";
+import CustomCheckBox from "../RegistrationComponents/CustomCheckBox";
+import * as yup from "yup";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,6 +34,15 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const validationSchema = yup.object({
+    email: yup.string()
+        .email('Must be a valid email!')
+        .required(),
+    password: yup.string()
+        .required()
+        .min(6)
+});
+
 export default function LoginPage({openSignUp}) {
     const classes = useStyles();
 
@@ -40,24 +50,60 @@ export default function LoginPage({openSignUp}) {
         <Container component="main" maxWidth="xs">
             <div className={classes.paper}>
                 <RegistrationHeader title={'Login'}/>
-                <form className={classes.form} noValidate>
-                    <EmailField margin={'normal'} autoFocus={true}/>
-                    <PasswordField margin={'normal'}/>
-                    <SubmitCheckBox text={'Remember me!'}/>
-                    <SubmitButton text={'Login'}/>
-                    <Grid container>
-                        <Grid item xs>
-                            <Typography variant={"body1"} className={classes.link} display={'inline'}>
-                                Forgot password?
-                            </Typography>
-                        </Grid>
-                        <Grid item>
-                            <Typography variant={"body1"} onClick={openSignUp} className={classes.link}>
-                                Don't have an account?
-                            </Typography>
-                        </Grid>
-                    </Grid>
-                </form>
+                <Formik initialValues={{
+                    email: "",
+                    password: "",
+                    is_remember: false,
+                }}
+                        onSubmit={(data, {setSubmitting}) => {
+                            setSubmitting(false);
+                            console.log('Login submit')
+                        }}
+                        validationSchema={validationSchema}
+                >
+                    {({isSubmitting}) => (
+                        <Form className={classes.form} noValidate>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <CustomTextField
+                                        name={'email'}
+                                        placeholder={'Email Address'}
+                                        label={'Email Address'}
+                                        required
+                                        variant={'outlined'}
+                                        fullWidth
+                                        type={'email'}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <CustomTextField
+                                        name={'password'}
+                                        placeholder={'Password'}
+                                        label={'Password'}
+                                        required
+                                        variant={'outlined'}
+                                        fullWidth
+                                        type={'password'}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <CustomCheckBox
+                                        label={'Remember me!'}
+                                        name={'is_remember'}
+                                    />
+                                </Grid>
+                            </Grid>
+                            <SubmitButton text={'Login'} disabled={isSubmitting}/>
+                            <Grid container justify="flex-end">
+                                <Grid item>
+                                    <Typography variant={"body1"} onClick={openSignUp} className={classes.link}>
+                                        Don't have an account?
+                                    </Typography>
+                                </Grid>
+                            </Grid>
+                        </Form>
+                    )}
+                </Formik>
             </div>
             <Copyright/>
         </Container>
