@@ -4,7 +4,8 @@ import {useField} from "formik";
 
 const CustomTextField = ({placeholder, inputProps, variant, fullWidth, label, autoFocus, required, type, ...props}) => {
     const [field, meta] = useField(props);
-    const errorText = meta.error && meta.touched ? meta.error : '';
+    // I replace the first word with label, thus it won't use the used variable names (aka first_name)
+    const errorText = meta.error && meta.touched ? meta.error.replace(/[^\s]*/, label) : '';
 
     return (
         <TextField
