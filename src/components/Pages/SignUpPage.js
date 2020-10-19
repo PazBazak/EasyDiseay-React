@@ -67,10 +67,10 @@ export default function SignUpPage({openSignIn}) {
     const classes = useStyles();
     const [isShowingPassword, setIsShowingPassword] = useState(false);
 
-    const togglePassword = () => setIsShowingPassword(!isShowingPassword);
+    const togglePasswordEye = () => setIsShowingPassword(!isShowingPassword);
 
     // For preventing black outline on btn click
-    const togglePasswordMouseDown = e => e.preventDefault();
+    const handlePasswordMouseDown = e => e.preventDefault();
 
     const handleRegister = async data => {
         try {
@@ -157,8 +157,8 @@ export default function SignUpPage({openSignIn}) {
                                                 <InputAdornment position="end">
                                                     <IconButton
                                                         aria-label="toggle password visibility"
-                                                        onClick={togglePassword}
-                                                        onMouseDown={togglePasswordMouseDown}
+                                                        onClick={togglePasswordEye}
+                                                        onMouseDown={handlePasswordMouseDown}
                                                     >
                                                         {isShowingPassword ?
                                                             <Visibility fontSize={"small"}/>
