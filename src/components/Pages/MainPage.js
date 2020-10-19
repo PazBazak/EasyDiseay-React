@@ -71,6 +71,10 @@ function MainPage() {
         setIsLoginOpened(true);
     };
 
+    const openBouncePopup = () => {
+
+    };
+
     return (
         <ThemeProvider theme={createMuiTheme(isDark ? darkTheme : baseTheme)}>
             <Paper className={classes.root}>
