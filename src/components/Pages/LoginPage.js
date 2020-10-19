@@ -41,7 +41,6 @@ const validationSchema = yup.object({
     password: yup.string()
         .required()
         .min(6)
-        .max(14),
 });
 
 export default function LoginPage({openSignUp}) {
