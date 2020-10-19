@@ -68,6 +68,10 @@ function MainPage() {
         setIsLoginOpened(true);
     };
 
+    const openBouncePopup = () => {
+
+    };
+
     const themeContext = useContext(ThemeContext);
     const {isDark} = themeContext;
 

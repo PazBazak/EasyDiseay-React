@@ -11,9 +11,16 @@ const useStyle = makeStyles((theme) => ({
     paper: {
         marginBottom: '20px',
         padding: '15px',
+        opacity: '0.8',
+        '&:hover, &:focus': {
+            opacity: '1',
+        },
     },
     title: {
         fontSize: '1.6rem',
+        '&:hover, &:focus': {
+            cursor: 'pointer',
+        },
     },
     readMoreStyle: {
         opacity: '0.7',
@@ -27,6 +34,11 @@ const useStyle = makeStyles((theme) => ({
     summaryBox: {
         width: '90%',
         fontSize: '1.15rem',
+    },
+    imgStyle: {
+        '&:hover, &:focus': {
+            cursor: 'pointer',
+        },
     },
 }));
 
@@ -46,31 +58,38 @@ const Feed = (props) => {
         publishedDate,
     } = props;
 
+    const feedHasBeenClicked = () => {
+        console.log('d');
+    };
     return (
         <Paper variant={"elevation"}
                className={classes.paper}
                square
-               elevation={5}
-        >
+               elevation={5}>
             <Box display={'flex'} flexDirection={'row'}>
-                <Box>
+
+                {/*Img*/}
+                <Box onClick={feedHasBeenClicked} className={classes.imgStyle}>
                     <img src={img}
                          alt={altTextPreFix + title}
                          className={'mini-feed-image'}/>
                 </Box>
                 <Box className={'ml-3 w-100'} display={'flex'} flexDirection={'column'}>
-                    <Box flexGrow={1}>
+
+                    {/*Title*/}
+                    <Box flexGrow={1} onClick={feedHasBeenClicked}>
                         <Typography variant={'h4'}
                                     component={'h3'}
-                                    className={classes.title}
-                        >{title}</Typography>
+                                    className={classes.title}>
+                            {title}</Typography>
                     </Box>
+
+                    {/*Summary*/}
                     <Box className={classes.summaryBox}>
                         <ReactReadMoreReadLess
                             charLimit={75}
                             readMoreClassName={classes.readMoreStyle}
-                            readLessClassName={classes.readMoreStyle}
-                        >
+                            readLessClassName={classes.readMoreStyle}>
                             {summary}
                         </ReactReadMoreReadLess>
                     </Box>
@@ -79,8 +98,7 @@ const Feed = (props) => {
                             diseases={diseases}
                             website={website}
                             publishedDate={publishedDate}
-                            timeToRead={timeToRead}
-                        />
+                            timeToRead={timeToRead}/>
                     </Box>
                 </Box>
             </Box>
