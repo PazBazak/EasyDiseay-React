@@ -20,6 +20,7 @@ export const fetchArticlesForDisease = () => async (dispatch, id, numOfArticles)
         const jsonArticles = await fetchedArticles.json();
         await dispatch({type: SET_ARTICLES, payload: jsonArticles});
     } catch (e) {
-        console.log('Could not get this diseases id articles ', e);
+        console.log('Could not get this diseases id articles ');
     }
 };
+

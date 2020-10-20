@@ -1,8 +1,7 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import DiseaseListItem from "./DiseaseListItem";
 import {ListSubheader} from "@material-ui/core";
 import {makeStyles} from '@material-ui/core/styles';
-import DiseasesContext from "../../contexts/diseasesContext/diseasesContext";
 
 const useStyles = makeStyles((theme) => ({
     list: {
@@ -26,9 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function DiseaseList(props) {
-    const diseasesContext = useContext(DiseasesContext);
-    const {diseases} = diseasesContext;
-    const {searchInputText, messageIfEmpty, subheader, handleFollow, isFollowing} = props;
+    const {searchInputText, messageIfEmpty, subheader, handleFollow, isFollowing, diseases} = props;
     const classes = useStyles();
     const [haveDiseasesBeenFetched, setHaveDiseasesBeenFetched] = useState(false);
 
