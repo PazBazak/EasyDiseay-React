@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {ThemeProvider} from '@material-ui/styles';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
@@ -7,12 +7,12 @@ import DiseaseMenu from "../DiseaseSliderComponents/DiseaseMenu";
 import baseTheme, {darkTheme} from '../../Themes/Themes'
 import {createMuiTheme, useMediaQuery} from "@material-ui/core";
 import clsx from 'clsx';
-import ThemeContext from "../../contexts/themeContext/themeContext";
 import Paper from "@material-ui/core/Paper";
 import {PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from "../utils/Constants";
 import Popup from "../utils/Popup";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
+import {connect} from "react-redux";
 
 const mainPageStyle = makeStyles((theme) => ({
     root: {
@@ -51,14 +51,11 @@ const mainPageStyle = makeStyles((theme) => ({
     },
 }));
 
-function DiseasePage({match}) {
+function DiseasePage({match, isDark}) {
     const classes = mainPageStyle();
     const [isDiseaseMenuShown, setIsDiseaseMenuShown] = React.useState(false);
     const isSmallScreen = useMediaQuery(baseTheme.breakpoints.down("md"));
     const diseaseId = match.params.id;
-
-    const themeContext = useContext(ThemeContext);
-    const {isDark} = themeContext;
 
     const [isLoginOpened, setIsLoginOpened] = useState(false);
     const [isSignupOpened, setIsSignUpOpened] = useState(false);
@@ -102,4 +99,8 @@ function DiseasePage({match}) {
     );
 }
 
-export default DiseasePage;
+const mapStateToProps = state => ({
+    isDark: state.themeState.isDark,
+});
+
+export default connect(mapStateToProps)(DiseasePage);

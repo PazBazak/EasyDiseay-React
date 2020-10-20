@@ -1,8 +1,6 @@
 import React from "react";
-import TextField from "@material-ui/core/TextField";
-import {makeStyles, fade} from "@material-ui/core/styles";
+import {fade, makeStyles} from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import InputBase from '@material-ui/core/InputBase';
 
 const useStyles = makeStyles((theme) => ({

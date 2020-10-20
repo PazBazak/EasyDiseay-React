@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
@@ -9,10 +9,10 @@ import {createMuiTheme, useMediaQuery} from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import clsx from 'clsx';
 import {DISEASE_MENU_DRAWER_WIDTH, PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from '../utils/Constants'
-import ThemeContext from "../../contexts/themeContext/themeContext";
 import Popup from "../utils/Popup";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
+import {connect} from "react-redux";
 
 const mainPageStyle = makeStyles((theme) => ({
     root: {
@@ -51,7 +51,7 @@ const mainPageStyle = makeStyles((theme) => ({
     },
 }));
 
-function MainPage() {
+function MainPage({isDark}) {
     const classes = mainPageStyle();
     const [isDiseaseMenuShown, setIsDiseaseMenuShown] = useState(false);
     const isSmallScreen = useMediaQuery(baseTheme.breakpoints.down("md"));
@@ -68,9 +68,6 @@ function MainPage() {
         setIsSignUpOpened(false);
         setIsLoginOpened(true);
     };
-
-    const themeContext = useContext(ThemeContext);
-    const {isDark} = themeContext;
 
     return (
         <ThemeProvider theme={createMuiTheme(isDark ? darkTheme : baseTheme)}>
@@ -100,4 +97,8 @@ function MainPage() {
     );
 }
 
-export default MainPage;
+const mapStateToProps = state => ({
+    isDark: state.themeState.isDark,
+});
+
+export default connect(mapStateToProps)(MainPage);

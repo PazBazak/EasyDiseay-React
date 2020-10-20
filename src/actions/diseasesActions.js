@@ -1,4 +1,4 @@
-import {SET_DISEASES} from "../contexts/types";
+import {SET_DISEASES} from "./types";
 import preMadeDiseases from "../dataSources/diseases";
 
 // Fetch all diseases from API
