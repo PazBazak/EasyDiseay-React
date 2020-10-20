@@ -12,9 +12,12 @@ import ArticleState from "./contexts/articlesContext/ArticlesState";
 import DiseasesState from "./contexts/diseasesContext/DiseasesState";
 import SignUpPage from "./components/Pages/SignUpPage";
 import ThemeState from "./contexts/themeContext/ThemeState";
+import {Provider} from 'react-redux'
+import store from "./store";
 
 function App() {
     return (
+        <Provider store={store}>
         <DiseasesState>
             <ArticleState>
                 <ThemeState>
@@ -28,6 +31,7 @@ function App() {
                 </ThemeState>
             </ArticleState>
         </DiseasesState>
+            </Provider>
     );
 }
 
