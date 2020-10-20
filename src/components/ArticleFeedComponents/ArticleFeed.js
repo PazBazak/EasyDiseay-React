@@ -1,12 +1,10 @@
-import React, {useContext, useEffect} from "react";
+import React, {useEffect} from "react";
 import {LoadingArticles} from "../utils/LoadingsTypes";
-import ArticlesContext from "../../contexts/articlesContext/articlesContext";
 import Feed from "./Feed";
+import {connect} from "react-redux";
+import {fetchArticles, fetchArticlesForDisease} from "../../actions/articlesActions";
 
-function ArticleFeed({diseaseId}) {
-    const articleContext = useContext(ArticlesContext);
-    const {articles, fetchArticles, fetchArticlesForDisease} = articleContext;
-
+function ArticleFeed({diseaseId, articles, fetchArticles, fetchArticlesForDisease}) {
     useEffect(() => {
         if (diseaseId === undefined) {
             fetchArticles();
@@ -32,10 +30,19 @@ function ArticleFeed({diseaseId}) {
                     />)
                 :
                 <LoadingArticles/>}
-
         </div>
     )
 }
 
-export default ArticleFeed;
+const mapStateToProps = state => ({
+    articles: state.articleState.articles,
+});
+
+export default connect(mapStateToProps,
+    {
+        fetchArticles,
+        fetchArticlesForDisease
+    }
+)
+(ArticleFeed);
 
