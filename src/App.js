@@ -8,7 +8,7 @@ import NotFoundPage from "./components/Pages/NotFoundPage";
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Route, Switch} from 'react-router';
 import {Provider} from 'react-redux'
-import store from "./store";
+import store from "./global_state/store";
 
 function App() {
     return (

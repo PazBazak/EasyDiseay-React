@@ -1,5 +1,5 @@
 import {SET_DISEASES} from "./types";
-import preMadeDiseases from "../dataSources/diseases";
+import preMadeDiseases from "../../data_sources/diseases";
 
 // Fetch all diseases from API
 export const fetchDiseases = () => async dispatch => {

@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {LoadingArticles} from "../utils/LoadingsTypes";
 import Feed from "./Feed";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchArticles, fetchArticlesForDisease} from "../../actions/articlesActions";
+import {fetchArticles, fetchArticlesForDisease} from "../../global_state/actions/articlesActions";
 
 function ArticleFeed({diseaseId}) {
     const dispatch = useDispatch();

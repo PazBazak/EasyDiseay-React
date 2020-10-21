@@ -1,5 +1,5 @@
 import {SET_ARTICLES} from "./types";
-import preMadeFeeds from "../dataSources/articles";
+import preMadeFeeds from "../../data_sources/articles";
 
 // Fetch all articles from API
 export const fetchArticles = () => async dispatch => {

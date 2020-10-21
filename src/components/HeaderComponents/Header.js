@@ -12,7 +12,7 @@ import {SearchBarAppBar} from "../DiseaseSliderComponents/SearchBar";
 import {PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from "../utils/Constants";
 import DarkModeToggle from "./DarkModeToggle";
 import {useSelector, useDispatch} from "react-redux";
-import {setIsDark} from "../../actions/themeActions";
+import {setIsDark} from "../../global_state/actions/themeActions";
 
 
 const headerStyle = makeStyles((theme) => ({
