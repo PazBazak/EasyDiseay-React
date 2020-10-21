@@ -6,7 +6,7 @@ import {SearchBar} from "./SearchBar";
 import {ALL_DISEASES_SUBHEADER, FOLLOWED_DISEASES_SUBHEADER, NO_MATCHING_DISEASES_MESSAGE} from '../utils/Constants'
 import FilterTabs from "./FilterTabs";
 import {fetchDiseases} from "../../actions/diseasesActions";
-import {connect} from "react-redux";
+import {connect, useDispatch, useSelector} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     list: {
@@ -27,10 +27,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function DiseasesLists({diseases, fetchDiseases}) {
+function DiseasesLists() {
     const classes = useStyles();
     const [, forceUpdate] = useState();
     const [searchInputText, setSearchInputText] = useState('');
+
+    const dispatch = useDispatch();
+    const diseases = useSelector(state => state.diseaseState.diseases);
 
     const handleFollow = diseaseIndex => {
         diseases[diseaseIndex].isFollowing = !diseases[diseaseIndex].isFollowing;
@@ -38,7 +41,7 @@ function DiseasesLists({diseases, fetchDiseases}) {
     };
 
     useEffect(() => {
-        fetchDiseases();
+        dispatch(fetchDiseases());
     }, []);
 
     return (
@@ -67,14 +70,5 @@ function DiseasesLists({diseases, fetchDiseases}) {
     )
 }
 
-const mapStateToProps = state => ({
-    diseases: state.diseaseState.diseases,
-});
-
-export default connect(mapStateToProps,
-    {
-        fetchDiseases,
-    }
-)
-(DiseasesLists);
+export default DiseasesLists;
 

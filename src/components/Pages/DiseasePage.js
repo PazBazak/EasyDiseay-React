@@ -12,7 +12,7 @@ import {PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from "../utils/Constants";
 import Popup from "../utils/Popup";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
-import {connect} from "react-redux";
+import {useSelector} from "react-redux";
 
 const mainPageStyle = makeStyles((theme) => ({
     root: {
@@ -51,11 +51,13 @@ const mainPageStyle = makeStyles((theme) => ({
     },
 }));
 
-function DiseasePage({match, isDark}) {
+function DiseasePage({match}) {
     const classes = mainPageStyle();
     const [isDiseaseMenuShown, setIsDiseaseMenuShown] = React.useState(false);
     const isSmallScreen = useMediaQuery(baseTheme.breakpoints.down("md"));
     const diseaseId = match.params.id;
+
+    const isDark = useSelector(state => state.themeState.isDark);
 
     const [isLoginOpened, setIsLoginOpened] = useState(false);
     const [isSignupOpened, setIsSignUpOpened] = useState(false);
@@ -99,8 +101,4 @@ function DiseasePage({match, isDark}) {
     );
 }
 
-const mapStateToProps = state => ({
-    isDark: state.themeState.isDark,
-});
-
-export default connect(mapStateToProps)(DiseasePage);
+export default DiseasePage;

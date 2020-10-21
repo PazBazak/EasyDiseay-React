@@ -11,7 +11,7 @@ import {Link} from 'react-router-dom';
 import {SearchBarAppBar} from "../DiseaseSliderComponents/SearchBar";
 import {PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from "../utils/Constants";
 import DarkModeToggle from "./DarkModeToggle";
-import {connect} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import {setIsDark} from "../../actions/themeActions";
 
 
@@ -56,14 +56,16 @@ const headerStyle = makeStyles((theme) => ({
 
 function Header(props) {
     const classes = headerStyle();
+    const dispatch = useDispatch();
+
     const {
         setIsDiseaseMenuShown,
         isDiseaseMenuShown,
         setIsLoginOpened,
         setIsSignUpOpened,
-        isDark,
-        setIsDark,
     } = props;
+
+    const isDark = useSelector(state => state.themeState.isDark);
 
     const diseasesMenuClicked = () => {
         setIsDiseaseMenuShown(!isDiseaseMenuShown);
@@ -72,7 +74,7 @@ function Header(props) {
 
     // Toggles the dark mode, if the current theme is dark, then switch it to non-dark, and vice versa
     const toggleDarkMode = () => {
-        setIsDark(!isDark)
+        dispatch(setIsDark(!isDark))
     };
 
     return (
@@ -111,15 +113,6 @@ function Header(props) {
     )
 }
 
-const mapStateToProps = state => ({
-    isDark: state.themeState.isDark,
-});
-
-export default connect(mapStateToProps,
-    {
-        setIsDark,
-    }
-)
-(Header);
+export default Header;
 
 

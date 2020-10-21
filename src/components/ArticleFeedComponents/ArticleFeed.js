@@ -1,15 +1,18 @@
 import React, {useEffect} from "react";
 import {LoadingArticles} from "../utils/LoadingsTypes";
 import Feed from "./Feed";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {fetchArticles, fetchArticlesForDisease} from "../../actions/articlesActions";
 
-function ArticleFeed({diseaseId, articles, fetchArticles, fetchArticlesForDisease}) {
+function ArticleFeed({diseaseId}) {
+    const dispatch = useDispatch();
+    const articles = useSelector(state => state.articleState.articles);
+
     useEffect(() => {
         if (diseaseId === undefined) {
-            fetchArticles();
+            dispatch(fetchArticles());
         } else {
-            fetchArticlesForDisease(diseaseId, 10);
+            dispatch(fetchArticlesForDisease(diseaseId, 10));
         }
     }, [diseaseId]);
 
@@ -34,15 +37,5 @@ function ArticleFeed({diseaseId, articles, fetchArticles, fetchArticlesForDiseas
     )
 }
 
-const mapStateToProps = state => ({
-    articles: state.articleState.articles,
-});
-
-export default connect(mapStateToProps,
-    {
-        fetchArticles,
-        fetchArticlesForDisease
-    }
-)
-(ArticleFeed);
+export default ArticleFeed;
 
