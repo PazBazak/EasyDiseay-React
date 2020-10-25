@@ -1,11 +1,12 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import List from "@material-ui/core/List";
 import {makeStyles} from '@material-ui/core/styles';
 import DiseaseList from "./DiseaseList";
 import {SearchBar} from "./SearchBar";
 import {ALL_DISEASES_SUBHEADER, FOLLOWED_DISEASES_SUBHEADER, NO_MATCHING_DISEASES_MESSAGE} from '../utils/Constants'
-import DiseasesContext from "../../contexts/diseasesContext/diseasesContext";
 import FilterTabs from "./FilterTabs";
+import {fetchDiseases} from "../../global_state/actions/diseasesActions";
+import {connect, useDispatch, useSelector} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     list: {
@@ -29,9 +30,10 @@ const useStyles = makeStyles((theme) => ({
 function DiseasesLists() {
     const classes = useStyles();
     const [, forceUpdate] = useState();
-    const diseasesContext = useContext(DiseasesContext);
     const [searchInputText, setSearchInputText] = useState('');
-    const {diseases, fetchDiseases} = diseasesContext;
+
+    const dispatch = useDispatch();
+    const diseases = useSelector(state => state.diseaseState.diseases);
 
     const handleFollow = diseaseIndex => {
         diseases[diseaseIndex].isFollowing = !diseases[diseaseIndex].isFollowing;
@@ -39,7 +41,7 @@ function DiseasesLists() {
     };
 
     useEffect(() => {
-        fetchDiseases();
+        dispatch(fetchDiseases());
     }, []);
 
     return (

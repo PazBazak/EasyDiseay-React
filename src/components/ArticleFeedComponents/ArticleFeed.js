@@ -1,17 +1,18 @@
-import React, {useContext, useEffect} from "react";
+import React, {useEffect} from "react";
 import {LoadingArticles} from "../utils/LoadingsTypes";
-import ArticlesContext from "../../contexts/articlesContext/articlesContext";
 import Feed from "./Feed";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchArticles, fetchArticlesForDisease} from "../../global_state/actions/articlesActions";
 
 function ArticleFeed({diseaseId}) {
-    const articleContext = useContext(ArticlesContext);
-    const {articles, fetchArticles, fetchArticlesForDisease} = articleContext;
+    const dispatch = useDispatch();
+    const articles = useSelector(state => state.articleState.articles);
 
     useEffect(() => {
         if (diseaseId === undefined) {
-            fetchArticles();
+            dispatch(fetchArticles());
         } else {
-            fetchArticlesForDisease(diseaseId, 10);
+            dispatch(fetchArticlesForDisease(diseaseId, 10));
         }
     }, [diseaseId]);
 
@@ -32,7 +33,6 @@ function ArticleFeed({diseaseId}) {
                     />)
                 :
                 <LoadingArticles/>}
-
         </div>
     )
 }

@@ -1,6 +1,10 @@
-import {SET_DISEASES} from "../types";
+import {SET_DISEASES} from "../actions/types";
 
-export default (state, action) => {
+const initialState = {
+    diseases: []
+};
+
+export default (state = initialState, action) => {
     switch (action.type) {
         case SET_DISEASES:
             return {

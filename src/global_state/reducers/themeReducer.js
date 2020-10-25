@@ -1,6 +1,10 @@
-import {SET_DARK_THEME} from "../types";
+import {SET_DARK_THEME} from "../actions/types";
 
-export default (state, action) => {
+const initialState = {
+    isDark: false,
+};
+
+export default (state = initialState, action) => {
     switch (action.type) {
         case SET_DARK_THEME:
             return {

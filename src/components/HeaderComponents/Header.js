@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React from "react";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,11 +9,10 @@ import {makeStyles} from "@material-ui/core/styles";
 import AccountTabs from "./AccountTabs";
 import {Link} from 'react-router-dom';
 import {SearchBarAppBar} from "../DiseaseSliderComponents/SearchBar";
-import ThemeContext from "../../contexts/themeContext/themeContext";
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
 import {PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from "../utils/Constants";
 import DarkModeToggle from "./DarkModeToggle";
+import {useSelector, useDispatch} from "react-redux";
+import {setIsDark} from "../../global_state/actions/themeActions";
 
 
 const headerStyle = makeStyles((theme) => ({
@@ -57,18 +56,25 @@ const headerStyle = makeStyles((theme) => ({
 
 function Header(props) {
     const classes = headerStyle();
-    const {setIsDiseaseMenuShown, isDiseaseMenuShown, setIsLoginOpened, setIsSignUpOpened} = props;
+    const dispatch = useDispatch();
+
+    const {
+        setIsDiseaseMenuShown,
+        isDiseaseMenuShown,
+        setIsLoginOpened,
+        setIsSignUpOpened,
+    } = props;
+
+    const isDark = useSelector(state => state.themeState.isDark);
 
     const diseasesMenuClicked = () => {
         setIsDiseaseMenuShown(!isDiseaseMenuShown);
     };
 
-    const themeContext = useContext(ThemeContext);
-    const {isDark, setIsDarkMode} = themeContext;
 
     // Toggles the dark mode, if the current theme is dark, then switch it to non-dark, and vice versa
     const toggleDarkMode = () => {
-        setIsDarkMode(!isDark)
+        dispatch(setIsDark(!isDark))
     };
 
     return (
@@ -108,4 +114,5 @@ function Header(props) {
 }
 
 export default Header;
+
 

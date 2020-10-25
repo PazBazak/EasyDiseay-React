@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
@@ -9,10 +9,10 @@ import {createMuiTheme, useMediaQuery} from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import clsx from 'clsx';
 import {DISEASE_MENU_DRAWER_WIDTH, PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from '../utils/Constants'
-import ThemeContext from "../../contexts/themeContext/themeContext";
 import Popup from "../utils/Popup";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
+import {useSelector} from "react-redux";
 
 const mainPageStyle = makeStyles((theme) => ({
     root: {
@@ -59,6 +59,8 @@ function MainPage() {
     const [isLoginOpened, setIsLoginOpened] = useState(false);
     const [isSignupOpened, setIsSignUpOpened] = useState(false);
 
+    const isDark = useSelector(state => state.themeState.isDark);
+
     const openSignUp = () => {
         setIsLoginOpened(false);
         setIsSignUpOpened(true);
@@ -68,9 +70,6 @@ function MainPage() {
         setIsSignUpOpened(false);
         setIsLoginOpened(true);
     };
-
-    const themeContext = useContext(ThemeContext);
-    const {isDark} = themeContext;
 
     return (
         <ThemeProvider theme={createMuiTheme(isDark ? darkTheme : baseTheme)}>
