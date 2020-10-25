@@ -3,6 +3,8 @@ import Chip from '@material-ui/core/Chip';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import {emphasize, makeStyles, withStyles} from '@material-ui/core/styles';
 import {Link} from 'react-router-dom'
+import Typography from "@material-ui/core/Typography";
+import MenuBookIcon from '@material-ui/icons/MenuBook';
 
 const StyledBreadcrumb = withStyles((theme) => ({
     root: {
@@ -30,9 +32,9 @@ const useStyle = makeStyles((theme) => ({
     },
     timeToRead: {
         display: 'inline',
-        fontSize: '1.1rem',
+        fontSize: '0.95rem',
         marginLeft: 'auto',
-        marginRight: '25px',
+        marginBottom: '0',
     },
     breadcrumbs: {
         display: 'inline-block',
@@ -40,6 +42,11 @@ const useStyle = makeStyles((theme) => ({
     date: {
         marginBottom: 0,
     },
+    bookIcon: {
+        marginLeft: '8px',
+        marginRight: '15px',
+        marginBottom: '1px',
+    }
 }));
 
 
@@ -69,7 +76,13 @@ function FeedInformation(props) {
                         clickable
                         style={{textDecoration: 'none', color: "#424242"}}/>)}
             </Breadcrumbs>
-            <p className={classes.timeToRead}>{timeToRead} min</p>
+            <Typography
+                className={classes.timeToRead}
+                variant={"body1"}
+            >
+                {timeToRead} min
+            </Typography>
+            <MenuBookIcon className={classes.bookIcon} fontSize={"small"}/>
         </div>
     )
 }
