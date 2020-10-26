@@ -1,6 +1,7 @@
 const preMadeFeeds = [
     {
         id: 1,
+        likes: 4,
         time_to_read: 4,
         title: "CoronaVirus might just be the end of the world, scientist claims!",
         url: 'yo',
@@ -15,6 +16,7 @@ const preMadeFeeds = [
     },
     {
         id: 2,
+        likes: 1,
         time_to_read: 7,
         title: "Curcumin might be the cause for cancer in some cancer patients?",
         url: 'yo',
@@ -29,15 +31,13 @@ const preMadeFeeds = [
     },
     {
         id: 3,
+        likes: 0,
         time_to_read: 3,
         title: "Do black people with dermatitis live less? new research found that niggers lifespan is shorter!",
         url: 'yo',
         img: "https://d279m997dpfwgl.cloudfront.net/wp/2020/07/Emmanuel-1000x776.jpg",
         source_site: {name: "medicine.net"},
         diseases: [{
-            id: 1,
-            name: "dermatitis"
-        },{
             id: 3,
             name: "Acne"
         }],
@@ -46,6 +46,7 @@ const preMadeFeeds = [
     },
     {
         id: 4,
+        likes: 0,
         time_to_read: 5,
         title: "Do black people with dermathorter!",
         url: 'yo',
@@ -63,7 +64,8 @@ const preMadeFeeds = [
     },
     {
         id: 5,
-        time_to_read: 9,
+        likes: 0,
+        time_to_read: 4,
         title: "Do black people with dermatitis live less? new research found that niggers lifespan is shorter!",
         url: 'yo',
         img: "https://res.cloudinary.com/pcf/image/upload/f_auto,q_auto/v1525465796/AnatomyProstateGland_pizky6.png",
@@ -71,6 +73,21 @@ const preMadeFeeds = [
         diseases: [{
             id: 2,
             name: "Prostate cancer"
+        }],
+        published_date: "Friday October 24, 2021",
+        summary: "osit voluptatem accusantdicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur"
+    },
+    {
+        id: 6,
+        likes: 2,
+        time_to_read: 5,
+        title: "Can CBD be the solution for people with chronic conditions?",
+        url: 'yo',
+        img: "https://i.postimg.cc/tR8yWjsX/FB-9-chronic-conditions.jpg",
+        source_site: {name: "medicine.net"},
+        diseases: [{
+            id: 2,
+            name: "Crohn's disease"
         }],
         published_date: "Friday October 24, 2021",
         summary: "osit voluptatem accusantdicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur"

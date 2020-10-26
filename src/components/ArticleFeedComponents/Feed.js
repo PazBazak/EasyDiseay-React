@@ -5,7 +5,9 @@ import {makeStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Box from '@material-ui/core/Box';
 import ReactReadMoreReadLess from "react-read-more-read-less";
-
+import ArticleStats from "./ArticleStats";
+import {useDispatch} from "react-redux";
+import {setSelectedArticle} from "../../global_state/actions/articlesActions";
 
 const useStyle = makeStyles((theme) => ({
     paper: {
@@ -46,6 +48,14 @@ const Feed = (props) => {
         publishedDate,
     } = props;
 
+    const {img, likes, title, summary, diseases, source_site, time_to_read, published_date} = article;
+    const classes = useStyle();
+    const dispatch = useDispatch();
+
+    const feedHasBeenClicked = () => {
+        dispatch(setSelectedArticle(article));
+    };
+
     return (
         <Paper variant={"elevation"}
                className={classes.paper}
@@ -64,6 +74,8 @@ const Feed = (props) => {
                                     component={'h3'}
                                     className={classes.title}
                         >{title}</Typography>
+                                    className={classes.title}
+                        <ArticleStats likes={likes}/>
                     </Box>
                     <Box className={classes.summaryBox}>
                         <ReactReadMoreReadLess
@@ -77,7 +89,7 @@ const Feed = (props) => {
                     <Box>
                         <FeedInformation
                             diseases={diseases}
-                            website={website}
+                            website={source_site}
                             publishedDate={publishedDate}
                             timeToRead={timeToRead}
                         />
