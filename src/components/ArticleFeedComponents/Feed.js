@@ -48,7 +48,6 @@ const Feed = (props) => {
         publishedDate,
     } = props;
 
-    const {img, likes, title, summary, diseases, source_site, time_to_read, published_date} = article;
     const classes = useStyle();
     const dispatch = useDispatch();
 
@@ -74,8 +73,11 @@ const Feed = (props) => {
                                     component={'h3'}
                                     className={classes.title}
                         >{title}</Typography>
-                                    className={classes.title}
-                        <ArticleStats likes={likes}/>
+                        className={classes.title}
+                        <ArticleStats
+                            likes={likes}
+                            comments={comments}
+                        />
                     </Box>
                     <Box className={classes.summaryBox}>
                         <ReactReadMoreReadLess
@@ -89,8 +91,8 @@ const Feed = (props) => {
                     <Box>
                         <FeedInformation
                             diseases={diseases}
-                            website={source_site}
-                            publishedDate={publishedDate}
+                            website={website}
+                            publishedDate={published_date}
                             timeToRead={timeToRead}
                         />
                     </Box>
