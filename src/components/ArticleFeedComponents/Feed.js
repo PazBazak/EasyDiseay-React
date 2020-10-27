@@ -12,7 +12,7 @@ const useStyle = makeStyles((theme) => ({
     paper: {
         marginBottom: '20px',
         padding: '15px',
-        opacity: '0.8',
+        opacity: '0.9',
         '&:hover, &:focus': {
             opacity: '1',
         },
@@ -50,6 +50,7 @@ const Feed = (props) => {
     const {
         article,
     } = props;
+    const {img, title, summary, diseases, source_site, time_to_read, published_date} = article;
     const classes = useStyle();
     const dispatch = useDispatch();
 
@@ -66,8 +67,8 @@ const Feed = (props) => {
 
                 {/*Img*/}
                 <Box onClick={feedHasBeenClicked} className={classes.imgStyle}>
-                    <img src={article.img}
-                         alt={altTextPreFix + article.title}
+                    <img src={img}
+                         alt={altTextPreFix + title}
                          className={'mini-feed-image'}/>
                 </Box>
 
@@ -77,7 +78,7 @@ const Feed = (props) => {
                         <Typography variant={'h4'}
                                     component={'h3'}
                                     className={classes.title}>
-                            {article.title}</Typography>
+                            {title}</Typography>
                     </Box>
 
                     {/*Summary*/}
@@ -86,15 +87,15 @@ const Feed = (props) => {
                             charLimit={75}
                             readMoreClassName={classes.readMoreStyle}
                             readLessClassName={classes.readMoreStyle}>
-                            {article.summary}
+                            {summary}
                         </ReactReadMoreReadLess>
                     </Box>
                     <Box>
                         <FeedInformation
-                            diseases={article.diseases}
-                            website={article.source_site}
-                            publishedDate={article.published_date}
-                            timeToRead={article.time_to_read}/>
+                            diseases={diseases}
+                            website={source_site}
+                            publishedDate={published_date}
+                            timeToRead={time_to_read}/>
                     </Box>
                 </Box>
             </Box>

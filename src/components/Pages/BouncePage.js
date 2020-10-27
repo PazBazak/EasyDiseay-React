@@ -54,6 +54,7 @@ function BouncePage() {
     const isAddCommentArticleErrorRaise = useSelector(state => state.articleState.isAddCommentArticleErrorRaise);
     const likeArticleErrorContent = useSelector(state => state.articleState.likeArticleErrorContent);
     const addCommentArticleErrorContent = useSelector(state => state.articleState.addCommentArticleErrorContent);
+    const {title, summary, img, published_date, source_site, diseases, url} = article;
 
     const ChipClicked = () => {
         dispatch(clearSelectedArticle());
@@ -69,7 +70,7 @@ function BouncePage() {
                         display="block"
                         className={clsx(classes.dateStyle, classes.centerStyle)}
                         gutterBottom>
-                        {article.published_date}
+                        {published_date}
                     </Typography>
 
                     {/*Title*/}
@@ -78,7 +79,7 @@ function BouncePage() {
                         display="block"
                         className={clsx(classes.titleStyle, classes.centerStyle)}
                         gutterBottom>
-                        {article.title}
+                        {title}
                     </Typography>
 
                     {/*Website*/}
@@ -89,18 +90,18 @@ function BouncePage() {
                         gutterBottom>
                         <div>
                             <span>By </span>
-                            <Link href={`https://www.${article.source_site.name}`}
+                            <Link href={`https://www.${source_site.name}`}
                                   underline={'none'}
                                   color={'primary'}
                                   className={classes.linkStyle}
-                                  target={`https://www.${article.source_site.name}`}>
-                                {article.source_site.name}
+                                  target={`https://www.${source_site.name}`}>
+                                {source_site.name}
                             </Link>
                         </div>
                     </Typography>
 
                     {/*Img*/}
-                    <img src={article.img}
+                    <img src={img}
                          className={'bounce-image'}/>
 
                     {/*Feed Information*/}
@@ -108,14 +109,14 @@ function BouncePage() {
                         <Chip
                             variant="outlined"
                             size="small"
-                            label={article.source_site.name}
+                            label={source_site.name}
                             clickable
                             onClick={ChipClicked}
                             component={LinkReactRouter}
-                            to={`/articles/${article.source_site.id}`}
+                            to={`/articles/${source_site.id}`}
                             className={clsx(classes.ChipStyle, classes.linkStyle)}
                             color="primary"/>
-                        {article.diseases.map((disease) =>
+                        {diseases.map((disease) =>
                             <Chip
                                 className={clsx(classes.ChipStyle, classes.linkStyle)}
                                 variant="outlined"
@@ -153,7 +154,7 @@ function BouncePage() {
                         display="block"
                         className={classes.summaryStyle}
                         gutterBottom>
-                        {article.summary}
+                        {summary}
                     </Typography>
 
                     {/*Read more, Link to the article*/}
@@ -162,11 +163,11 @@ function BouncePage() {
                         display="block"
                         className={classes.centerStyle}
                         gutterBottom>
-                        <Link href={`https://www.${article.url}`}
+                        <Link href={`https://www.${url}`}
                               underline={'none'}
                               color={'primary'}
                               className={classes.linkStyle}
-                              target={`https://www.${article.url}`}>
+                              target={`https://www.${url}`}>
                             Read more!
                         </Link>
                     </Typography>
