@@ -54,6 +54,7 @@ function DiseaseMenu(props) {
             setIsDrawerOpen(true);
             setIsDiseaseMenuShown(false);
         }
+        // eslint-disable-next-line
     }, [props.isSmallScreen, props.isDiseaseMenuShown]);
 
     return (

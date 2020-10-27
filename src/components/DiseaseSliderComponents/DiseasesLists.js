@@ -42,6 +42,7 @@ function DiseasesLists() {
 
     useEffect(() => {
         dispatch(fetchDiseases());
+        // eslint-disable-next-line
     }, []);
 
     return (

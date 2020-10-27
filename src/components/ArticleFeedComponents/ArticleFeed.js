@@ -14,6 +14,7 @@ function ArticleFeed({diseaseId}) {
         } else {
             dispatch(fetchArticlesForDisease(diseaseId, 10));
         }
+        // eslint-disable-next-line
     }, [diseaseId]);
 
 

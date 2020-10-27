@@ -51,10 +51,12 @@ const validationSchema = yup.object({
         .min(6)
 });
 
-export default function LoginPage({openSignUp}) {
+export default function LoginPage(props) {
     const dispatch = useDispatch();
     const classes = useStyles();
     const [isShowingPassword, setIsShowingPassword] = useState(false);
+
+    const {openSignUp, closeForm} = props;
 
     const togglePasswordEye = () => setIsShowingPassword(!isShowingPassword);
 
@@ -90,7 +92,8 @@ export default function LoginPage({openSignUp}) {
     const handleSuccessfulLogin = data => {
         localStorage.setItem('token', data.token);
         dispatch(loginUser(data));
-        alert('Login was successful')
+        alert('Login was successful');
+        closeForm();
     };
 
     return (

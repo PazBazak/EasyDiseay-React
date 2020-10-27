@@ -31,7 +31,6 @@ const headerStyle = makeStyles((theme) => ({
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
-            zIndex: 1201,
         }),
     },
     MenuIconStyle: {
@@ -39,12 +38,12 @@ const headerStyle = makeStyles((theme) => ({
     },
     ToolBar: {
         [theme.breakpoints.up('xl')]: {
-            paddingLeft: parseInt(PAGE_WHITESPACES_XL + 16),
-            paddingRight: parseInt(PAGE_WHITESPACES_XL + 32),
+            paddingLeft: PAGE_WHITESPACES_XL + 16,
+            paddingRight: PAGE_WHITESPACES_XL + 32.
         },
         [theme.breakpoints.down('lg')]: {
-            paddingLeft: parseInt(PAGE_WHITESPACES_LG + 16),
-            paddingRight: parseInt(PAGE_WHITESPACES_LG + 32),
+            paddingLeft: PAGE_WHITESPACES_LG + 16,
+            paddingRight: PAGE_WHITESPACES_LG + 32,
         },
         [theme.breakpoints.down('md')]: {
             paddingLeft: 16,

@@ -7,7 +7,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyle = makeStyles((theme) => ({
     root: {
-        margin: theme.spacing.unit,
+        margin: theme.spacing(1),
     },
     sunStyle: {
         color: '#FFD700',
@@ -35,7 +35,6 @@ function DarkModeToggle(props) {
 
     return (
         <div className={classes.root}>
-
             {/*Moon icon*/}
             <Tooltip title={'Dark Mode'}>
                 <IconButton {...iconButtonProps} hidden={isDark}>
