@@ -6,7 +6,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Hidden from '@material-ui/core/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
 import {makeStyles} from "@material-ui/core/styles";
-import AuthTabs from "./AuthTabs";
+import HeaderTab from "./HeaderTab";
 import {Link} from 'react-router-dom';
 import {SearchBarAppBar} from "../DiseaseSliderComponents/SearchBar";
 import {PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from "../utils/Constants";
@@ -104,7 +104,7 @@ function Header(props) {
                 </div>
                 <SearchBarAppBar/>
                 <DarkModeToggle toggleDarkMode={toggleDarkMode} isDark={isDark}/>
-                <AuthTabs
+                <HeaderTab
                     setIsLoginOpened={setIsLoginOpened}
                     setIsSignUpOpened={setIsSignUpOpened}/>
             </Toolbar>
