@@ -106,8 +106,7 @@ export default function SignUpPage({openSignIn}) {
                                 console.log('failed to register'));
                             setSubmitting(false);
                         }}
-                        validationSchema={validationSchema}
-                >
+                        validationSchema={validationSchema}>
                     {({isSubmitting}) => (
                         <Form className={classes.form} noValidate>
                             <Grid container spacing={2}>
@@ -120,8 +119,7 @@ export default function SignUpPage({openSignIn}) {
                                         fullWidth
                                         required
                                         variant="outlined"
-                                        autoFocus
-                                    />
+                                        autoFocus/>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <CustomTextField
@@ -129,8 +127,7 @@ export default function SignUpPage({openSignIn}) {
                                         required
                                         fullWidth
                                         label="Last Name"
-                                        name="last_name"
-                                    />
+                                        name="last_name"/>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <CustomTextField
@@ -140,8 +137,7 @@ export default function SignUpPage({openSignIn}) {
                                         required
                                         variant={'outlined'}
                                         fullWidth
-                                        type={'email'}
-                                    />
+                                        type={'email'}/>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <CustomTextField
@@ -158,27 +154,23 @@ export default function SignUpPage({openSignIn}) {
                                                     <IconButton
                                                         aria-label="toggle password visibility"
                                                         onClick={togglePasswordEye}
-                                                        onMouseDown={handlePasswordMouseDown}
-                                                    >
+                                                        onMouseDown={handlePasswordMouseDown}>
                                                         {isShowingPassword ?
                                                             <Visibility fontSize={"small"}/>
                                                             : <VisibilityOff fontSize={"small"}/>}
                                                     </IconButton>
                                                 </InputAdornment>,
-                                        }}
-                                    />
+                                        }}/>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <CustomCheckBox
                                         label={'I want to receive marketing promotions and updates via email.'}
-                                        name={'is_accepting_marketing'}
-                                    />
+                                        name={'is_accepting_marketing'}/>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <CustomCheckBox
                                         label={'I accept terms and conditions.'}
-                                        name={'has_agreed_to_terms'}
-                                    />
+                                        name={'has_agreed_to_terms'}/>
                                 </Grid>
                             </Grid>
                             <SubmitButton text={'Sign Up'} disabled={isSubmitting}/>

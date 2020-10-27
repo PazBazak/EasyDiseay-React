@@ -22,18 +22,9 @@ function ArticleFeed({diseaseId}) {
             {articles.length > 0 ? articles.map(article =>
                     <Feed
                         key={article.id}
-                        title={article.title}
-                        url={article.url}
-                        img={article.img}
-                        website={article.source_site}
-                        diseases={article.diseases}
-                        publishedDate={article.published_date}
-                        timeToRead={article.time_to_read}
-                        summary={article.summary}
-                    />)
+                        article={article}/>)
                 :
                 <BoxLoading/>}
-
         </div>
     )
 }

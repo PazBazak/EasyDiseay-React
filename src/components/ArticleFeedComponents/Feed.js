@@ -5,7 +5,8 @@ import {makeStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Box from '@material-ui/core/Box';
 import ReactReadMoreReadLess from "react-read-more-read-less";
-
+import {useDispatch} from "react-redux";
+import {setSelectedArticle} from "../../global_state/actions/articlesActions";
 
 const useStyle = makeStyles((theme) => ({
     paper: {
@@ -46,21 +47,16 @@ const useStyle = makeStyles((theme) => ({
 const altTextPreFix = "Disease and Research News - ";
 
 const Feed = (props) => {
-    const classes = useStyle();
-
     const {
-        title,
-        diseases,
-        summary,
-        img,
-        website,
-        timeToRead,
-        publishedDate,
+        article,
     } = props;
+    const classes = useStyle();
+    const dispatch = useDispatch();
 
     const feedHasBeenClicked = () => {
-        console.log('d');
+        dispatch(setSelectedArticle(article));
     };
+
     return (
         <Paper variant={"elevation"}
                className={classes.paper}
@@ -70,18 +66,18 @@ const Feed = (props) => {
 
                 {/*Img*/}
                 <Box onClick={feedHasBeenClicked} className={classes.imgStyle}>
-                    <img src={img}
-                         alt={altTextPreFix + title}
+                    <img src={article.img}
+                         alt={altTextPreFix + article.title}
                          className={'mini-feed-image'}/>
                 </Box>
-                <Box className={'ml-3 w-100'} display={'flex'} flexDirection={'column'}>
 
-                    {/*Title*/}
+                {/*Title*/}
+                <Box className={'ml-3 w-100'} display={'flex'} flexDirection={'column'}>
                     <Box flexGrow={1} onClick={feedHasBeenClicked}>
                         <Typography variant={'h4'}
                                     component={'h3'}
                                     className={classes.title}>
-                            {title}</Typography>
+                            {article.title}</Typography>
                     </Box>
 
                     {/*Summary*/}
@@ -90,15 +86,15 @@ const Feed = (props) => {
                             charLimit={75}
                             readMoreClassName={classes.readMoreStyle}
                             readLessClassName={classes.readMoreStyle}>
-                            {summary}
+                            {article.summary}
                         </ReactReadMoreReadLess>
                     </Box>
                     <Box>
                         <FeedInformation
-                            diseases={diseases}
-                            website={website}
-                            publishedDate={publishedDate}
-                            timeToRead={timeToRead}/>
+                            diseases={article.diseases}
+                            website={article.source_site}
+                            publishedDate={article.published_date}
+                            timeToRead={article.time_to_read}/>
                     </Box>
                 </Box>
             </Box>
