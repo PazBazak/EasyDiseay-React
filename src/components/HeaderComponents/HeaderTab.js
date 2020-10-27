@@ -17,12 +17,13 @@ function HeaderTab({setIsLoginOpened, setIsSignUpOpened}) {
     return (
         <Fragment>
             {isAuthenticated ?
-                <AccountTab />
+                <AccountTab/>
                 :
                 <AuthTabs
                     loginClick={loginClick}
                     signUpClick={signUpClick}
-                />}
+                />
+            }
         </Fragment>
 
     )
