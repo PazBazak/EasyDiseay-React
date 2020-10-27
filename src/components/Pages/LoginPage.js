@@ -56,6 +56,21 @@ export default function LoginPage({openSignUp}) {
     // For preventing black outline on btn click
     const handlePasswordMouseDown = e => e.preventDefault();
 
+    const handleLogin = async data => {
+        try {
+            const response = await fetch(process.env.REACT_APP_LOGIN_API_URL, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": 'application/json',
+                },
+            });
+            return response.status;
+        } catch (e) {
+            console.log('error when login-in (POST) :', e);
+        }
+    };
+
     return (
         <Container component="main" maxWidth="xs">
             <div className={classes.paper}>
@@ -66,8 +81,9 @@ export default function LoginPage({openSignUp}) {
                     is_remember: false,
                 }}
                         onSubmit={(data, {setSubmitting}) => {
+                            setSubmitting(true);
+                            console.log('Login submit');
                             setSubmitting(false);
-                            console.log('Login submit')
                         }}
                         validationSchema={validationSchema}
                 >

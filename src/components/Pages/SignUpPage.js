@@ -74,7 +74,7 @@ export default function SignUpPage({openSignIn}) {
 
     const handleRegister = async data => {
         try {
-            const response = await fetch(process.env.REACT_APP_USERS_API_URL, {
+            const response = await fetch(process.env.REACT_APP_REGISTER_API_URL, {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -103,7 +103,7 @@ export default function SignUpPage({openSignIn}) {
                             setSubmitting(true);
                             handleRegister(data).then(status => status === 201 ?
                                 alert("Successfully registered!") :
-                                console.log('failed to register'));
+                                alert('failed to register'));
                             setSubmitting(false);
                         }}
                         validationSchema={validationSchema}
