@@ -6,3 +6,6 @@ export const SET_DISEASES = 'SET_DISEASES';
 
 // Theme types
 export const SET_DARK_THEME = 'SET_DARK_THEME';
+
+// Auth types
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';

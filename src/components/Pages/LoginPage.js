@@ -14,7 +14,11 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import {loginUser} from "../../global_state/actions/authActions";
+import {useDispatch} from "react-redux";
 
+const STATUS = 0;
+const USER = 1;
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -48,6 +52,7 @@ const validationSchema = yup.object({
 });
 
 export default function LoginPage({openSignUp}) {
+    const dispatch = useDispatch();
     const classes = useStyles();
     const [isShowingPassword, setIsShowingPassword] = useState(false);
 
@@ -65,10 +70,27 @@ export default function LoginPage({openSignUp}) {
                     "Content-Type": 'application/json',
                 },
             });
-            return response.status;
+
+            const jsonResponse = await response.json();
+            return [
+                response.status,
+                {
+                    token: jsonResponse.token,
+                    firstName: jsonResponse.firstName,
+                    lastName: jsonResponse.lastName,
+                    email: jsonResponse.email
+                }
+            ]
+
         } catch (e) {
             console.log('error when login-in (POST) :', e);
         }
+    };
+
+    const handleSuccessfulLogin = data => {
+        localStorage.setItem('token', data.token);
+        dispatch(loginUser(data));
+        alert('Login was successful')
     };
 
     return (
@@ -82,7 +104,10 @@ export default function LoginPage({openSignUp}) {
                 }}
                         onSubmit={(data, {setSubmitting}) => {
                             setSubmitting(true);
-                            console.log('Login submit');
+                            handleLogin(data).then(data =>
+                                data[STATUS] === 200 ?
+                                    handleSuccessfulLogin(data[USER]) :
+                                    alert('Failed to Login'));
                             setSubmitting(false);
                         }}
                         validationSchema={validationSchema}
