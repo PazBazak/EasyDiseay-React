@@ -96,3 +96,8 @@ input[type="search"]:focus::-webkit-search-cancel-button {
     width: 105px;
     height: 105px;
 }
+
+.StatisticSegment {
+    display: flex;
+    justify-content: center;
+}

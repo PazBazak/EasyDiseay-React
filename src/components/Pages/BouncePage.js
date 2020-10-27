@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, Component} from 'react';
 import {emphasize, makeStyles, withStyles} from '@material-ui/core/styles';
 import {useDispatch, useSelector} from "react-redux";
 import Container from "@material-ui/core/Container";
@@ -9,7 +9,8 @@ import clsx from "clsx";
 import {Link as LinkReactRouter} from 'react-router-dom'
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import {clearSelectedArticle} from "../../global_state/actions/articlesActions";
-
+import CommentBox from "../ArticleFeedComponents/CommentBox";
+import {Divider, Statistic, Segment} from 'semantic-ui-react'
 
 const useStyle = makeStyles((theme) => ({
     root: {
@@ -126,6 +127,26 @@ function BouncePage() {
                                 clickable/>)}
                     </div>
 
+                    {/*Likes, Share, Time to read*/}
+                    <div className={'StatisticSegment'}>
+                        <Statistic.Group size={"mini"}>
+                            <Statistic>
+                                <Statistic.Value>22</Statistic.Value>
+                                <Statistic.Label>Faves</Statistic.Label>
+                            </Statistic>
+                            <Statistic>
+                                <Statistic.Value>31,200</Statistic.Value>
+                                <Statistic.Label>Views</Statistic.Label>
+                            </Statistic>
+                            <Statistic>
+                                <Statistic.Value>22</Statistic.Value>
+                                <Statistic.Label>Members</Statistic.Label>
+                            </Statistic>
+                        </Statistic.Group>
+                    </div>
+
+                    <Divider/>
+
                     {/*Summary*/}
                     <Typography
                         variant="body1"
@@ -149,6 +170,9 @@ function BouncePage() {
                             Read more!
                         </Link>
                     </Typography>
+
+                    {/*CommentsBox*/}
+                    <CommentBox/>
 
                 </div>
             </Container>
