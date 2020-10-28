@@ -28,6 +28,13 @@ const darkTheme = createMuiTheme({
             main: '#ffc400'
         },
     },
+    typography: {
+        fontFamily: 'roboto',
+        fontSize: 17,
+        body2: {
+            fontSize: 'medium'
+        }
+    }
 });
 
 export {darkTheme};

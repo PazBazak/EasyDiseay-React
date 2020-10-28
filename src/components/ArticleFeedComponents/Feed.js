@@ -16,6 +16,9 @@ const useStyle = makeStyles((theme) => ({
         '&:hover, &:focus': {
             opacity: '1',
         },
+        [theme.breakpoints.up('md')]: {
+
+        }
     },
     title: {
         fontSize: '1.8rem',

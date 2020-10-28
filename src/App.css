@@ -17,11 +17,15 @@ body {
 
 #sign-up {
     color: white;
-    margin: 6px;
+    margin-left: 8px;
+    text-transform: none;
+    font-size: medium;
 }
 
 #login {
     color: white;
+    text-transform: none;
+    font-size: medium;
 }
 
 input[type="search"]::-webkit-search-cancel-button {
