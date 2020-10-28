@@ -12,7 +12,9 @@ import {DISEASE_MENU_DRAWER_WIDTH, PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} fro
 import Popup from "../utils/Popup";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import BouncePage from "./BouncePage";
+import {clearSelectedArticle} from "../../global_state/actions/articlesActions";
 
 const mainPageStyle = makeStyles((theme) => ({
     root: {
@@ -56,19 +58,33 @@ function MainPage() {
     const [isDiseaseMenuShown, setIsDiseaseMenuShown] = useState(false);
     const isSmallScreen = useMediaQuery(baseTheme.breakpoints.down("md"));
 
+    const dispatch = useDispatch();
+
     const [isLoginOpened, setIsLoginOpened] = useState(false);
     const [isSignupOpened, setIsSignUpOpened] = useState(false);
-
+    const isBouncePageOpened = useSelector(state => state.articleState.isArticleSelected);
     const isDark = useSelector(state => state.themeState.isDark);
 
     const openSignUp = () => {
-        setIsLoginOpened(false);
+        closeLogin();
         setIsSignUpOpened(true);
     };
 
     const openLogin = () => {
-        setIsSignUpOpened(false);
+        closeSignUp();
         setIsLoginOpened(true);
+    };
+
+    const closeLogin = () => {
+        setIsLoginOpened(false);
+    };
+
+    const closeSignUp = () => {
+        setIsSignUpOpened(false);
+    };
+
+    const closeBouncePage = () => {
+        dispatch(clearSelectedArticle());
     };
 
     return (
@@ -88,12 +104,16 @@ function MainPage() {
                 </main>
             </Paper>
             <Popup isOpened={isLoginOpened}
-                   setIsOpened={setIsLoginOpened}>
+                   onClose={closeLogin}>
                 <LoginPage openSignUp={openSignUp}/>
             </Popup>
             <Popup isOpened={isSignupOpened}
-                   setIsOpened={setIsSignUpOpened}>
+                   onClose={closeSignUp}>
                 <SignUpPage openSignIn={openLogin}/>
+            </Popup>
+            <Popup isOpened={isBouncePageOpened}
+                   onClose={closeBouncePage}>
+                <BouncePage/>
             </Popup>
         </ThemeProvider>
     );
