@@ -21,7 +21,7 @@ const StyledBreadcrumb = withStyles((theme) => ({
         },
     },
     label: {
-        fontSize: '1.1rem',
+        fontSize: '1.25rem',
     },
 }))(Chip);
 
@@ -32,7 +32,6 @@ const useStyle = makeStyles((theme) => ({
     },
     timeToRead: {
         display: 'inline',
-        fontSize: '0.95rem',
         marginLeft: 'auto',
         marginBottom: '0',
     },
@@ -78,7 +77,7 @@ function FeedInformation(props) {
             </Breadcrumbs>
             <Typography
                 className={classes.timeToRead}
-                variant={"body1"}>
+                variant={"body2"}>
                 {timeToRead} min
             </Typography>
             <MenuBookIcon className={classes.bookIcon} fontSize={"small"}/>

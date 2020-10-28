@@ -1,4 +1,5 @@
 import React from "react";
+import {Button} from "@material-ui/core";
 
 function AccountTabs({setIsLoginOpened, setIsSignUpOpened}) {
 
@@ -12,16 +13,20 @@ function AccountTabs({setIsLoginOpened, setIsSignUpOpened}) {
 
     return (
         <div className={'ml-auto'}>
-            <input id={'login'}
-                   className="btn border"
-                   type="button"
-                   value="Login"
-                   onClick={loginClick}/>
-            <input id={'sign-up'}
-                   className="btn border"
-                   type="button"
-                   value="Register"
-                   onClick={signUpClick}/>
+            <Button
+                onClick={loginClick}
+                className={'btn border'}
+                id={'login'}
+            >
+                Login
+            </Button>
+            <Button
+                onClick={signUpClick}
+                className="btn border"
+                id={'sign-up'}
+            >
+                Register
+            </Button>
         </div>
     )
 }

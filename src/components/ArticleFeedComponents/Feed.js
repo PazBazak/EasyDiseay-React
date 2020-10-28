@@ -12,13 +12,13 @@ const useStyle = makeStyles((theme) => ({
     paper: {
         marginBottom: '20px',
         padding: '15px',
-        opacity: '0.9',
+        opacity: '0.91',
         '&:hover, &:focus': {
             opacity: '1',
         },
     },
     title: {
-        fontSize: '1.6rem',
+        fontSize: '1.8rem',
         '&:hover, &:focus': {
             cursor: 'pointer',
         },
@@ -34,7 +34,9 @@ const useStyle = makeStyles((theme) => ({
     },
     summaryBox: {
         width: '90%',
-        fontSize: '1.15rem',
+        fontSize: '1.3rem',
+        lineHeight: 1.5,
+        fontFamily: 'roboto'
     },
     imgStyle: {
         '&:hover, &:focus': {

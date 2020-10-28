@@ -1,27 +1,33 @@
-import { createMuiTheme} from "@material-ui/core";
-import {blue} from "@material-ui/core/colors";
+import {createMuiTheme} from "@material-ui/core";
 
 const baseTheme = createMuiTheme({
-        palette: {
-            primary: {
-                main: blue[600],
-            },
+    palette: {
+        primary: {
+            main: '#1e88e5',
         },
+    },
+    typography: {
+        fontFamily: 'roboto',
+        fontSize: 17,
+        body2: {
+            fontSize: 'medium'
+        }
+    }
 });
 
 const darkTheme = createMuiTheme({
-        palette: {
-            type: 'dark',
-            background: {
-                paper: '#303030',
-            },
-            primary: {
-                main: '#424242'
-            },
-            secondary: {
-                main: '#ffc400'
-            },
+    palette: {
+        type: 'dark',
+        background: {
+            paper: '#303030',
         },
+        primary: {
+            main: '#424242'
+        },
+        secondary: {
+            main: '#ffc400'
+        },
+    },
 });
 
 export {darkTheme};
