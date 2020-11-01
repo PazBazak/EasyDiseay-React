@@ -6,7 +6,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Hidden from '@material-ui/core/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
 import {makeStyles} from "@material-ui/core/styles";
-import AccountTabs from "./AccountTabs";
+import HeaderTab from "./HeaderTab";
 import {Link} from 'react-router-dom';
 import {SearchBarAppBar} from "../DiseaseSliderComponents/SearchBar";
 import {PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from "../utils/Constants";
@@ -31,7 +31,6 @@ const headerStyle = makeStyles((theme) => ({
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
-            zIndex: 1201,
         }),
     },
     MenuIconStyle: {
@@ -39,12 +38,12 @@ const headerStyle = makeStyles((theme) => ({
     },
     ToolBar: {
         [theme.breakpoints.up('xl')]: {
-            paddingLeft: parseInt(PAGE_WHITESPACES_XL + 16),
-            paddingRight: parseInt(PAGE_WHITESPACES_XL + 32),
+            paddingLeft: PAGE_WHITESPACES_XL + 16,
+            paddingRight: PAGE_WHITESPACES_XL + 32.
         },
         [theme.breakpoints.down('lg')]: {
-            paddingLeft: parseInt(PAGE_WHITESPACES_LG + 16),
-            paddingRight: parseInt(PAGE_WHITESPACES_LG + 32),
+            paddingLeft: PAGE_WHITESPACES_LG + 16,
+            paddingRight: PAGE_WHITESPACES_LG + 32,
         },
         [theme.breakpoints.down('md')]: {
             paddingLeft: 16,
@@ -105,7 +104,7 @@ function Header(props) {
                 </div>
                 <SearchBarAppBar/>
                 <DarkModeToggle toggleDarkMode={toggleDarkMode} isDark={isDark}/>
-                <AccountTabs
+                <HeaderTab
                     setIsLoginOpened={setIsLoginOpened}
                     setIsSignUpOpened={setIsSignUpOpened}/>
             </Toolbar>

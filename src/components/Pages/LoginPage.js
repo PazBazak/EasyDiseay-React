@@ -14,7 +14,11 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import {loginUser} from "../../global_state/actions/authActions";
+import {useDispatch} from "react-redux";
 
+const STATUS = 0;
+const USER = 1;
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -47,14 +51,50 @@ const validationSchema = yup.object({
         .min(6)
 });
 
-export default function LoginPage({openSignUp}) {
+export default function LoginPage(props) {
+    const dispatch = useDispatch();
     const classes = useStyles();
     const [isShowingPassword, setIsShowingPassword] = useState(false);
+
+    const {openSignUp, closeForm} = props;
 
     const togglePasswordEye = () => setIsShowingPassword(!isShowingPassword);
 
     // For preventing black outline on btn click
     const handlePasswordMouseDown = e => e.preventDefault();
+
+    const handleLogin = async data => {
+        try {
+            const response = await fetch(process.env.REACT_APP_LOGIN_API_URL, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": 'application/json',
+                },
+            });
+
+            const jsonResponse = await response.json();
+            return [
+                response.status,
+                {
+                    token: jsonResponse.token,
+                    firstName: jsonResponse.firstName,
+                    lastName: jsonResponse.lastName,
+                    email: jsonResponse.email
+                }
+            ]
+
+        } catch (e) {
+            console.log('error when login-in (POST) :', e);
+        }
+    };
+
+    const handleSuccessfulLogin = data => {
+        localStorage.setItem('token', data.token);
+        dispatch(loginUser(data));
+        alert('Login was successful');
+        closeForm();
+    };
 
     return (
         <Container component="main" maxWidth="xs">
@@ -66,8 +106,12 @@ export default function LoginPage({openSignUp}) {
                     is_remember: false,
                 }}
                         onSubmit={(data, {setSubmitting}) => {
+                            setSubmitting(true);
+                            handleLogin(data).then(data =>
+                                data[STATUS] === 200 ?
+                                    handleSuccessfulLogin(data[USER]) :
+                                    alert('Failed to Login'));
                             setSubmitting(false);
-                            console.log('Login submit')
                         }}
                         validationSchema={validationSchema}
                 >

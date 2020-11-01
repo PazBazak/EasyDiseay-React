@@ -8,7 +8,7 @@ import baseTheme, {darkTheme} from '../../Themes/Themes'
 import {createMuiTheme, useMediaQuery} from "@material-ui/core";
 import clsx from 'clsx';
 import Paper from "@material-ui/core/Paper";
-import {PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from "../utils/Constants";
+import {PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL, DISEASE_MENU_DRAWER_WIDTH} from "../utils/Constants";
 import Popup from "../utils/Popup";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
@@ -47,7 +47,7 @@ const mainPageStyle = makeStyles((theme) => ({
         }),
     },
     contentMobileModeStyle: {
-        marginLeft: -(process.env.REACT_APP_DISEASE_MENU_DRAWER_WIDTH),
+        marginLeft: -(DISEASE_MENU_DRAWER_WIDTH),
     },
 }));
 

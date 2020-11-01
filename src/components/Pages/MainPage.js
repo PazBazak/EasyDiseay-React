@@ -71,6 +71,11 @@ function MainPage() {
         setIsLoginOpened(true);
     };
 
+    const closeForm = () => {
+        setIsSignUpOpened(false);
+        setIsLoginOpened(false);
+    };
+
     return (
         <ThemeProvider theme={createMuiTheme(isDark ? darkTheme : baseTheme)}>
             <Paper className={classes.root}>
@@ -89,11 +94,17 @@ function MainPage() {
             </Paper>
             <Popup isOpened={isLoginOpened}
                    setIsOpened={setIsLoginOpened}>
-                <LoginPage openSignUp={openSignUp}/>
+                <LoginPage
+                    openSignUp={openSignUp}
+                    closeForm={closeForm}
+                />
             </Popup>
             <Popup isOpened={isSignupOpened}
                    setIsOpened={setIsSignUpOpened}>
-                <SignUpPage openSignIn={openLogin}/>
+                <SignUpPage
+                    openSignIn={openLogin}
+                    closeForm={closeForm}
+                />
             </Popup>
         </ThemeProvider>
     );

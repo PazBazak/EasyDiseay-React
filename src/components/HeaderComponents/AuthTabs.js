@@ -1,18 +1,9 @@
 import React from "react";
 
-function AccountTabs({setIsLoginOpened, setIsSignUpOpened}) {
-
-    const loginClick = () => {
-        setIsLoginOpened(true);
-    };
-
-    const signUpClick = () => {
-        setIsSignUpOpened(true);
-    };
-
+const AuthTabs = ({loginClick, signUpClick}) => {
     return (
         <div className={'ml-auto'}>
-            <input id={'login'}
+            <input id={'header-btn'}
                    className="btn border"
                    type="button"
                    value="Login"
@@ -24,7 +15,6 @@ function AccountTabs({setIsLoginOpened, setIsSignUpOpened}) {
                    onClick={signUpClick}/>
         </div>
     )
-}
+};
 
-export default AccountTabs;
-
+export default AuthTabs;

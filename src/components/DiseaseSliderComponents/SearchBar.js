@@ -83,14 +83,8 @@ function SearchBar(props) {
     )
 }
 
-function SearchBarAppBar(props) {
+function SearchBarAppBar() {
     const classes = useStyles();
-    const {setSearchInputText} = props;
-
-    // To make it function u need to add 'OnChange' in the TextField
-    const handleSearchInput = async (object) => {
-        setSearchInputText(object.target.value);
-    };
 
     return (
         <div className={classes.search}>
