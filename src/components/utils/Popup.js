@@ -2,11 +2,10 @@ import React from "react";
 import {Dialog, DialogContent} from "@material-ui/core";
 
 
-const Popup = ({title, children, isOpened, onClose}) => {
+const Popup = ({title, children, isOpened, setIsOpened}) => {
     return (
         <Dialog open={isOpened}
-                fullWidth={'true'}
-                onClose={onClose}>
+                onClose={() => setIsOpened(false)}>
             <DialogContent>
                 {children}
             </DialogContent>

@@ -5,7 +5,7 @@ const preMadeFeeds = [
         title: "CoronaVirus might just be the end of the world, scientist claims!",
         url: 'yo',
         img: "https://images.medicinenet.com/images/newsletter/specialty/oleander-plant.jpg",
-        source_site: {name: "health.com"},
+        source_site: {name: "health.org"},
         diseases: [{
             id: 1,
             name: "Coronavirus"

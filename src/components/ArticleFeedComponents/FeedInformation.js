@@ -17,7 +17,7 @@ const StyledBreadcrumb = withStyles((theme) => ({
         },
         '&:active': {
             boxShadow: theme.shadows[1],
-            backgroundColor: emphasize(theme.palette.grey[300], 0.50),
+            backgroundColor: emphasize(theme.palette.grey[300], 0.12),
         },
     },
     label: {
@@ -78,7 +78,8 @@ function FeedInformation(props) {
             </Breadcrumbs>
             <Typography
                 className={classes.timeToRead}
-                variant={"body1"}>
+                variant={"body1"}
+            >
                 {timeToRead} min
             </Typography>
             <MenuBookIcon className={classes.bookIcon} fontSize={"small"}/>
