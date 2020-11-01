@@ -15,7 +15,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {setIsDark} from "../../global_state/actions/themeActions";
 
 
-const headerStyle = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
     },
@@ -31,7 +31,6 @@ const headerStyle = makeStyles((theme) => ({
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
-            zIndex: 1201,
         }),
     },
     MenuIconStyle: {
@@ -55,7 +54,7 @@ const headerStyle = makeStyles((theme) => ({
 
 
 function Header(props) {
-    const classes = headerStyle();
+    const classes = useStyles();
     const dispatch = useDispatch();
 
     const {
