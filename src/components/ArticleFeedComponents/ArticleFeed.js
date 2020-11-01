@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {LoadingArticles} from "../utils/LoadingsTypes";
+import {BoxLoading} from "../utils/LoadingsTypes";
 import Feed from "./Feed";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchArticles, fetchArticlesForDisease} from "../../global_state/actions/articlesActions";
@@ -23,19 +23,9 @@ function ArticleFeed({diseaseId}) {
             {articles.length > 0 ? articles.map(article =>
                     <Feed
                         key={article.id}
-                        title={article.title}
-                        url={article.url}
-                        img={article.img}
-                        website={article.source_site}
-                        diseases={article.diseases}
-                        publishedDate={article.published_date}
-                        timeToRead={article.time_to_read}
-                        summary={article.summary}
-                        likes={article.likes}
-                        comments={article.comments}
-                    />)
+                        article={article}/>)
                 :
-                <LoadingArticles/>}
+                <BoxLoading/>}
         </div>
     )
 }
