@@ -46,14 +46,9 @@ const Feed = (props) => {
         website,
         timeToRead,
         publishedDate,
+        likes,
+        comments
     } = props;
-
-    const classes = useStyle();
-    const dispatch = useDispatch();
-
-    const feedHasBeenClicked = () => {
-        dispatch(setSelectedArticle(article));
-    };
 
     return (
         <Paper variant={"elevation"}
@@ -73,7 +68,6 @@ const Feed = (props) => {
                                     component={'h3'}
                                     className={classes.title}
                         >{title}</Typography>
-                        className={classes.title}
                         <ArticleStats
                             likes={likes}
                             comments={comments}
@@ -92,7 +86,7 @@ const Feed = (props) => {
                         <FeedInformation
                             diseases={diseases}
                             website={website}
-                            publishedDate={published_date}
+                            publishedDate={publishedDate}
                             timeToRead={timeToRead}
                         />
                     </Box>

@@ -30,6 +30,8 @@ function ArticleFeed({diseaseId}) {
                         publishedDate={article.published_date}
                         timeToRead={article.time_to_read}
                         summary={article.summary}
+                        likes={article.likes}
+                        comments={article.comments}
                     />)
                 :
                 <LoadingArticles/>}
