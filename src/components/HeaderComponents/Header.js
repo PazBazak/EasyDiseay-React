@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
@@ -11,8 +11,11 @@ import {Link} from 'react-router-dom';
 import {SearchBarAppBar} from "../DiseaseSliderComponents/SearchBar";
 import {PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from "../utils/Constants";
 import DarkModeToggle from "./DarkModeToggle";
-import {useSelector, useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setIsDark} from "../../global_state/actions/themeActions";
+import Popup from "../utils/Popup";
+import LoginPage from "../Pages/LoginPage";
+import SignUpPage from "../Pages/SignUpPage";
 
 
 const headerStyle = makeStyles((theme) => ({
@@ -60,8 +63,6 @@ function Header(props) {
     const {
         setIsDiseaseMenuShown,
         isDiseaseMenuShown,
-        setIsLoginOpened,
-        setIsSignUpOpened,
     } = props;
 
     const isDark = useSelector(state => state.themeState.isDark);
@@ -70,6 +71,23 @@ function Header(props) {
         setIsDiseaseMenuShown(!isDiseaseMenuShown);
     };
 
+    const [isLoginOpened, setIsLoginOpened] = useState(false);
+    const [isSignupOpened, setIsSignUpOpened] = useState(false);
+
+    const openSignUp = () => {
+        setIsLoginOpened(false);
+        setIsSignUpOpened(true);
+    };
+
+    const openLogin = () => {
+        setIsSignUpOpened(false);
+        setIsLoginOpened(true);
+    };
+
+    const closeForm = () => {
+        setIsSignUpOpened(false);
+        setIsLoginOpened(false);
+    };
 
     // Toggles the dark mode, if the current theme is dark, then switch it to non-dark, and vice versa
     const toggleDarkMode = () => {
@@ -108,6 +126,20 @@ function Header(props) {
                     setIsLoginOpened={setIsLoginOpened}
                     setIsSignUpOpened={setIsSignUpOpened}/>
             </Toolbar>
+            <Popup isOpened={isLoginOpened}
+                   setIsOpened={setIsLoginOpened}>
+                <LoginPage
+                    openSignUp={openSignUp}
+                    closeForm={closeForm}
+                />
+            </Popup>
+            <Popup isOpened={isSignupOpened}
+                   setIsOpened={setIsSignUpOpened}>
+                <SignUpPage
+                    openSignIn={openLogin}
+                    closeForm={closeForm}
+                />
+            </Popup>
         </AppBar>
     )
 }

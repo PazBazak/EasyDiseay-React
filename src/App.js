@@ -7,12 +7,16 @@ import DiseasePage from "./components/Pages/DiseasePage";
 import NotFoundPage from "./components/Pages/NotFoundPage";
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Route, Switch} from 'react-router';
-import {Provider} from 'react-redux'
-import store from "./global_state/store";
+import ThemeProvider from "@material-ui/styles/ThemeProvider";
+import {createMuiTheme} from "@material-ui/core";
+import baseTheme, {darkTheme} from "./Themes/Themes";
+import {useSelector} from "react-redux";
 
 function App() {
+    const isDark = useSelector(state => state.themeState.isDark);
+
     return (
-        <Provider store={store}>
+        <ThemeProvider theme={createMuiTheme(isDark ? darkTheme : baseTheme)}>
             <Router>
                 <Switch>
                     <Route path={'/'} exact component={MainPage}/>
@@ -20,7 +24,7 @@ function App() {
                     <Route component={NotFoundPage}/>
                 </Switch>
             </Router>
-        </Provider>
+        </ThemeProvider>
     );
 }
 
