@@ -1,8 +1,6 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import {ThemeProvider} from '@material-ui/styles';
 import Header from "../HeaderComponents/Header";
-import theme from '../../Themes/Themes'
 
 
 const useStyle = makeStyles((theme) => ({
@@ -21,13 +19,13 @@ function NotFoundPage() {
     const classes = useStyle();
 
     return (
-        <ThemeProvider theme={theme}>
+        <Fragment>
             <Header/>
             <div className={classes.container}>
                 <h2 className={classes.text}>Error 404!</h2>
                 <h2 className={classes.text}>Wrong Page!</h2>
             </div>
-        </ThemeProvider>
+        </Fragment>
     );
 }
 

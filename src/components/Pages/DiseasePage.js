@@ -1,16 +1,14 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
 import Header from "../HeaderComponents/Header";
 import DiseaseMenu from "../DiseaseSliderComponents/DiseaseMenu";
-import baseTheme from '../../Themes/Themes'
 import {useMediaQuery} from "@material-ui/core";
 import clsx from 'clsx';
 import Paper from "@material-ui/core/Paper";
 import {DISEASE_MENU_DRAWER_WIDTH, PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from "../utils/Constants";
-import {useSelector} from "react-redux";
 
-const mainPageStyle = makeStyles((theme) => ({
+const useStyle = makeStyles((theme) => ({
     root: {
         display: 'flex',
         [theme.breakpoints.up('xl')]: {
@@ -48,10 +46,12 @@ const mainPageStyle = makeStyles((theme) => ({
 }));
 
 function DiseasePage({match}) {
-    const classes = mainPageStyle();
+    const classes = useStyle();
     const [isDiseaseMenuShown, setIsDiseaseMenuShown] = React.useState(false);
-    const isSmallScreen = useMediaQuery(baseTheme.breakpoints.down("md"));
     const diseaseId = match.params.id;
+
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
         <Paper className={classes.root}>

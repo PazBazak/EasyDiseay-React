@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
 import Header from "../HeaderComponents/Header";
 import DiseaseMenu from "../DiseaseSliderComponents/DiseaseMenu";
-import baseTheme from '../../Themes/Themes'
 import {useMediaQuery} from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import clsx from 'clsx';
@@ -50,7 +49,9 @@ const useStyle = makeStyles((theme) => ({
 function MainPage() {
     const classes = useStyle();
     const [isDiseaseMenuShown, setIsDiseaseMenuShown] = useState(false);
-    const isSmallScreen = useMediaQuery(baseTheme.breakpoints.down("md"));
+
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
         <Paper className={classes.root}>

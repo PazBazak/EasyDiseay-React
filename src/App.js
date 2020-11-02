@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'fontsource-roboto';
@@ -9,14 +9,31 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import {Route, Switch} from 'react-router';
 import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import {createMuiTheme} from "@material-ui/core";
-import baseTheme, {darkTheme} from "./Themes/Themes";
 import {useSelector} from "react-redux";
 
 function App() {
     const isDark = useSelector(state => state.themeState.isDark);
 
+    const globalTheme = useMemo(() =>
+            createMuiTheme({
+                palette: {
+                    type: isDark ? 'dark' : 'light',
+                    primary: {
+                        main: isDark ? '#424242' : '#1e88e5',
+                    },
+                    secondary: {
+                        main: isDark ? '#ffc400' : '#ff0e4c',
+                    },
+                    background: {
+                        paper: isDark ? '#303030' : 'white',
+                    },
+                },
+            }),
+        [isDark]
+    );
+
     return (
-        <ThemeProvider theme={createMuiTheme(isDark ? darkTheme : baseTheme)}>
+        <ThemeProvider theme={globalTheme}>
             <Router>
                 <Switch>
                     <Route path={'/'} exact component={MainPage}/>
