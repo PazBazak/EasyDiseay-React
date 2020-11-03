@@ -14,6 +14,7 @@ import {useSelector} from "react-redux";
 function App() {
     const isDark = useSelector(state => state.themeState.isDark);
 
+    // creating a global theme
     const globalTheme = useMemo(() =>
             createMuiTheme({
                 palette: {
@@ -28,6 +29,9 @@ function App() {
                         paper: isDark ? '#303030' : 'white',
                     },
                 },
+                typography: {
+                    fontSize: 14
+                }
             }),
         [isDark]
     );

@@ -6,16 +6,11 @@ import Typography from "@material-ui/core/Typography";
 import Box from '@material-ui/core/Box';
 import ReactReadMoreReadLess from "react-read-more-read-less";
 import ArticleStats from "./ArticleStats";
-import {useDispatch} from "react-redux";
-import {setSelectedArticle} from "../../global_state/actions/articlesActions";
 
 const useStyle = makeStyles((theme) => ({
     paper: {
         marginBottom: '20px',
         padding: '15px',
-    },
-    title: {
-        fontSize: '1.6rem',
     },
     readMoreStyle: {
         opacity: '0.7',
@@ -64,8 +59,8 @@ const Feed = (props) => {
                 </Box>
                 <Box className={'ml-3 w-100'} display={'flex'} flexDirection={'column'}>
                     <Box flexGrow={1}>
-                        <Typography variant={'h4'}
-                                    component={'h3'}
+                        <Typography variant={'h5'}
+                                    component={'h4'}
                                     className={classes.title}
                         >{title}</Typography>
                         <ArticleStats

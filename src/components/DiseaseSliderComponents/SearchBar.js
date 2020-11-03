@@ -72,7 +72,7 @@ function SearchBar(props) {
                 <SearchIcon/>
             </div>
             <InputBase
-                placeholder="Search…"
+                placeholder="Disease…"
                 classes={{
                     root: classes.inputRoot,
                     input: classes.inputInput,
