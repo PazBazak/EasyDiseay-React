@@ -2,8 +2,6 @@ html {
     height: 100%;
     --scrollbarBG: #CFD8DC;
     --thumbBG: #90A4AE;
-    scrollbar-width: auto;
-    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
 }
 
 body {

@@ -8,6 +8,7 @@ function ArticleFeed({diseaseId}) {
     const dispatch = useDispatch();
     const articles = useSelector(state => state.articleState.articles);
 
+    // checking if this is main page or disease page
     useEffect(() => {
         if (diseaseId === undefined) {
             dispatch(fetchArticles());
@@ -17,6 +18,18 @@ function ArticleFeed({diseaseId}) {
         // eslint-disable-next-line
     }, [diseaseId]);
 
+    const handleScroll = () => {
+        if (window.innerHeight + document.documentElement.scrollTop === document.scrollingElement.scrollHeight)
+        {
+            console.log('Fetch more list items!');
+        }
+    };
+
+    // adding event for scroll for infinite scroll
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
         <div className={'col'}>
