@@ -13,6 +13,8 @@ export const HOT_TAB = 0;
 export const TRENDING_TAB = 1;
 export const NEW_TAB = 2;
 
+export const LOADED_ARTICLES = 10;
+
 // Regex
 export const lowerCaseRegex = /(?=.*[a-z])/;
 export const upperCaseRegex = /(?=.*[A-Z])/;
