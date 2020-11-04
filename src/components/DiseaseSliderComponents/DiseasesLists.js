@@ -6,7 +6,7 @@ import {SearchBar} from "./SearchBar";
 import {ALL_DISEASES_SUBHEADER, FOLLOWED_DISEASES_SUBHEADER, NO_MATCHING_DISEASES_MESSAGE} from '../utils/Constants'
 import FilterTabs from "./FilterTabs";
 import {fetchDiseases} from "../../global_state/actions/diseasesActions";
-import {connect, useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     list: {
