@@ -24,6 +24,7 @@ const DiseaseMenuStyle = makeStyles((theme) => ({
             left: 0,
         },
         border: 'none',
+        maxHeight: '90vh',
     },
     drawerHeader: {
         display: 'flex',

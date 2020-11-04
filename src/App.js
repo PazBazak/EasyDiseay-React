@@ -45,6 +45,7 @@ function App() {
                     <Route component={NotFoundPage}/>
                 </Switch>
             </Router>
+            <Footer/>
         </ThemeProvider>
     );
 }
