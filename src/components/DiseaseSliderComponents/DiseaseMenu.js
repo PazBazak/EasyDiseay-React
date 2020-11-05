@@ -14,6 +14,9 @@ const DiseaseMenuStyle = makeStyles((theme) => ({
         width: DISEASE_MENU_DRAWER_WIDTH,
         zIndex: 1,
         paddingTop: 60,
+        border: 'none',
+        maxHeight: '100vh',
+        position: 'static',
         [theme.breakpoints.up('xl')]: {
             left: PAGE_WHITESPACES_XL,
         },
@@ -23,9 +26,6 @@ const DiseaseMenuStyle = makeStyles((theme) => ({
         [theme.breakpoints.down('md')]: {
             left: 0,
         },
-        border: 'none',
-        maxHeight: '110vh',
-        position: 'static'
     },
     drawerHeader: {
         display: 'flex',
