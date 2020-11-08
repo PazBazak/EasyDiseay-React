@@ -47,7 +47,7 @@ const Feed = (props) => {
     const {
         article,
     } = props;
-    const {img, title, summary, diseases, source_site, time_to_read, published_date} = article;
+    const {img, title, summary, diseases, website, timeToRead, publishedDate,likes,comments} = article;
     const classes = useStyle();
     const dispatch = useDispatch();
 
@@ -72,10 +72,14 @@ const Feed = (props) => {
                 {/*Title*/}
                 <Box className={'ml-3 w-100'} display={'flex'} flexDirection={'column'}>
                     <Box flexGrow={1} onClick={feedHasBeenClicked}>
-                        <Typography variant={'h4'}
-                                    component={'h3'}
+                        <Typography variant={'h5'}
+                                    component={'h4'}
                                     className={classes.title}>
                             {title}</Typography>
+                        <ArticleStats
+                            likes={likes}
+                            comments={comments}
+                        />
                     </Box>
 
                     {/*Summary*/}
@@ -90,9 +94,10 @@ const Feed = (props) => {
                     <Box>
                         <FeedInformation
                             diseases={diseases}
-                            website={source_site}
-                            publishedDate={published_date}
-                            timeToRead={time_to_read}/>
+                            website={website}
+                            publishedDate={publishedDate}
+                            timeToRead={timeToRead}
+                        />
                     </Box>
                 </Box>
             </Box>
@@ -101,4 +106,3 @@ const Feed = (props) => {
 };
 
 export default Feed;
-

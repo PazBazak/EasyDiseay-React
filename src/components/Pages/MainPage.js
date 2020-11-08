@@ -111,6 +111,7 @@ function MainPage() {
                 <SignUpPage openSignIn={openLogin}/>
             </Popup>
             <Popup isOpened={isBouncePageOpened}
+                   isFullWidth={true}
                    onClose={closeBouncePage}>
                 <BouncePage/>
             </Popup>
