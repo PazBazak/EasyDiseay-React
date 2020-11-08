@@ -10,7 +10,7 @@ import {Link as LinkReactRouter} from 'react-router-dom'
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import {clearSelectedArticle} from "../../global_state/actions/articlesActions";
 import CommentBox from "../ArticleFeedComponents/CommentBox";
-import {Divider, Statistic, Segment} from 'semantic-ui-react'
+import {Divider, Statistic} from 'semantic-ui-react'
 
 const useStyle = makeStyles((theme) => ({
     root: {
@@ -54,7 +54,7 @@ function BouncePage() {
     const isAddCommentArticleErrorRaise = useSelector(state => state.articleState.isAddCommentArticleErrorRaise);
     const likeArticleErrorContent = useSelector(state => state.articleState.likeArticleErrorContent);
     const addCommentArticleErrorContent = useSelector(state => state.articleState.addCommentArticleErrorContent);
-    const {title, summary, img, published_date, source_site, diseases, url} = article;
+    const {title, summary, img, publishedDate, website, diseases, url} = article;
 
     const ChipClicked = () => {
         dispatch(clearSelectedArticle());
@@ -70,7 +70,7 @@ function BouncePage() {
                         display="block"
                         className={clsx(classes.dateStyle, classes.centerStyle)}
                         gutterBottom>
-                        {published_date}
+                        {publishedDate}
                     </Typography>
 
                     {/*Title*/}
@@ -90,12 +90,12 @@ function BouncePage() {
                         gutterBottom>
                         <div>
                             <span>By </span>
-                            <Link href={`https://www.${source_site.name}`}
+                            <Link href={`https://www.${website.name}`}
                                   underline={'none'}
                                   color={'primary'}
                                   className={classes.linkStyle}
-                                  target={`https://www.${source_site.name}`}>
-                                {source_site.name}
+                                  target={`https://www.${website.name}`}>
+                                {website.name}
                             </Link>
                         </div>
                     </Typography>
@@ -109,11 +109,11 @@ function BouncePage() {
                         <Chip
                             variant="outlined"
                             size="small"
-                            label={source_site.name}
+                            label={website.name}
                             clickable
                             onClick={ChipClicked}
                             component={LinkReactRouter}
-                            to={`/articles/${source_site.id}`}
+                            to={`/articles/${website.id}`}
                             className={clsx(classes.ChipStyle, classes.linkStyle)}
                             color="primary"/>
                         {diseases.map((disease) =>
@@ -133,7 +133,7 @@ function BouncePage() {
                         <Statistic.Group size={"mini"}>
                             <Statistic>
                                 <Statistic.Value>22</Statistic.Value>
-                                <Statistic.Label>Faves</Statistic.Label>
+                                <Statistic.Label>Likes</Statistic.Label>
                             </Statistic>
                             <Statistic>
                                 <Statistic.Value>31,200</Statistic.Value>
@@ -141,7 +141,7 @@ function BouncePage() {
                             </Statistic>
                             <Statistic>
                                 <Statistic.Value>22</Statistic.Value>
-                                <Statistic.Label>Members</Statistic.Label>
+                                <Statistic.Label>Comments</Statistic.Label>
                             </Statistic>
                         </Statistic.Group>
                     </div>
