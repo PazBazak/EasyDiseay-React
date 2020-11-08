@@ -1,18 +1,37 @@
 import React from "react";
+import {makeStyles} from "@material-ui/core/styles";
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles((theme) => ({
+    buttonStyle: {
+        boxShadow: 'none',
+        textTransform: 'none',
+        margin: theme.spacing(.5),
+        border: '1px solid white',
+        color: 'white',
+        '&:hover, &:focus, &:active': {
+            boxShadow: 'none',
+        },
+    },
+}));
 
 const AuthTabs = ({loginClick, signUpClick}) => {
+    const classes = useStyles();
+    const buttonProps = {
+        className: classes.buttonStyle,
+        size: 'large',
+        disableRipple: true,
+        disableFocusRipple: true,
+    };
     return (
-        <div className={'ml-auto'}>
-            <input id={'header-btn'}
-                   className="btn border"
-                   type="button"
-                   value="Login"
-                   onClick={loginClick}/>
-            <input id={'sign-up'}
-                   className="btn border"
-                   type="button"
-                   value="Register"
-                   onClick={signUpClick}/>
+        <div className={"small primary ui buttons"}>
+            <Button {...buttonProps}
+                    onClick={loginClick}>
+                Login
+            </Button>
+            <Button {...buttonProps}
+                    onClick={signUpClick}> Register
+            </Button>
         </div>
     )
 };
