@@ -7,6 +7,7 @@ import {useMediaQuery} from "@material-ui/core";
 import clsx from 'clsx';
 import Paper from "@material-ui/core/Paper";
 import {DISEASE_MENU_DRAWER_WIDTH, PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from "../utils/Constants";
+import Footer from "../Footer/Footer";
 
 const useStyle = makeStyles((theme) => ({
     root: {
@@ -34,6 +35,7 @@ const useStyle = makeStyles((theme) => ({
     content: {
         minHeight: "100vh",
         flexGrow: 1,
+        paddingBottom: '0',
         padding: theme.spacing(3),
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
@@ -66,6 +68,7 @@ function DiseasePage({match}) {
                 <div className={classes.drawerHeader}/>
                 <ArticleFeed diseaseId={diseaseId}/>
             </main>
+            <Footer/>
         </Paper>
     );
 }

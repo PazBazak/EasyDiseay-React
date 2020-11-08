@@ -13,6 +13,7 @@ import SignUpPage from "./SignUpPage";
 import {useDispatch, useSelector} from "react-redux";
 import BouncePage from "./BouncePage";
 import {clearSelectedArticle} from "../../global_state/actions/articlesActions";
+import Footer from "../Footer/Footer";
 
 const useStyle = makeStyles((theme) => ({
     root: {
@@ -40,6 +41,7 @@ const useStyle = makeStyles((theme) => ({
     content: {
         minHeight: "100vh",
         flexGrow: 1,
+        paddingBottom: '0',
         padding: theme.spacing(3),
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
@@ -84,6 +86,7 @@ function MainPage() {
                    onClose={closeBouncePage}>
                 <BouncePage/>
             </Popup>
+            <Footer/>
         </>
 
     );
