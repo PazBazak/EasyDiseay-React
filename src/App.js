@@ -1,6 +1,5 @@
 import React, {useMemo} from 'react';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
 import 'fontsource-roboto';
 import MainPage from "./components/Pages/MainPage";
 import DiseasePage from "./components/Pages/DiseasePage";
