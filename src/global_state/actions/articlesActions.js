@@ -10,6 +10,7 @@ import {
 import preMadeFeeds from "../../data_sources/articles";
 
 // Fetch all articles from API
+// Should call 'reformatArticles' function before sent the articles to the next step.
 export const fetchArticles = () => async dispatch => {
     try {
         const fetchedArticles = await fetch(process.env.REACT_APP_ARTICLES_API_URL);
@@ -17,7 +18,7 @@ export const fetchArticles = () => async dispatch => {
         await dispatch({type: SET_ARTICLES, payload: jsonArticles});
     } catch (e) {
         console.log('Could not fetch Articles!');
-        await dispatch({type: SET_ARTICLES, payload: preMadeFeeds});
+        await dispatch({type: SET_ARTICLES, payload: reformatArticles(preMadeFeeds)});
     }
 };
 
@@ -87,4 +88,21 @@ export const setSelectedArticle = (value) => async (dispatch) => {
 
 export const clearSelectedArticle = () => (dispatch) => {
     dispatch({type: CLEAR_SELECTED_ARTICLE});
+};
+
+// Reformat the articles to react standards.
+const reformatArticles = (articlesAsOrigin) => {
+    // Change field: source_site -> website
+    let reformatRegexSourceSite = new RegExp('source_site', 'g');
+    let articles = JSON.stringify(articlesAsOrigin).replace(reformatRegexSourceSite, 'website');
+
+    // Change field: time_to_read -> timeToRead
+    let reformatRegexTimeToRead = new RegExp('time_to_read', 'g');
+    articles = articles.replace(reformatRegexTimeToRead, 'timeToRead');
+
+    // Change field: published_date -> publishedDate
+    let reformatRegexPublishedDate = new RegExp('published_date', 'g');
+    articles = articles.replace(reformatRegexPublishedDate, 'publishedDate');
+
+    return JSON.parse(articles);
 };

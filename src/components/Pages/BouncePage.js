@@ -10,7 +10,7 @@ import {Link as LinkReactRouter} from 'react-router-dom'
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import {clearSelectedArticle} from "../../global_state/actions/articlesActions";
 import CommentBox from "../ArticleFeedComponents/CommentBox";
-import {Divider, Statistic} from 'semantic-ui-react'
+import {Statistic,Divider} from 'semantic-ui-react';
 
 const useStyle = makeStyles((theme) => ({
     root: {
