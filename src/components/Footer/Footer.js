@@ -3,8 +3,11 @@ import Grid from '@material-ui/core/Grid';
 import Paper from "@material-ui/core/Paper";
 import {makeStyles} from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
+import Divider from '@material-ui/core/Divider';
 import FooterSubTitle from "./FooterSubTitle";
 import FooterTitle from "./FooterTitle";
+import StoreBadge from "./StoreBadge";
+import {APPLE_BADGE_PATH, ANDROID_BADGE_PATH} from "../utils/Constants";
 
 const useStyle = makeStyles((theme) => ({
     container: {
@@ -15,6 +18,9 @@ const useStyle = makeStyles((theme) => ({
     box: {
         backgroundColor: '#1b89ff',
     },
+    divider: {
+        backgroundColor: '#fff'
+    }
 }));
 
 const Footer = () => {
@@ -45,8 +51,21 @@ const Footer = () => {
                         <FooterSubTitle title={'Privacy Policy'}/>
                     </Grid>
                 </Grid>
-                <Grid item xs={3}>
-
+                <Grid item container xs={3}>
+                    <Grid item xs={1}>
+                         <Divider orientation={'vertical'} className={classes.divider}/>
+                    </Grid>
+                    <Grid item xs={11}>
+                         <FooterTitle title={'Mobile App'}/>
+                         <StoreBadge
+                             src={APPLE_BADGE_PATH}
+                             url={'apple'}
+                         />
+                         <StoreBadge
+                             src={ANDROID_BADGE_PATH}
+                             url={'apple'}
+                         />
+                    </Grid>
                 </Grid>
             </Grid>
             <Box
