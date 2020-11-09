@@ -15,7 +15,7 @@ const DiseaseMenuStyle = makeStyles((theme) => ({
         zIndex: 1,
         paddingTop: 60,
         border: 'none',
-        maxHeight: '100vh',
+        maxHeight: '125vh',
         position: 'static',
         [theme.breakpoints.up('xl')]: {
             left: PAGE_WHITESPACES_XL,

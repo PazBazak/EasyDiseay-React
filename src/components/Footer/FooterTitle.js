@@ -17,7 +17,6 @@ const FooterTitle = ({title}) => {
     return (
         <Typography
             className={classes.title}
-            align={"center"}
             variant={"h6"}
             component={"h4"}
         >

@@ -29,19 +29,23 @@ const Footer = () => {
     return (
         <Paper className={classes.paper} square>
             <Grid container className={classes.container}>
-                <Grid item xs={3}>
+                <Grid item xs={4}>
+
+                </Grid>
+                <Grid item xs={2}>
                     <Grid container direction={'column'}>
                         <FooterTitle title={'EasyDeasy'}/>
                     </Grid>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                     <Grid container direction={'column'}>
                         <FooterTitle title={'Contact Us'}/>
                         <FooterSubTitle title={'Advertise'}/>
+                        <FooterSubTitle title={'Support'}/>
                         <FooterSubTitle title={'Contact'}/>
                     </Grid>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                     <Grid container direction={'column'}>
                         <FooterTitle title={'Navigation'}/>
                         <FooterSubTitle title={'About Us'}/>
@@ -51,12 +55,11 @@ const Footer = () => {
                         <FooterSubTitle title={'Privacy Policy'}/>
                     </Grid>
                 </Grid>
-                <Grid item container xs={3}>
-                    <Grid item xs={1}>
+                <Grid item container xs={2}>
+                    <Grid item xs={2}>
                          <Divider orientation={'vertical'} className={classes.divider}/>
                     </Grid>
-                    <Grid item xs={11}>
-                         <FooterTitle title={'Mobile App'}/>
+                    <Grid item xs={8}>
                          <StoreBadge
                              src={APPLE_BADGE_PATH}
                              url={'apple'}

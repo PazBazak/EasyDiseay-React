@@ -6,10 +6,13 @@ const useStyle = makeStyles((theme) => ({
     subTitle: {
         color: '#fff',
         marginBottom: '6px',
-        alignSelf: 'center',
-        display: 'inline',
-        cursor: 'pointer',
     },
+    aTag: {
+        color: '#fff',
+        '&:hover': {
+            color: '#d5d5d5',
+        }
+    }
 }));
 
 const FooterSubTitle = ({title}) => {
@@ -17,11 +20,10 @@ const FooterSubTitle = ({title}) => {
 
     return (
         <Typography
-            align={"center"}
             className={classes.subTitle}
             variant={"body2"}
         >
-            {title}
+            <a href={'#'} className={classes.aTag}>{title}</a>
         </Typography>
     )
 };

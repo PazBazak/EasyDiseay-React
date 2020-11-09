@@ -8,7 +8,7 @@ import {makeStyles} from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
     articleFeed: {
         overflow: 'auto',
-        maxHeight: '100vh',
+        maxHeight: '125vh',
         "&::-webkit-scrollbar": {
             display: 'none'
         },
