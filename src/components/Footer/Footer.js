@@ -1,20 +1,16 @@
 import React from "react";
 import Grid from '@material-ui/core/Grid';
 import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
+import FooterSubTitle from "./FooterSubTitle";
+import FooterTitle from "./FooterTitle";
 
 const useStyle = makeStyles((theme) => ({
     container: {
         backgroundColor: '#0f3d57',
-        paddingTop: '14px'
-    },
-    title: {
-        color: 'white'
-    },
-    divider: {
-        backgroundColor: 'white',
+        paddingTop: '14px',
+        paddingBottom: '14px'
     },
     box: {
         backgroundColor: '#1b89ff',
@@ -29,38 +25,24 @@ const Footer = () => {
             <Grid container className={classes.container}>
                 <Grid item xs={3}>
                     <Grid container direction={'column'}>
-                        <Typography
-                            className={classes.title}
-                            align={"center"}
-                            variant={"h5"}
-                            component={"h5"}
-                        >EasyDeasy
-                        </Typography>
+                        <FooterTitle title={'EasyDeasy'}/>
                     </Grid>
                 </Grid>
                 <Grid item xs={3}>
                     <Grid container direction={'column'}>
-                        <Typography
-                            className={classes.title}
-                            align={"center"}
-                            variant={"h5"}
-                            component={"h5"}
-                        >Contact Us
-                        </Typography>
+                        <FooterTitle title={'Contact Us'}/>
+                        <FooterSubTitle title={'Advertise'}/>
+                        <FooterSubTitle title={'Contact'}/>
                     </Grid>
                 </Grid>
                 <Grid item xs={3}>
                     <Grid container direction={'column'}>
-                        <Typography
-                            className={classes.title}
-                            align={"center"}
-                            variant={"h5"}
-                            component={"h5"}
-                        >Company
-                        </Typography>
-
-                        <Typography align={"center"}>About Us</Typography>
-                        <Typography align={"center"}>The Team</Typography>
+                        <FooterTitle title={'Navigation'}/>
+                        <FooterSubTitle title={'About Us'}/>
+                        <FooterSubTitle title={'The Team'}/>
+                        <FooterSubTitle title={'Cookie Policy'}/>
+                        <FooterSubTitle title={'Terms and Conditions'}/>
+                        <FooterSubTitle title={'Privacy Policy'}/>
                     </Grid>
                 </Grid>
                 <Grid item xs={3}>
