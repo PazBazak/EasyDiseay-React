@@ -30,6 +30,18 @@ function ArticleFeed({diseaseId}) {
         // eslint-disable-next-line
     }, [diseaseId]);
 
+    const handleScroll = () => {
+        if (window.innerHeight + document.documentElement.scrollTop === document.scrollingElement.scrollHeight)
+        {
+            console.log('Fetch more list items!');
+        }
+    };
+
+    // adding event for scroll for infinite scroll
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
         <div className={classes.articleFeed + ' col'}>

@@ -13,9 +13,9 @@ import preMadeFeeds from "../../data_sources/articles";
 // Should call 'reformatArticles' function before sent the articles to the next step.
 export const fetchArticles = () => async dispatch => {
     try {
-        const fetchedArticles = await fetch(process.env.REACT_APP_ARTICLES_API_URL);
+        const fetchedArticles = await fetch(process.env.REACT_APP_LATESTS_ARTICLES_API_URL);
         const jsonArticles = await fetchedArticles.json();
-        await dispatch({type: SET_ARTICLES, payload: reformatArticles(jsonArticles)});
+        await dispatch({type: SET_ARTICLES, payload: reformatArticles(jsonArticles.results)});
     } catch (e) {
         console.log('Could not fetch Articles!');
         await dispatch({type: SET_ARTICLES, payload: reformatArticles(preMadeFeeds)});
