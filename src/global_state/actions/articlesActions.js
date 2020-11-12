@@ -23,14 +23,15 @@ export const fetchArticles = () => async dispatch => {
 };
 
 // Fetch articles for Disease ID
-export const fetchArticlesForDisease = (id, numOfArticles) => async (dispatch) => {
+// Should call 'reformatArticles' function before sent the articles to the next step.
+export const fetchArticlesForDisease = (diseasesId, numOfArticles) => async (dispatch) => {
     try {
-        const fetchedArticles = await fetch(`${process.env.REACT_APP_DISEASES_API_URL}${id}/${numOfArticles}/`);
+        const fetchedArticles = await fetch(`${process.env.REACT_APP_DISEASES_API_URL}${diseasesId}/${numOfArticles}/`);
         const jsonArticles = await fetchedArticles.json();
         await dispatch({type: SET_ARTICLES, payload: jsonArticles});
     } catch (e) {
         console.log('Could not get this diseases id articles');
-        await dispatch({type: SET_ARTICLES, payload: preMadeFeeds});
+        await dispatch({type: SET_ARTICLES, payload: reformatArticles(preMadeFeeds)});
     }
 };
 
@@ -46,8 +47,6 @@ export const likeArticleByID = (articleID, userID) => async (dispatch) => {
         console.error(e.name + ': ' + e.message);
         console.log("Could not finish 'Like' process as wanted");
         await dispatch({type: LIKE_ARTICLE_ERROR});
-        console.log('Could not get this diseases id articles ');
-        await dispatch({type: SET_ARTICLES, payload: preMadeFeeds});
     }
 };
 
