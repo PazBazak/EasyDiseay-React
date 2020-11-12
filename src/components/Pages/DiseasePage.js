@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
 import Header from "../HeaderComponents/Header";
@@ -56,20 +56,22 @@ function DiseasePage({match}) {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
-        <Paper className={classes.root}>
-            <Header isDiseaseMenuShown={isDiseaseMenuShown}
-                    setIsDiseaseMenuShown={setIsDiseaseMenuShown}
-            />
-            <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}
-                         isSmallScreen={isSmallScreen}/>
-            <main className={clsx([classes.content], {
-                [classes.contentMobileModeStyle]: isSmallScreen
-            })}>
-                <div className={classes.drawerHeader}/>
-                <ArticleFeed diseaseId={diseaseId}/>
-            </main>
+        <Fragment>
+            <Paper className={classes.root}>
+                <Header isDiseaseMenuShown={isDiseaseMenuShown}
+                        setIsDiseaseMenuShown={setIsDiseaseMenuShown}
+                />
+                <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}
+                             isSmallScreen={isSmallScreen}/>
+                <main className={clsx([classes.content], {
+                    [classes.contentMobileModeStyle]: isSmallScreen
+                })}>
+                    <div className={classes.drawerHeader}/>
+                    <ArticleFeed diseaseId={diseaseId}/>
+                </main>
+            </Paper>
             <Footer/>
-        </Paper>
+        </Fragment>
     );
 }
 

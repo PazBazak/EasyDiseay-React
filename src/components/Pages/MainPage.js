@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {Fragment, useState} from 'react';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
 import Header from "../HeaderComponents/Header";
@@ -8,8 +8,6 @@ import Paper from "@material-ui/core/Paper";
 import clsx from 'clsx';
 import {DISEASE_MENU_DRAWER_WIDTH, PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from '../utils/Constants'
 import Popup from "../utils/Popup";
-import LoginPage from "./LoginPage";
-import SignUpPage from "./SignUpPage";
 import {useDispatch, useSelector} from "react-redux";
 import BouncePage from "./BouncePage";
 import {clearSelectedArticle} from "../../global_state/actions/articlesActions";
@@ -67,7 +65,7 @@ function MainPage() {
     };
 
     return (
-        <>
+        <Fragment>
             <Paper className={classes.root}>
                 <Header isDiseaseMenuShown={isDiseaseMenuShown}
                         setIsDiseaseMenuShown={setIsDiseaseMenuShown}
@@ -87,8 +85,7 @@ function MainPage() {
                 <BouncePage/>
             </Popup>
             <Footer/>
-        </>
-
+        </Fragment>
     );
 }
 
