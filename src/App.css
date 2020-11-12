@@ -83,7 +83,21 @@ input[type="search"]:focus::-webkit-search-cancel-button {
     height: 200px;
 }
 
+.bounce-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
+    width: 60%;
+    height: auto;
+}
+
 .mini-feed-image {
     width: 105px;
     height: 105px;
+}
+
+.StatisticSegment {
+    display: flex;
+    justify-content: center;
 }

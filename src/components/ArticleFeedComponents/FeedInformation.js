@@ -51,7 +51,12 @@ const useStyle = makeStyles((theme) => ({
 
 
 function FeedInformation(props) {
-    const {publishedDate, diseases, timeToRead, website} = props;
+    const {
+        publishedDate,
+        diseases,
+        timeToRead,
+        website
+    } = props
     const classes = useStyle();
 
     return (

@@ -7,7 +7,10 @@ const preMadeFeeds = [
         title: "Can CBD be the solution for people with chronic conditions?",
         url: 'yo',
         img: "https://i.postimg.cc/tR8yWjsX/FB-9-chronic-conditions.jpg",
-        source_site: {name: "medicine.net"},
+        source_site: {
+            id: 1,
+            name: "medicine.net"
+        },
         diseases: [{
             id: 2,
             name: "Crohn's disease"
@@ -23,7 +26,10 @@ const preMadeFeeds = [
         title: "Curcumin might be the cause for cancer in some cancer patients?",
         url: 'yo',
         img: "https://5.imimg.com/data5/AF/EZ/DB/SELLER-8051866/curcumin-95-natural-extract-500x500.jpg",
-        source_site: {name: "medicine.net"},
+        source_site: {
+            id: 1,
+            name: "medicine.net"
+        },
         diseases: [{
             id: 2,
             name: "Prostate cancer"
@@ -39,7 +45,10 @@ const preMadeFeeds = [
         title: "Do black people with dermatitis live less? new research found that niggers lifespan is shorter!",
         url: 'yo',
         img: "https://d279m997dpfwgl.cloudfront.net/wp/2020/07/Emmanuel-1000x776.jpg",
-        source_site: {name: "medicine.net"},
+        source_site: {
+            id: 1,
+            name: "medicine.net"
+        },
         diseases: [{
             id: 3,
             name: "Acne"
@@ -55,7 +64,10 @@ const preMadeFeeds = [
         title: "Do black people with dermathorter!",
         url: 'yo',
         img: "https://www.mayoclinic.org/-/media/kcms/gbs/patient-consumer/images/2013/08/26/10/24/ds00852_im03656_c7_anal_canalthu_jpg.png",
-        source_site: {name: "health.com"},
+        source_site: {
+            id: 2,
+            name: "health.com"
+        },
         diseases: [{
             id: 1,
             name: "dermatitis"
@@ -74,7 +86,10 @@ const preMadeFeeds = [
         title: "Do black people with dermatitis live less? new research found that niggers lifespan is shorter!",
         url: 'yo',
         img: "https://res.cloudinary.com/pcf/image/upload/f_auto,q_auto/v1525465796/AnatomyProstateGland_pizky6.png",
-        source_site: {name: "cdc.gov"},
+        source_site: {
+            id: 3,
+            name: "cdc.gov"
+        },
         diseases: [{
             id: 2,
             name: "Prostate cancer"
@@ -90,7 +105,11 @@ const preMadeFeeds = [
         title: "CoronaVirus might just be the end of the world, scientist claims!",
         url: 'yo',
         img: "https://images.medicinenet.com/images/newsletter/specialty/oleander-plant.jpg",
-        source_site: {name: "health.org"},
+        source_site:
+            {
+                id: 4,
+                name: "health.org",
+            },
         diseases: [{
             id: 1,
             name: "Coronavirus"
@@ -106,7 +125,10 @@ const preMadeFeeds = [
         title: "Colitis might disappear in the next 11 years, research claim!",
         url: 'yo',
         img: "https://i.postimg.cc/YS7QSZ6R/download-1.jpg",
-        source_site: {name: "medicine.net"},
+        source_site: {
+            id: 1,
+            name: "medicine.net",
+        },
         diseases: [{
             id: 1,
             name: "Colitis"

@@ -16,9 +16,11 @@ import {setIsDark} from "../../global_state/actions/themeActions";
 import Popup from "../utils/Popup";
 import LoginPage from "../Pages/LoginPage";
 import SignUpPage from "../Pages/SignUpPage";
+import {clearSelectedArticle} from "../../global_state/actions/articlesActions";
+import BouncePage from "../Pages/BouncePage";
 
 
-const headerStyle = makeStyles((theme) => ({
+const useStyle = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
     },
@@ -57,7 +59,7 @@ const headerStyle = makeStyles((theme) => ({
 
 
 function Header(props) {
-    const classes = headerStyle();
+    const classes = useStyle();
     const dispatch = useDispatch();
 
     const {
@@ -75,19 +77,23 @@ function Header(props) {
     const [isSignupOpened, setIsSignUpOpened] = useState(false);
 
     const openSignUp = () => {
-        setIsLoginOpened(false);
+        closeLogin();
         setIsSignUpOpened(true);
     };
 
     const openLogin = () => {
-        setIsSignUpOpened(false);
+        closeSignUp();
         setIsLoginOpened(true);
     };
 
-    const closeForm = () => {
-        setIsSignUpOpened(false);
+    const closeLogin = () => {
         setIsLoginOpened(false);
     };
+
+    const closeSignUp = () => {
+        setIsSignUpOpened(false);
+    };
+
 
     // Toggles the dark mode, if the current theme is dark, then switch it to non-dark, and vice versa
     const toggleDarkMode = () => {
@@ -127,18 +133,12 @@ function Header(props) {
                     setIsSignUpOpened={setIsSignUpOpened}/>
             </Toolbar>
             <Popup isOpened={isLoginOpened}
-                   setIsOpened={setIsLoginOpened}>
-                <LoginPage
-                    openSignUp={openSignUp}
-                    closeForm={closeForm}
-                />
+                   onClose={closeLogin}>
+                <LoginPage openSignUp={openSignUp}/>
             </Popup>
             <Popup isOpened={isSignupOpened}
-                   setIsOpened={setIsSignUpOpened}>
-                <SignUpPage
-                    openSignIn={openLogin}
-                    closeForm={closeForm}
-                />
+                   onClose={closeSignUp}>
+                <SignUpPage openSignIn={openLogin}/>
             </Popup>
         </AppBar>
     )

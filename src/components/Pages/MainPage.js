@@ -7,7 +7,12 @@ import {useMediaQuery} from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import clsx from 'clsx';
 import {DISEASE_MENU_DRAWER_WIDTH, PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from '../utils/Constants'
-
+import Popup from "../utils/Popup";
+import LoginPage from "./LoginPage";
+import SignUpPage from "./SignUpPage";
+import {useDispatch, useSelector} from "react-redux";
+import BouncePage from "./BouncePage";
+import {clearSelectedArticle} from "../../global_state/actions/articlesActions";
 
 const useStyle = makeStyles((theme) => ({
     root: {
@@ -50,23 +55,37 @@ function MainPage() {
     const classes = useStyle();
     const [isDiseaseMenuShown, setIsDiseaseMenuShown] = useState(false);
 
+    const dispatch = useDispatch();
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+    const isBouncePageOpened = useSelector(state => state.articleState.isArticleSelected);
+
+    const closeBouncePage = () => {
+        dispatch(clearSelectedArticle());
+    };
 
     return (
-        <Paper className={classes.root}>
-            <Header isDiseaseMenuShown={isDiseaseMenuShown}
-                    setIsDiseaseMenuShown={setIsDiseaseMenuShown}
-            />
-            <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}
-                         isSmallScreen={isSmallScreen}/>
-            <main className={clsx([classes.content], {
-                [classes.contentMobileModeStyle]: isSmallScreen
-            })}>
-                <div className={classes.drawerHeader}/>
-                <ArticleFeed/>
-            </main>
-        </Paper>
+        <>
+            <Paper className={classes.root}>
+                <Header isDiseaseMenuShown={isDiseaseMenuShown}
+                        setIsDiseaseMenuShown={setIsDiseaseMenuShown}
+                />
+                <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}
+                             isSmallScreen={isSmallScreen}/>
+                <main className={clsx([classes.content], {
+                    [classes.contentMobileModeStyle]: isSmallScreen
+                })}>
+                    <div className={classes.drawerHeader}/>
+                    <ArticleFeed/>
+                </main>
+            </Paper>
+            <Popup isOpened={isBouncePageOpened}
+                   isFullWidth={true}
+                   onClose={closeBouncePage}>
+                <BouncePage/>
+            </Popup>
+        </>
+
     );
 }
 
