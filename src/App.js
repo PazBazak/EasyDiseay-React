@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'fontsource-roboto';
@@ -7,12 +7,37 @@ import DiseasePage from "./components/Pages/DiseasePage";
 import NotFoundPage from "./components/Pages/NotFoundPage";
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Route, Switch} from 'react-router';
-import {Provider} from 'react-redux'
-import store from "./global_state/store";
+import ThemeProvider from "@material-ui/styles/ThemeProvider";
+import {createMuiTheme} from "@material-ui/core";
+import {useSelector} from "react-redux";
 
 function App() {
+    const isDark = useSelector(state => state.themeState.isDark);
+
+    // creating a global theme
+    const globalTheme = useMemo(() =>
+            createMuiTheme({
+                palette: {
+                    type: isDark ? 'dark' : 'light',
+                    primary: {
+                        main: isDark ? '#424242' : '#1e88e5',
+                    },
+                    secondary: {
+                        main: isDark ? '#ffc400' : '#ff0e4c',
+                    },
+                    background: {
+                        paper: isDark ? '#303030' : 'white',
+                    },
+                },
+                typography: {
+                    fontSize: 14
+                }
+            }),
+        [isDark]
+    );
+
     return (
-        <Provider store={store}>
+        <ThemeProvider theme={globalTheme}>
             <Router>
                 <Switch>
                     <Route path={'/'} exact component={MainPage}/>
@@ -20,7 +45,7 @@ function App() {
                     <Route component={NotFoundPage}/>
                 </Switch>
             </Router>
-        </Provider>
+        </ThemeProvider>
     );
 }
 

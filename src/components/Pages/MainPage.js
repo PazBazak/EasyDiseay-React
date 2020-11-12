@@ -1,20 +1,15 @@
 import React, {useState} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import ThemeProvider from '@material-ui/styles/ThemeProvider';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
 import Header from "../HeaderComponents/Header";
 import DiseaseMenu from "../DiseaseSliderComponents/DiseaseMenu";
-import baseTheme, {darkTheme} from '../../Themes/Themes'
-import {createMuiTheme, useMediaQuery} from "@material-ui/core";
+import {useMediaQuery} from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import clsx from 'clsx';
 import {DISEASE_MENU_DRAWER_WIDTH, PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from '../utils/Constants'
-import Popup from "../utils/Popup";
-import LoginPage from "./LoginPage";
-import SignUpPage from "./SignUpPage";
-import {useSelector} from "react-redux";
 
-const mainPageStyle = makeStyles((theme) => ({
+
+const useStyle = makeStyles((theme) => ({
     root: {
         display: 'flex',
         [theme.breakpoints.up('xl')]: {
@@ -52,61 +47,26 @@ const mainPageStyle = makeStyles((theme) => ({
 }));
 
 function MainPage() {
-    const classes = mainPageStyle();
+    const classes = useStyle();
     const [isDiseaseMenuShown, setIsDiseaseMenuShown] = useState(false);
-    const isSmallScreen = useMediaQuery(baseTheme.breakpoints.down("md"));
 
-    const [isLoginOpened, setIsLoginOpened] = useState(false);
-    const [isSignupOpened, setIsSignUpOpened] = useState(false);
-
-    const isDark = useSelector(state => state.themeState.isDark);
-
-    const openSignUp = () => {
-        setIsLoginOpened(false);
-        setIsSignUpOpened(true);
-    };
-
-    const openLogin = () => {
-        setIsSignUpOpened(false);
-        setIsLoginOpened(true);
-    };
-
-    const closeForm = () => {
-        setIsSignUpOpened(false);
-        setIsLoginOpened(false);
-    };
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
-        <ThemeProvider theme={createMuiTheme(isDark ? darkTheme : baseTheme)}>
-            <Paper className={classes.root}>
-                <Header isDiseaseMenuShown={isDiseaseMenuShown}
-                        setIsDiseaseMenuShown={setIsDiseaseMenuShown}
-                        setIsLoginOpened={setIsLoginOpened}
-                        setIsSignUpOpened={setIsSignUpOpened}/>
-                <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}
-                             isSmallScreen={isSmallScreen}/>
-                <main className={clsx([classes.content], {
-                    [classes.contentMobileModeStyle]: isSmallScreen
-                })}>
-                    <div className={classes.drawerHeader}/>
-                    <ArticleFeed/>
-                </main>
-            </Paper>
-            <Popup isOpened={isLoginOpened}
-                   setIsOpened={setIsLoginOpened}>
-                <LoginPage
-                    openSignUp={openSignUp}
-                    closeForm={closeForm}
-                />
-            </Popup>
-            <Popup isOpened={isSignupOpened}
-                   setIsOpened={setIsSignUpOpened}>
-                <SignUpPage
-                    openSignIn={openLogin}
-                    closeForm={closeForm}
-                />
-            </Popup>
-        </ThemeProvider>
+        <Paper className={classes.root}>
+            <Header isDiseaseMenuShown={isDiseaseMenuShown}
+                    setIsDiseaseMenuShown={setIsDiseaseMenuShown}
+            />
+            <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}
+                         isSmallScreen={isSmallScreen}/>
+            <main className={clsx([classes.content], {
+                [classes.contentMobileModeStyle]: isSmallScreen
+            })}>
+                <div className={classes.drawerHeader}/>
+                <ArticleFeed/>
+            </main>
+        </Paper>
     );
 }
 
