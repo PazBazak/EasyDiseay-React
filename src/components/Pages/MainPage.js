@@ -14,7 +14,6 @@ import {useDispatch, useSelector} from "react-redux";
 import BouncePage from "./BouncePage";
 import {clearSelectedArticle} from "../../global_state/actions/articlesActions";
 
-
 const useStyle = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -55,44 +54,22 @@ const useStyle = makeStyles((theme) => ({
 function MainPage() {
     const classes = useStyle();
     const [isDiseaseMenuShown, setIsDiseaseMenuShown] = useState(false);
-    const isSmallScreen = useMediaQuery(baseTheme.breakpoints.down("md"));
 
     const dispatch = useDispatch();
-
-    const [isLoginOpened, setIsLoginOpened] = useState(false);
-    const [isSignupOpened, setIsSignUpOpened] = useState(false);
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
     const isBouncePageOpened = useSelector(state => state.articleState.isArticleSelected);
-    const isDark = useSelector(state => state.themeState.isDark);
-
-    const openSignUp = () => {
-        closeLogin();
-        setIsSignUpOpened(true);
-    };
-
-    const openLogin = () => {
-        closeSignUp();
-        setIsLoginOpened(true);
-    };
-
-    const closeLogin = () => {
-        setIsLoginOpened(false);
-    };
-
-    const closeSignUp = () => {
-        setIsSignUpOpened(false);
-    };
 
     const closeBouncePage = () => {
         dispatch(clearSelectedArticle());
     };
 
     return (
-        <ThemeProvider theme={createMuiTheme(isDark ? darkTheme : baseTheme)}>
+        <>
             <Paper className={classes.root}>
                 <Header isDiseaseMenuShown={isDiseaseMenuShown}
                         setIsDiseaseMenuShown={setIsDiseaseMenuShown}
-                        setIsLoginOpened={setIsLoginOpened}
-                        setIsSignUpOpened={setIsSignUpOpened}/>
+                />
                 <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}
                              isSmallScreen={isSmallScreen}/>
                 <main className={clsx([classes.content], {
@@ -102,20 +79,13 @@ function MainPage() {
                     <ArticleFeed/>
                 </main>
             </Paper>
-            <Popup isOpened={isLoginOpened}
-                   onClose={closeLogin}>
-                <LoginPage openSignUp={openSignUp}/>
-            </Popup>
-            <Popup isOpened={isSignupOpened}
-                   onClose={closeSignUp}>
-                <SignUpPage openSignIn={openLogin}/>
-            </Popup>
             <Popup isOpened={isBouncePageOpened}
                    isFullWidth={true}
                    onClose={closeBouncePage}>
                 <BouncePage/>
             </Popup>
-        </ThemeProvider>
+        </>
+
     );
 }
 

@@ -9,8 +9,7 @@ import clsx from "clsx";
 import {Link as LinkReactRouter} from 'react-router-dom'
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import {clearSelectedArticle} from "../../global_state/actions/articlesActions";
-import CommentBox from "../ArticleFeedComponents/CommentBox";
-import {Statistic,Divider} from 'semantic-ui-react';
+import {Divider} from "@material-ui/core";
 
 const useStyle = makeStyles((theme) => ({
     root: {
@@ -128,7 +127,7 @@ function BouncePage() {
                                 clickable/>)}
                     </div>
 
-                    {/*Likes, Share, Time to read*/}
+                    {/*                    Likes, Share, Time to read
                     <div className={'StatisticSegment'}>
                         <Statistic.Group size={"mini"}>
                             <Statistic>
@@ -144,7 +143,7 @@ function BouncePage() {
                                 <Statistic.Label>Comments</Statistic.Label>
                             </Statistic>
                         </Statistic.Group>
-                    </div>
+                    </div>*/}
 
                     <Divider/>
 
@@ -173,7 +172,7 @@ function BouncePage() {
                     </Typography>
 
                     {/*CommentsBox*/}
-                    <CommentBox/>
+                    {/*                    <CommentBox/>*/}
 
                 </div>
             </Container>

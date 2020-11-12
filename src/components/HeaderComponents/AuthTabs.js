@@ -24,13 +24,14 @@ const AuthTabs = ({loginClick, signUpClick}) => {
         disableFocusRipple: true,
     };
     return (
-        <div className={"small primary ui buttons"}>
+        <div>
             <Button {...buttonProps}
                     onClick={loginClick}>
                 Login
             </Button>
             <Button {...buttonProps}
-                    onClick={signUpClick}> Register
+                    onClick={signUpClick}>
+                Register
             </Button>
         </div>
     )
