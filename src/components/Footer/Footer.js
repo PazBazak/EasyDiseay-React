@@ -30,7 +30,7 @@ const Footer = () => {
     return (
         <Paper className={classes.paper} square>
             <Grid container className={classes.container}>
-                <Grid item xs={4}>
+                <Grid item xs={1}>
 
                 </Grid>
                 <Grid item xs={2}>
@@ -56,6 +56,11 @@ const Footer = () => {
                         <FooterSubTitle title={'Cookie Policy'}/>
                         <FooterSubTitle title={'Terms and Conditions'}/>
                         <FooterSubTitle title={'Privacy Policy'}/>
+                    </Grid>
+                </Grid>
+                <Grid item xs={3}>
+                    <Grid container direction={'column'}>
+                        <FooterTitle title={'Subscribe to our newsletter'}/>
                     </Grid>
                 </Grid>
                 <Grid item container xs={2}>

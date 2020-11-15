@@ -25,6 +25,7 @@ const DiseaseMenuStyle = makeStyles((theme) => ({
         },
         [theme.breakpoints.down('md')]: {
             left: 0,
+             position: 'fixed',
         },
     },
     drawerHeader: {
