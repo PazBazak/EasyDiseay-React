@@ -37,7 +37,7 @@ const useStyle = makeStyles((theme) => ({
         justifyContent: 'flex-end',
     },
     content: {
-        minHeight: "100vh",
+        minHeight: '-webkit-fill-available;',
         flexGrow: 1,
         paddingBottom: '0',
         padding: theme.spacing(3),
