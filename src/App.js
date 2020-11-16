@@ -9,6 +9,7 @@ import {Route, Switch} from 'react-router';
 import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import {createMuiTheme} from "@material-ui/core";
 import {useSelector} from "react-redux";
+import AboutUsPage from "./components/Pages/AboutUsPage";
 
 function App() {
     const isDark = useSelector(state => state.themeState.isDark);
@@ -40,6 +41,7 @@ function App() {
             <Router>
                 <Switch>
                     <Route path={'/'} exact component={MainPage}/>
+                    <Route path={'/aboutus'} exact component={AboutUsPage}/>
                     <Route path={'/disease/:id'} component={DiseasePage}/>
                     <Route component={NotFoundPage}/>
                 </Switch>
