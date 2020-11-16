@@ -9,7 +9,6 @@ import {Route, Switch} from 'react-router';
 import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import {createMuiTheme} from "@material-ui/core";
 import {useSelector} from "react-redux";
-import Footer from "./components/Footer/Footer";
 
 function App() {
     const isDark = useSelector(state => state.themeState.isDark);

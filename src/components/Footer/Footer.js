@@ -10,15 +10,16 @@ import {ANDROID_BADGE_PATH, APPLE_BADGE_PATH} from "../utils/Constants";
 import Copyright from "../RegistrationComponents/CopyRight";
 import {useMediaQuery} from "@material-ui/core";
 import StoreBadge from "./StoreBadge";
+import {useSelector} from "react-redux";
 
 const useStyle = makeStyles((theme) => ({
     container: {
-        backgroundColor: '#0f3d57',
+        backgroundColor: theme.palette.type === 'light' ? '#0f3d57' : '#1a1a1a',
         paddingTop: '14px',
         paddingBottom: '14px'
     },
     box: {
-        backgroundColor: '#1b89ff',
+        backgroundColor:  theme.palette.type === 'light' ? '#1b89ff' : '#0e0e0e',
     },
     divider: {
         backgroundColor: '#fff'
@@ -31,8 +32,10 @@ const Footer = () => {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
+    const isDark = useSelector(state => state.themeState.isDark);
+
     return (
-        <Paper className={classes.paper} square>
+        <Paper square>
             <Grid container className={classes.container}>
                 <Grid item xs={1}>
 
@@ -101,7 +104,7 @@ const Footer = () => {
                 <i className="fab fa-linkedin fa-2x media-icon"/>
                 <i className="fab fa-google-plus-g fa-2x media-icon"/>
             </Box>
-            <Copyright topMargin={0} background={'#1b89ff'}/>
+            <Copyright topMargin={0} background={isDark ? '#0e0e0e' : '#1b89ff'}/>
         </Paper>
     )
 };
