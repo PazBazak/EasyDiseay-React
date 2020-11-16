@@ -1,14 +1,15 @@
-import React from "react";
+import React, {Fragment} from "react";
 import Grid from '@material-ui/core/Grid';
 import Paper from "@material-ui/core/Paper";
-import {makeStyles} from "@material-ui/core/styles";
+import {makeStyles, useTheme} from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 import FooterSubTitle from "./FooterSubTitle";
 import FooterTitle from "./FooterTitle";
-import StoreBadge from "./StoreBadge";
 import {ANDROID_BADGE_PATH, APPLE_BADGE_PATH} from "../utils/Constants";
 import Copyright from "../RegistrationComponents/CopyRight";
+import {useMediaQuery} from "@material-ui/core";
+import StoreBadge from "./StoreBadge";
 
 const useStyle = makeStyles((theme) => ({
     container: {
@@ -26,6 +27,9 @@ const useStyle = makeStyles((theme) => ({
 
 const Footer = () => {
     const classes = useStyle();
+
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
         <Paper className={classes.paper} square>
@@ -64,19 +68,26 @@ const Footer = () => {
                     </Grid>
                 </Grid>
                 <Grid item container xs={2}>
-                    <Grid item xs={2}>
-                        <Divider orientation={'vertical'} className={classes.divider}/>
-                    </Grid>
-                    <Grid item xs={8}>
-                        <StoreBadge
-                            src={APPLE_BADGE_PATH}
-                            url={'apple'}
-                        />
-                        <StoreBadge
-                            src={ANDROID_BADGE_PATH}
-                            url={'apple'}
-                        />
-                    </Grid>
+                    {isSmallScreen
+                        ?
+                        null
+                        :
+                        <Fragment>
+                            <Grid item xs={2}>
+                                <Divider orientation={'vertical'} className={classes.divider}/>
+                            </Grid>
+                            <Grid item xs={10}>
+                                <StoreBadge
+                                    src={APPLE_BADGE_PATH}
+                                    url={'apple'}
+                                />
+                                <StoreBadge
+                                    src={ANDROID_BADGE_PATH}
+                                    url={'apple'}
+                                />
+                            </Grid>
+                        </Fragment>
+                    }
                 </Grid>
             </Grid>
             <Box

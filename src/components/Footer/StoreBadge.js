@@ -5,11 +5,11 @@ const useStyle = makeStyles((theme) => ({
     aTag: {
         display: 'inline-block',
         width: '175px',
-        margin: '12px'
+        margin: '12px',
     },
     img: {
         width: '100%',
-        height: '100%'
+        height: '100%',
     },
 }));
 
