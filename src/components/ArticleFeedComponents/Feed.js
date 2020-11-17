@@ -43,11 +43,20 @@ const useStyle = makeStyles((theme) => ({
 
 const altTextPreFix = "Disease and Research News - ";
 
-const Feed = (props) => {
+const Feed = ({article}) => {
+
     const {
-        article,
-    } = props;
-    const {img, title, summary, diseases, website, timeToRead, publishedDate,likes,comments} = article;
+        img,
+        title,
+        summary,
+        diseases,
+        website,
+        timeToRead,
+        publishedDate,
+        likes,
+        comments
+    } = article;
+
     const classes = useStyle();
     const dispatch = useDispatch();
 

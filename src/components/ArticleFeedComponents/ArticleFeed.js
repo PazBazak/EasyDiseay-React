@@ -1,9 +1,10 @@
 import React, {useEffect} from "react";
-import {BoxLoading} from "../utils/LoadingsTypes";
-import Feed from "./Feed";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchArticles, fetchArticlesForDisease} from "../../global_state/actions/articlesActions";
 import {makeStyles} from "@material-ui/core/styles";
+import InfiniteScroll from "react-infinite-scroll-component";
+import {BoxLoading} from "../utils/LoadingsTypes";
+import Feed from "./Feed";
 
 const useStyles = makeStyles((theme) => ({
     articleFeed: {
@@ -21,6 +22,10 @@ function ArticleFeed({diseaseId}) {
     const articles = useSelector(state => state.articleState.articles);
     const classes = useStyles();
 
+    const fetchMoreArticles = () => {
+
+    };
+
     useEffect(() => {
         if (diseaseId === undefined) {
             dispatch(fetchArticles());
@@ -30,27 +35,19 @@ function ArticleFeed({diseaseId}) {
         // eslint-disable-next-line
     }, [diseaseId]);
 
-    const handleScroll = () => {
-        if (window.innerHeight + document.documentElement.scrollTop === document.scrollingElement.scrollHeight)
-        {
-            console.log('Fetch more list items!');
-        }
-    };
-
-    // adding event for scroll for infinite scroll
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     return (
-        <div className={classes.articleFeed + ' col'}>
-            {articles.length > 0 ? articles.map(article =>
-                    <Feed
-                        key={article.id}
-                        article={article}/>)
-                :
-                <BoxLoading/>}
+        <div className={classes.articleFeed + ' col'} id={'ArticleDiv'}>
+            <InfiniteScroll
+                dataLength={articles.length}
+                next={fetchMoreArticles}
+                hasMore={true}
+                loader={<BoxLoading />}
+                scrollableTarget={'ArticleDiv'}
+            >
+                {articles.map(article => (
+                    <Feed key={article.id} article={article} />
+                ))}
+            </InfiniteScroll>
         </div>
     )
 }
