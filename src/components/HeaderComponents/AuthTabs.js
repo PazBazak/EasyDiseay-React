@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
         color: 'white',
         '&:hover, &:focus, &:active': {
             boxShadow: 'none',
+            outline: 'none'
         },
     },
 }));
