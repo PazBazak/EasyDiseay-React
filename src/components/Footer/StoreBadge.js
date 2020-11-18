@@ -6,6 +6,9 @@ const useStyle = makeStyles((theme) => ({
         display: 'inline-block',
         width: '175px',
         margin: '12px',
+        [theme.breakpoints.down('lg')]: {
+            width: '150px',
+        }
     },
     img: {
         width: '100%',
