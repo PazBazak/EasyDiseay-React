@@ -65,6 +65,7 @@ function Header(props) {
     const {
         setIsDiseaseMenuShown,
         isDiseaseMenuShown,
+        isHeaderShouldBeStatic,
     } = props;
 
     const isDark = useSelector(state => state.themeState.isDark);
@@ -102,7 +103,7 @@ function Header(props) {
 
     return (
         <AppBar
-            position="fixed"
+            position={isHeaderShouldBeStatic?'static':'fixed'}
             className={classes.appBar}>
             <Toolbar className={classes.ToolBar} variant={'dense'}>
                 <div className={classes.title}>
