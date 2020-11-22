@@ -17,3 +17,6 @@ export const NEW_TAB = 2;
 export const lowerCaseRegex = /(?=.*[a-z])/;
 export const upperCaseRegex = /(?=.*[A-Z])/;
 export const numericRegex = /(?=.*[0-9])/;
+
+export const ANDROID_BADGE_PATH = 'https://raw.github.com/yjb94/google-play-badge-svg/master/img/en_get.svg?sanitize=true';
+export const APPLE_BADGE_PATH = 'https://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg';

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {Fragment, useState} from 'react';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
 import Header from "../HeaderComponents/Header";
@@ -8,11 +8,10 @@ import Paper from "@material-ui/core/Paper";
 import clsx from 'clsx';
 import {DISEASE_MENU_DRAWER_WIDTH, PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from '../utils/Constants'
 import Popup from "../utils/Popup";
-import LoginPage from "./LoginPage";
-import SignUpPage from "./SignUpPage";
 import {useDispatch, useSelector} from "react-redux";
 import BouncePage from "./BouncePage";
 import {clearSelectedArticle} from "../../global_state/actions/articlesActions";
+import Footer from "../Footer/Footer";
 
 const useStyle = makeStyles((theme) => ({
     root: {
@@ -38,8 +37,9 @@ const useStyle = makeStyles((theme) => ({
         justifyContent: 'flex-end',
     },
     content: {
-        minHeight: "100vh",
+        minHeight: '-webkit-fill-available;',
         flexGrow: 1,
+        paddingBottom: '0',
         padding: theme.spacing(3),
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
@@ -65,7 +65,7 @@ function MainPage() {
     };
 
     return (
-        <>
+        <Fragment>
             <Paper className={classes.root}>
                 <Header isDiseaseMenuShown={isDiseaseMenuShown}
                         setIsDiseaseMenuShown={setIsDiseaseMenuShown}
@@ -84,8 +84,8 @@ function MainPage() {
                    onClose={closeBouncePage}>
                 <BouncePage/>
             </Popup>
-        </>
-
+            <Footer/>
+        </Fragment>
     );
 }
 

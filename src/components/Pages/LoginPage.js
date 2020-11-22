@@ -173,7 +173,7 @@ export default function LoginPage(props) {
                     )}
                 </Formik>
             </div>
-            <Copyright/>
+            <Copyright topMargin={5} background={'white'}/>
         </Container>
     );
 }

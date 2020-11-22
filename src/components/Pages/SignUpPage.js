@@ -193,7 +193,7 @@ export default function SignUpPage({openSignIn}) {
                     )}
                 </Formik>
             </div>
-            <Copyright/>
+            <Copyright topMargin={5} background={'white'}/>
         </Container>
     );
 }

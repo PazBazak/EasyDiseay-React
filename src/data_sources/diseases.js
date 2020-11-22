@@ -69,6 +69,31 @@ const preMadeDiseases = [
         isFollowing: false,
         id: 13
     },
+    {
+        name: "Tunnel vision",
+        isFollowing: false,
+        id: 14
+    },
+    {
+        name: "Verikuzela",
+        isFollowing: false,
+        id: 15
+    },
+    {
+        name: "High blood pressure",
+        isFollowing: false,
+        id: 16
+    },
+    {
+        name: "Covid-20",
+        isFollowing: false,
+        id: 17
+    },
+    {
+        name: "Alzheimer",
+        isFollowing: false,
+        id: 18
+    },
 ];
 
 export default preMadeDiseases;
