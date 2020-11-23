@@ -12,6 +12,7 @@ import {useSelector} from "react-redux";
 import AboutUsPage from "./components/Pages/AboutUsPage";
 import Footer from "./components/Footer/Footer";
 import ScrollToTop from "./components/utils/ScrollToTop";
+import Header from "./components/HeaderComponents/Header";
 
 function App() {
     const isDark = useSelector(state => state.themeState.isDark);
@@ -42,6 +43,7 @@ function App() {
         <ThemeProvider theme={globalTheme}>
             <Router>
                 <ScrollToTop>
+                    <Header/>
                     <Switch>
                         <Route path={'/'} exact component={MainPage}/>
                         <Route path={'/aboutus'} exact component={AboutUsPage}/>

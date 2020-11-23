@@ -1,7 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
-import Header from "../HeaderComponents/Header";
 import DiseaseMenu from "../DiseaseSliderComponents/DiseaseMenu";
 import {useMediaQuery} from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
@@ -66,11 +65,7 @@ function MainPage() {
     return (
         <Fragment>
             <Paper className={classes.root}>
-                <Header isDiseaseMenuShown={isDiseaseMenuShown}
-                        setIsDiseaseMenuShown={setIsDiseaseMenuShown}
-                />
-                <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}
-                             isSmallScreen={isSmallScreen}/>
+                <DiseaseMenu isSmallScreen={isSmallScreen}/>
                 <main className={clsx([classes.content], {
                     [classes.contentMobileModeStyle]: isSmallScreen
                 })}>

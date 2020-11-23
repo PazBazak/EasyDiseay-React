@@ -1,7 +1,11 @@
-import {SET_HEADER_POSITION_MODE} from "../actions/types";
+import {
+    SET_HEADER_POSITION_MODE,
+    SET_HEADER_IS_DISEASE_MENU_SHOWN,
+} from "../actions/types";
 
 const initialState = {
     headerPositionMode: 'fixed',
+    isDiseaseMenuShown: false,
 };
 
 export default (state = initialState, action) => {
@@ -10,6 +14,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 headerPositionMode: action.payload
+            };
+        case SET_HEADER_IS_DISEASE_MENU_SHOWN:
+            return {
+                ...state,
+                isDiseaseMenuShown: action.payload
             };
         default:
             return state;

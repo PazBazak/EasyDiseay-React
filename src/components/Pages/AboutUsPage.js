@@ -4,7 +4,6 @@ import {makeStyles, useTheme} from "@material-ui/core/styles";
 import Box from '@material-ui/core/Box';
 import {Divider, Paper, Avatar} from "@material-ui/core";
 import ScrollUpButton from "react-scroll-up-button";
-import Header from "../HeaderComponents/Header";
 import {useSelector} from "react-redux";
 import {
     FONT_FAMILY_MAIN_TEXT,
@@ -112,7 +111,6 @@ function AboutUsPage() {
     // each component has a different unique style and named it's a little complicated.
     return (
         <>
-            <Header/>
             <div style={{textAlign: 'center'}}>
                 <ScrollUpButton/>
                 <Parallax style={backgroundCss} strength={500}>
