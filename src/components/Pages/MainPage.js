@@ -58,11 +58,7 @@ function MainPage() {
     const dispatch = useDispatch();
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-    const isBouncePageOpened = useSelector(state => state.articleState.isArticleSelected);
 
-    const closeBouncePage = () => {
-        dispatch(clearSelectedArticle());
-    };
 
     return (
         <Fragment>
@@ -79,11 +75,6 @@ function MainPage() {
                     <ArticleFeed/>
                 </main>
             </Paper>
-            <Popup isOpened={isBouncePageOpened}
-                   isFullWidth={true}
-                   onClose={closeBouncePage}>
-                <BouncePage/>
-            </Popup>
             <Footer/>
         </Fragment>
     );
