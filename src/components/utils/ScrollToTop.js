@@ -1,4 +1,4 @@
-import React, {Component, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {withRouter} from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import {setHeaderPosAsFixed, setHeaderPosAsStatic} from "../../global_state/actions/headerActions";

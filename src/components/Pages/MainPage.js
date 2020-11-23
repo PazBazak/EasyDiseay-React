@@ -51,8 +51,6 @@ const useStyle = makeStyles((theme) => ({
 
 function MainPage() {
     const classes = useStyle();
-    const [isDiseaseMenuShown, setIsDiseaseMenuShown] = useState(false);
-
     const dispatch = useDispatch();
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));

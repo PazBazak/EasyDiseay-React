@@ -52,6 +52,7 @@ function AboutUsPage() {
 
     const pageThreeMeetTheTeamTextStyle = {
         fontFamily: FONT_FAMILY_SECONDARY_TEXT,
+        fontWeight: 'bold',
     };
 
     // Space between the main components
