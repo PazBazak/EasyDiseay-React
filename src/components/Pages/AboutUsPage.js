@@ -21,7 +21,7 @@ const useStyle = makeStyles((theme) => ({
             WebkitTransform: "scale(1.05)",
             MsTransform: "scale(1.05)",
             transform: "scale(1.05)",
-            opacity: '0.7',
+            opacity: '0.8',
             color: 'white',
         },
     }
