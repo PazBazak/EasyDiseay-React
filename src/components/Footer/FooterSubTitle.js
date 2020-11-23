@@ -1,6 +1,8 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
+import {Link} from "react-router-dom";
+import Chip from "@material-ui/core/Chip";
 
 const useStyle = makeStyles((theme) => ({
     subTitle: {
@@ -15,7 +17,11 @@ const useStyle = makeStyles((theme) => ({
     }
 }));
 
-const FooterSubTitle = ({title}) => {
+const FooterSubTitle = (props) => {
+    const {
+        title,
+        link,
+    } = props;
     const classes = useStyle();
 
     return (
@@ -23,7 +29,9 @@ const FooterSubTitle = ({title}) => {
             className={classes.subTitle}
             variant={"body2"}
         >
-            <a href={'#'} className={classes.aTag}>{title}</a>
+            <Link className={classes.aTag} to={link}>
+                {title}
+            </Link>
         </Typography>
     )
 };

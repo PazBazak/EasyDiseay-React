@@ -1,13 +1,15 @@
 import React, {Fragment} from 'react';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import ArticleFeed from "../ArticleFeedComponents/ArticleFeed";
-import Header from "../HeaderComponents/Header";
 import DiseaseMenu from "../DiseaseSliderComponents/DiseaseMenu";
 import {useMediaQuery} from "@material-ui/core";
 import clsx from 'clsx';
 import Paper from "@material-ui/core/Paper";
-import {DISEASE_MENU_DRAWER_WIDTH, PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from "../utils/Constants";
-import Footer from "../Footer/Footer";
+import {
+    DISEASE_MENU_DRAWER_WIDTH,
+    PAGE_WHITESPACES_LG,
+    PAGE_WHITESPACES_XL
+} from "../utils/Constants";
 
 const useStyle = makeStyles((theme) => ({
     root: {
@@ -49,7 +51,6 @@ const useStyle = makeStyles((theme) => ({
 
 function DiseasePage({match}) {
     const classes = useStyle();
-    const [isDiseaseMenuShown, setIsDiseaseMenuShown] = React.useState(false);
     const diseaseId = match.params.id;
 
     const theme = useTheme();
@@ -58,11 +59,7 @@ function DiseasePage({match}) {
     return (
         <Fragment>
             <Paper className={classes.root}>
-                <Header isDiseaseMenuShown={isDiseaseMenuShown}
-                        setIsDiseaseMenuShown={setIsDiseaseMenuShown}
-                />
-                <DiseaseMenu isDiseaseMenuShown={isDiseaseMenuShown} setIsDiseaseMenuShown={setIsDiseaseMenuShown}
-                             isSmallScreen={isSmallScreen}/>
+                <DiseaseMenu isSmallScreen={isSmallScreen}/>
                 <main className={clsx([classes.content], {
                     [classes.contentMobileModeStyle]: isSmallScreen
                 })}>
@@ -70,7 +67,6 @@ function DiseasePage({match}) {
                     <ArticleFeed diseaseId={diseaseId}/>
                 </main>
             </Paper>
-            <Footer/>
         </Fragment>
     );
 }

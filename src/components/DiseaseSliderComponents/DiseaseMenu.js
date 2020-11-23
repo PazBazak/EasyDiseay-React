@@ -3,7 +3,13 @@ import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
 import DiseasesLists from "./DiseasesLists";
 import {makeStyles} from "@material-ui/core/styles";
-import {DISEASE_MENU_DRAWER_WIDTH, PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from '../utils/Constants'
+import {
+    DISEASE_MENU_DRAWER_WIDTH,
+    PAGE_WHITESPACES_LG,
+    PAGE_WHITESPACES_XL
+} from '../utils/Constants'
+import {setIsDiseaseMenuShown} from "../../global_state/actions/headerActions";
+import {useDispatch, useSelector} from "react-redux";
 
 const DiseaseMenuStyle = makeStyles((theme) => ({
     drawer: {
@@ -25,7 +31,7 @@ const DiseaseMenuStyle = makeStyles((theme) => ({
         },
         [theme.breakpoints.down('md')]: {
             left: 0,
-             position: 'fixed',
+            position: 'fixed',
         },
     },
     drawerHeader: {
@@ -39,8 +45,9 @@ const DiseaseMenuStyle = makeStyles((theme) => ({
 
 function DiseaseMenu(props) {
     const classes = DiseaseMenuStyle();
+    const dispatch = useDispatch();
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
-    const {setIsDiseaseMenuShown} = props;
+    const isDiseaseMenuShown = useSelector(state => state.headerState.isDiseaseMenuShown);
 
     const drawerProps = {
         className: classes.drawer,
@@ -52,13 +59,13 @@ function DiseaseMenu(props) {
 
     useEffect(() => {
         if (props.isSmallScreen) {
-            setIsDrawerOpen(props.isDiseaseMenuShown);
+            setIsDrawerOpen(isDiseaseMenuShown);
         } else {
             setIsDrawerOpen(true);
-            setIsDiseaseMenuShown(false);
+            dispatch(setIsDiseaseMenuShown(false));
         }
         // eslint-disable-next-line
-    }, [props.isSmallScreen, props.isDiseaseMenuShown]);
+    }, [props.isSmallScreen, isDiseaseMenuShown]);
 
     return (
         <Drawer {...drawerProps}>
