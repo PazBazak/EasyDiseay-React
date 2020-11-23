@@ -16,9 +16,6 @@ import {setIsDark} from "../../global_state/actions/themeActions";
 import Popup from "../utils/Popup";
 import LoginPage from "../Pages/LoginPage";
 import SignUpPage from "../Pages/SignUpPage";
-import {clearSelectedArticle} from "../../global_state/actions/articlesActions";
-import BouncePage from "../Pages/BouncePage";
-
 
 const useStyle = makeStyles((theme) => ({
     title: {
@@ -68,6 +65,7 @@ function Header(props) {
     } = props;
 
     const isDark = useSelector(state => state.themeState.isDark);
+    const headerPositionMode = useSelector(state => state.headerState.headerPositionMode);
 
     const diseasesMenuClicked = () => {
         setIsDiseaseMenuShown(!isDiseaseMenuShown);
@@ -102,7 +100,7 @@ function Header(props) {
 
     return (
         <AppBar
-            position="fixed"
+            position={headerPositionMode}
             className={classes.appBar}>
             <Toolbar className={classes.ToolBar} variant={'dense'}>
                 <div className={classes.title}>

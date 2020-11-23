@@ -15,3 +15,9 @@ export const SET_DARK_THEME = 'SET_DARK_THEME';
 
 // Auth types
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+
+// Header types
+export const SET_HEADER_POSITION_MODE = 'SET_HEADER_POSITION_MODE';
+
+// AboutUs types
+export const SET_TEAM_DETAILS = 'SET_TEAM_DETAILS';
