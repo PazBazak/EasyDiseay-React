@@ -1,5 +1,6 @@
 import {
     SET_ARTICLES,
+    SET_ARTICLES_COUNT,
     LIKE_ARTICLE_ERROR,
     SET_IS_LIKE_ARTICLE_ERROR_RAISE,
     SET_IS_ADD_COMMENT_ARTICLE_ERROR_RAISE,
@@ -10,6 +11,7 @@ import {
 
 const initialState = {
     articles: [],
+    articlesCount: null,
     isLikeArticleErrorRaise: false,
     isAddCommentArticleErrorRaise: false,
     likeArticleErrorContent: {},
@@ -23,7 +25,12 @@ export default (state = initialState, action) => {
         case SET_ARTICLES:
             return {
                 ...state,
-                articles: action.payload,
+                articles: [...state.articles, ...action.payload]
+            };
+        case SET_ARTICLES_COUNT:
+            return {
+                ...state,
+                articlesCount: action.payload
             };
         case  LIKE_ARTICLE_ERROR:
             return {

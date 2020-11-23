@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchArticles, fetchArticlesForDisease} from "../../global_state/actions/articlesActions";
 import {makeStyles} from "@material-ui/core/styles";
@@ -20,15 +20,19 @@ const useStyles = makeStyles((theme) => ({
 function ArticleFeed({diseaseId}) {
     const dispatch = useDispatch();
     const articles = useSelector(state => state.articleState.articles);
+    const articlesCount = useSelector(state => state.articleState.articlesCount);
+
     const classes = useStyles();
+    const [page, setPage] = useState(1);
 
     const fetchMoreArticles = () => {
-
+        setPage(page + 1);
+        dispatch(fetchArticles(page));
     };
 
     useEffect(() => {
         if (diseaseId === undefined) {
-            dispatch(fetchArticles());
+            dispatch(fetchArticles(page));
         } else {
             dispatch(fetchArticlesForDisease(diseaseId, 10));
         }
@@ -40,9 +44,10 @@ function ArticleFeed({diseaseId}) {
             <InfiniteScroll
                 dataLength={articles.length}
                 next={fetchMoreArticles}
-                hasMore={true}
+                hasMore={articles.length < articlesCount}
                 loader={<BoxLoading />}
                 scrollableTarget={'ArticleDiv'}
+                endMessage={"No more articles!"}
             >
                 {articles.map(article => (
                     <Feed key={article.id} article={article} />
