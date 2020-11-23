@@ -19,11 +19,11 @@ const useStyle = makeStyles((theme) => ({
         paddingBottom: '14px'
     },
     box: {
-        backgroundColor:  theme.palette.type === 'light' ? '#1b89ff' : '#0e0e0e',
+        backgroundColor: theme.palette.type === 'light' ? '#1b89ff' : '#0e0e0e',
     },
     divider: {
-        backgroundColor: '#fff'
-    }
+        backgroundColor: 'rgba(255,230,0)',
+    },
 }));
 
 const Footer = () => {
@@ -43,9 +43,9 @@ const Footer = () => {
                 <Grid item xs={2}>
                     <Grid container direction={'column'}>
                         <FooterTitle title={'EasyDeasy'}/>
-                        <FooterSubTitle title={'How it works'}/>
-                        <FooterSubTitle title={'About Us'}/>
-                        <FooterSubTitle title={'The Team'}/>
+                        <FooterSubTitle title={'About Us'} link={'/aboutus'}/>
+                        <FooterSubTitle title={'How it works'} link={'/aboutus'}/>
+                        <FooterSubTitle title={'The Team'} link={'/aboutus'}/>
                     </Grid>
                 </Grid>
                 <Grid item xs={2}>

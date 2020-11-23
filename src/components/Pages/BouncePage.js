@@ -1,4 +1,4 @@
-import React, {useContext, useState, Component} from 'react';
+import React from 'react';
 import {emphasize, makeStyles, withStyles} from '@material-ui/core/styles';
 import {useDispatch, useSelector} from "react-redux";
 import Container from "@material-ui/core/Container";
@@ -7,9 +7,8 @@ import Link from '@material-ui/core/Link';
 import Chip from "@material-ui/core/Chip";
 import clsx from "clsx";
 import {Link as LinkReactRouter} from 'react-router-dom'
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import {clearSelectedArticle} from "../../global_state/actions/articlesActions";
-import {Divider} from "@material-ui/core";
+import {Box, Divider} from "@material-ui/core";
 
 const useStyle = makeStyles((theme) => ({
     root: {
@@ -40,7 +39,7 @@ const useStyle = makeStyles((theme) => ({
         },
     },
     ChipStyle: {
-        marginLeft: '5px',
+        margin: '2%',
     },
 }));
 
@@ -53,7 +52,21 @@ function BouncePage() {
     const isAddCommentArticleErrorRaise = useSelector(state => state.articleState.isAddCommentArticleErrorRaise);
     const likeArticleErrorContent = useSelector(state => state.articleState.likeArticleErrorContent);
     const addCommentArticleErrorContent = useSelector(state => state.articleState.addCommentArticleErrorContent);
-    const {title, summary, img, publishedDate, website, diseases, url} = article;
+    const {
+        title, summary, img, publishedDate, website, diseases, url, likes, comments, timeToRead
+    } = article;
+
+    const StatisticsUIElement = ({statName, statCount}) =>
+        <Box flexDirection={'column'}
+             style={{
+                 justifyContent: "center",
+                 alignItems: 'center',
+                 display: 'flex',
+                 margin: '2%',
+             }}>
+            <h3>{statCount}</h3>
+            <h6>{statName}</h6>
+        </Box>;
 
     const ChipClicked = () => {
         dispatch(clearSelectedArticle());
@@ -104,7 +117,9 @@ function BouncePage() {
                          className={'bounce-image'}/>
 
                     {/*Feed Information*/}
-                    <div className={classes.centerStyle}>
+                    <Box display="flex"
+                         style={{justifyContent: "center"}}
+                         flexWrap="wrap">
                         <Chip
                             variant="outlined"
                             size="small"
@@ -125,27 +140,18 @@ function BouncePage() {
                                 onClick={ChipClicked}
                                 to={`/disease/${disease.id}`}
                                 clickable/>)}
-                    </div>
+                    </Box>
 
-                    {/*                    Likes, Share, Time to read
-                    <div className={'StatisticSegment'}>
-                        <Statistic.Group size={"mini"}>
-                            <Statistic>
-                                <Statistic.Value>22</Statistic.Value>
-                                <Statistic.Label>Likes</Statistic.Label>
-                            </Statistic>
-                            <Statistic>
-                                <Statistic.Value>31,200</Statistic.Value>
-                                <Statistic.Label>Views</Statistic.Label>
-                            </Statistic>
-                            <Statistic>
-                                <Statistic.Value>22</Statistic.Value>
-                                <Statistic.Label>Comments</Statistic.Label>
-                            </Statistic>
-                        </Statistic.Group>
-                    </div>*/}
+                    {/*Statistics*/}
+                    <Box display="flex"
+                         style={{justifyContent: "center"}}
+                         flexWrap="wrap">
+                        <StatisticsUIElement statName={'LIKES'} statCount={likes}/>
+                        <StatisticsUIElement statName={'COMMENTS'} statCount={comments}/>
+                        <StatisticsUIElement statName={'MINUTES'} statCount={timeToRead}/>
+                    </Box>
 
-                    <Divider/>
+                    <Divider style={{marginBottom: '5px'}}/>
 
                     {/*Summary*/}
                     <Typography
@@ -170,9 +176,6 @@ function BouncePage() {
                             Read more!
                         </Link>
                     </Typography>
-
-                    {/*CommentsBox*/}
-                    {/*                    <CommentBox/>*/}
 
                 </div>
             </Container>

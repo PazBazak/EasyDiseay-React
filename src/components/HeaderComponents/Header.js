@@ -16,9 +16,7 @@ import {setIsDark} from "../../global_state/actions/themeActions";
 import Popup from "../utils/Popup";
 import LoginPage from "../Pages/LoginPage";
 import SignUpPage from "../Pages/SignUpPage";
-import {clearSelectedArticle} from "../../global_state/actions/articlesActions";
-import BouncePage from "../Pages/BouncePage";
-
+import {setIsDiseaseMenuShown} from "../../global_state/actions/headerActions";
 
 const useStyle = makeStyles((theme) => ({
     title: {
@@ -58,19 +56,16 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 
-function Header(props) {
+function Header() {
     const classes = useStyle();
     const dispatch = useDispatch();
 
-    const {
-        setIsDiseaseMenuShown,
-        isDiseaseMenuShown,
-    } = props;
-
     const isDark = useSelector(state => state.themeState.isDark);
+    const headerPositionMode = useSelector(state => state.headerState.headerPositionMode);
+    const isDiseaseMenuShown = useSelector(state => state.headerState.isDiseaseMenuShown);
 
     const diseasesMenuClicked = () => {
-        setIsDiseaseMenuShown(!isDiseaseMenuShown);
+        dispatch(setIsDiseaseMenuShown(!isDiseaseMenuShown));
     };
 
     const [isLoginOpened, setIsLoginOpened] = useState(false);
@@ -102,17 +97,17 @@ function Header(props) {
 
     return (
         <AppBar
-            position="fixed"
+            position={headerPositionMode}
             className={classes.appBar}>
             <Toolbar className={classes.ToolBar} variant={'dense'}>
                 <div className={classes.title}>
-                    <Hidden lgUp>
+                    {headerPositionMode === "fixed" ? <Hidden lgUp>
                         <IconButton
                             onClick={diseasesMenuClicked}
                             edge={"start"}>
                             <MenuIcon className={classes.MenuIconStyle}/>
                         </IconButton>
-                    </Hidden>
+                    </Hidden> : null}
                     {/*Add icon here*/}
                     <IconButton
                         className={classes.titleButton}
