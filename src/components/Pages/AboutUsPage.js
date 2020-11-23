@@ -5,6 +5,15 @@ import Box from '@material-ui/core/Box';
 import {Divider, Paper, Avatar} from "@material-ui/core";
 import ScrollUpButton from "react-scroll-up-button";
 import Header from "../HeaderComponents/Header";
+import {useSelector} from "react-redux";
+import {
+    FONT_FAMILY_MAIN_TEXT,
+    FONT_FAMILY_SECONDARY_TEXT,
+    PAGE_ONE_TITLE,
+    PAGE_ONE_SUB_TITLE,
+    PAGE_THREE_TITLE,
+    PAGE_TWO_QUESTIONS_ANSWERS,
+} from "../utils/Constants";
 
 const useStyle = makeStyles((theme) => ({
     avatorStyle: {
@@ -12,32 +21,45 @@ const useStyle = makeStyles((theme) => ({
             WebkitTransform: "scale(1.05)",
             MsTransform: "scale(1.05)",
             transform: "scale(1.05)",
-            opacity:'0.7',
-            color:'white',
+            opacity: '0.7',
+            color: 'white',
         },
     }
 }));
-const backgroundCss = {
-    backgroundColor: "#0093E9",
-    backgroundImage: "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
-};
-
-const avatarImg1 = "https://avatars0.githubusercontent.com/u/62140364?s=400&u=3c46da2ea7f10d932acac884de5d6a5204dcaff7&v=4";
-
-const inlineStyle = {
-    height: '100%',
-    color: 'white',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-};
-
 
 function AboutUsPage() {
     const classes = useStyle();
     const theme = useTheme();
+    const teamDetails = useSelector(state => state.aboutusState.teamDetails);
 
+    const backgroundCss = {
+        backgroundImage: "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+    };
 
+    const inlineStyle = {
+        height: '100%',
+        color: 'white',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    };
+
+    const pageOneTextStyle = {
+        backgroundColor: 'transparent',
+        color: 'white',
+        fontWeight: 'bold',
+        fontFamily: FONT_FAMILY_MAIN_TEXT,
+    };
+
+    const pageThreeMeetTheTeamTextStyle = {
+        fontFamily: FONT_FAMILY_SECONDARY_TEXT,
+    };
+
+    // Space between the main components
+    const SpaceBetweenPages = () =>
+        <div style={{height: 150}}/>;
+
+    // Title divider (golder divider)
     const CustomDivider = () =>
         <Divider width={'25%'}
                  style={{
@@ -45,25 +67,27 @@ function AboutUsPage() {
                      margin: '2% auto',
                  }}/>;
 
-    const PageTwoComponent = ({title, desc}) =>
+    const PageTwoComponent = ({question}) =>
         <Paper square style={{
             backgroundColor: 'rgba(96,96,96,.85)',
             padding: theme.spacing(2),
             textAlign: 'center',
             color: 'white',
             margin: '3%',
-            fontFamily: "'Raleway', serif"
+            fontFamily: FONT_FAMILY_MAIN_TEXT,
         }}>
-            <h1>{title}</h1>
+            <h1>{question.title}</h1>
             <CustomDivider/>
             <h5 style={{
-                lineHeight: '2',
-                fontFamily: "'Montserrat', sans-serif"
-            }}>{desc}</h5>
+                lineHeight: '2.5',
+                fontFamily: FONT_FAMILY_SECONDARY_TEXT,
+            }}>{question.desc}</h5>
         </Paper>;
 
-    const AvatarComponent = ({imgSrc, avatarName, avatarTitle}) =>
+    // Avatar component includes img, avatar name and avatar title - "Meet The Team"
+    const AvatarComponent = ({detail}) =>
         <Box flexDirection={'column'}
+             id={detail.id}
              className={classes.avatorStyle}
              style={{
                  flexGrow: 3,
@@ -73,94 +97,81 @@ function AboutUsPage() {
                  margin: '5vh',
              }}>
             <Avatar variant={'circle'}
-                    src={imgSrc}
+                    src={detail.img}
                     style={{
                         width: theme.spacing(25),
                         height: theme.spacing(25),
                     }}/>
             <CustomDivider/>
-            <h3 style={{
-                fontFamily: "'Montserrat', sans-serif"
-            }}>{avatarName}</h3>
-            <h4 style={{
-                fontFamily: "'Montserrat', sans-serif"
-            }}>{avatarTitle}</h4>
+            <h3 style={pageThreeMeetTheTeamTextStyle}>{detail.name}</h3>
+            <h4 style={pageThreeMeetTheTeamTextStyle}>{detail.title}</h4>
         </Box>;
 
+
+    // On this specific page I prefer using style over className and useStyle, cuz in this page the style is less generic all page long,
+    // each component has a different unique style and named it's a little complicated.
     return (
         <>
-            <Header isHeaderShouldBeStatic={true}/>
+            <Header/>
             <div style={{textAlign: 'center'}}>
                 <ScrollUpButton/>
                 <Parallax style={backgroundCss} strength={500}>
+
+                    {/*Page 1 ("IT'S SIMPLE!"*/}
                     <div style={{height: 500}}>
                         <div style={inlineStyle}>
                             <Box flexDirection={'column'}>
 
                                 {/*Title*/}
-                                <h1 style={{
-                                    backgroundColor: 'transparent',
-                                    color: 'white',
-                                    fontWeight: 'bold',
-                                    fontFamily: "'Raleway', serif"
-                                }}>
-                                    IT'S SIMPLE!
+                                <h1 style={pageOneTextStyle}>
+                                    {PAGE_ONE_TITLE}
                                 </h1>
                                 <CustomDivider/>
-                                <h3 style={{
-                                    backgroundColor: 'transparent',
-                                    color: 'white',
-                                    fontWeight: 'bold',
-                                    fontFamily: "'Raleway', serif"
-                                }}>
-                                    We are a Health and Diseases news aggregator.
+
+                                {/*SubTitle*/}
+                                <h3 style={pageOneTextStyle}>
+                                    {PAGE_ONE_SUB_TITLE}
                                 </h3>
                             </Box>
                         </div>
                     </div>
 
+                    {/*Page 2 - Details*/}
                     <div style={inlineStyle}>
                         <Box style={{
                             flexGrow: 1,
                             maxWidth: '170vh',
                         }}>
-                            <PageTwoComponent title={'WHAT ARE WE DOING?'}
-                                              desc={'EasyDeasy is a Health and Diseases news aggregator.\n' +
-                                              '                                        We collect researches and news from across the web, a variety of well-trusted\n' +
-                                              '                                        sources and filter by disease.\n' +
-                                              '                                        We make the information accessible and comfortable manner to anyone.\n' +
-                                              '                                        All the user has to do, is just to wait for our platform to send a notification\n' +
-                                              '                                        when new research or relevant article that fits the criteria has been released\n' +
-                                              '                                        after subscription of course, and enjoy the reading!'}/>
-
-                            <PageTwoComponent title={"BUT WHY IT'S SO IMPORTANT TO US?"}
-                                              desc={"A large part of our team in fact almost 70% of our team have at least one chronic disease that carries for life." +
-                                              " We know how hard it is to find trusted information out there. WE ARE HERE TO HELP!"}/>
-                            <PageTwoComponent title={'OUR MISSION'}
-                                              desc={"We want to make the world better, accessible and comfortable, " +
-                                              "ESPECIALLY when it's comes to health! " +
-                                              "all the information is out there although most people are just trying too hard for so little information, the data is there, but not accessible." +
-                                              " 6 IN 10 adults in the US have a chronic disease - US alone! "}/>
+                            {PAGE_TWO_QUESTIONS_ANSWERS.map((question) =>
+                                <PageTwoComponent question={question}/>)}
                         </Box>
                     </div>
-                    <div style={{height: 150}}/>
+
+                    {/*Space between "Pages"*/}
+                    <SpaceBetweenPages/>
+
+                    {/*Page 3 - MEET THE TEAM*/}
                     <div style={{margin: 50}}>
                         <h1 style={{
                             fontSize: '15vh',
                             backgroundColor: 'transparent',
                             color: 'white',
-                            fontFamily: "'Raleway', serif",
+                            fontFamily: FONT_FAMILY_MAIN_TEXT,
                         }}>
-                            MEET THE TEAM
+                            {PAGE_THREE_TITLE}
                         </h1>
                         <CustomDivider/>
+
+                        {/*// Avatars*/}
                         <Box display="flex"
                              flexWrap="wrap">
-                            <AvatarComponent imgSrc={avatarImg1} avatarName={'Omer Pessach'} avatarTitle={'CTO'}/>
-                            <AvatarComponent imgSrc={avatarImg1} avatarName={'Paz Bazak'} avatarTitle={'CEO'}/>
-                            <AvatarComponent imgSrc={avatarImg1} avatarName={'Daniel Bauer'} avatarTitle={'CTO'}/>
+                            {teamDetails.map((detail) =>
+                                <AvatarComponent detail={detail}/>
+                            )}
                         </Box>
                     </div>
+
+                    {/*// Just a little space from the footer.*/}
                     <div style={{height: 200}}/>
                 </Parallax>
             </div>

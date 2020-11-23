@@ -11,7 +11,6 @@ import Popup from "../utils/Popup";
 import {useDispatch, useSelector} from "react-redux";
 import BouncePage from "./BouncePage";
 import {clearSelectedArticle} from "../../global_state/actions/articlesActions";
-import Footer from "../Footer/Footer";
 
 const useStyle = makeStyles((theme) => ({
     root: {
@@ -84,7 +83,6 @@ function MainPage() {
                    onClose={closeBouncePage}>
                 <BouncePage/>
             </Popup>
-            <Footer/>
         </Fragment>
     );
 }

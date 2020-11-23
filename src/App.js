@@ -10,6 +10,8 @@ import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import {createMuiTheme} from "@material-ui/core";
 import {useSelector} from "react-redux";
 import AboutUsPage from "./components/Pages/AboutUsPage";
+import Footer from "./components/Footer/Footer";
+import ScrollToTop from "./components/utils/ScrollToTop";
 
 function App() {
     const isDark = useSelector(state => state.themeState.isDark);
@@ -39,12 +41,15 @@ function App() {
     return (
         <ThemeProvider theme={globalTheme}>
             <Router>
-                <Switch>
-                    <Route path={'/'} exact component={MainPage}/>
-                    <Route path={'/aboutus'} exact component={AboutUsPage}/>
-                    <Route path={'/disease/:id'} component={DiseasePage}/>
-                    <Route component={NotFoundPage}/>
-                </Switch>
+                <ScrollToTop>
+                    <Switch>
+                        <Route path={'/'} exact component={MainPage}/>
+                        <Route path={'/aboutus'} exact component={AboutUsPage}/>
+                        <Route path={'/disease/:id'} component={DiseasePage}/>
+                        <Route component={NotFoundPage}/>
+                    </Switch>
+                    <Footer/>
+                </ScrollToTop>
             </Router>
         </ThemeProvider>
     );

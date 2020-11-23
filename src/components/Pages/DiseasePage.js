@@ -7,7 +7,6 @@ import {useMediaQuery} from "@material-ui/core";
 import clsx from 'clsx';
 import Paper from "@material-ui/core/Paper";
 import {DISEASE_MENU_DRAWER_WIDTH, PAGE_WHITESPACES_LG, PAGE_WHITESPACES_XL} from "../utils/Constants";
-import Footer from "../Footer/Footer";
 
 const useStyle = makeStyles((theme) => ({
     root: {
@@ -70,7 +69,6 @@ function DiseasePage({match}) {
                     <ArticleFeed diseaseId={diseaseId}/>
                 </main>
             </Paper>
-            <Footer/>
         </Fragment>
     );
 }
