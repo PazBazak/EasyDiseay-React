@@ -177,9 +177,6 @@ function BouncePage() {
                         </Link>
                     </Typography>
 
-                    {/*CommentsBox*/}
-                    {/*                    <CommentBox/>*/}
-
                 </div>
             </Container>
         );
