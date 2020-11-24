@@ -12,6 +12,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {clearSelectedArticle} from "./global_state/actions/articlesActions";
 import Popup from "./components/utils/Popup";
 import BouncePage from "./components/Pages/BouncePage";
+import FaqPage from "./components/Pages/FaqPage";
 
 function App() {
     const dispatch = useDispatch();
@@ -49,6 +50,7 @@ function App() {
             <Router>
                 <Switch>
                     <Route path={'/'} exact component={MainPage}/>
+                    <Route path={'/faq'} exact component={FaqPage}/>
                     <Route path={'/disease/:id'} component={DiseasePage}/>
                     <Route component={NotFoundPage}/>
                 </Switch>
