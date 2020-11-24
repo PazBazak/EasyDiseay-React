@@ -32,7 +32,7 @@ function ArticleFeed({diseaseId}) {
 
     const fetchMoreArticles = () => {
         setPage(page + 1);
-        dispatch(fetchArticles(page));
+        dispatch(fetchArticles(page, true));
     };
 
     const fetchMoreArticlesForDisease = () => {

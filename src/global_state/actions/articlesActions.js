@@ -1,7 +1,8 @@
 import {
+    ADD_ARTICLES,
     ADD_COMMENT_ARTICLE_ERROR,
-    CLEAR_SELECTED_ARTICLE,
     ADD_DISEASE_ARTICLES,
+    CLEAR_SELECTED_ARTICLE,
     LIKE_ARTICLE_ERROR,
     SET_ARTICLES,
     SET_ARTICLES_COUNT,
@@ -15,7 +16,7 @@ import preMadeFeeds from "../../data_sources/articles";
 
 // Fetch all articles from API
 // Should call 'reformatArticles' function before sent the articles to the next step.
-export const fetchArticles = page => async dispatch => {
+export const fetchArticles = (page, addArticles = false) => async dispatch => {
     try {
         // if there's page in the input, it will fetch that page, if not, first page!
         const fetchedArticles = await fetch(page ?
@@ -25,7 +26,12 @@ export const fetchArticles = page => async dispatch => {
 
         const jsonArticles = await fetchedArticles.json();
         await dispatch({type: SET_ARTICLES_COUNT, payload: jsonArticles.count});
-        await dispatch({type: SET_ARTICLES, payload: reformatArticles(jsonArticles.results)});
+
+        addArticles ?
+            await dispatch({type: ADD_ARTICLES, payload: reformatArticles(jsonArticles.results)})
+            :
+            await dispatch({type: SET_ARTICLES, payload: reformatArticles(jsonArticles.results)});
+
     } catch (e) {
         console.log('Could not fetch Articles!');
         await dispatch({type: SET_ARTICLES, payload: reformatArticles(preMadeFeeds)});

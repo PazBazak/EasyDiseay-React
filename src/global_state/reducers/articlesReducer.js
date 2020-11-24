@@ -4,6 +4,7 @@ import {
     ADD_DISEASE_ARTICLES,
     SET_ARTICLES_COUNT,
     LIKE_ARTICLE_ERROR,
+    ADD_ARTICLES,
     SET_IS_LIKE_ARTICLE_ERROR_RAISE,
     SET_IS_ADD_COMMENT_ARTICLE_ERROR_RAISE,
     ADD_COMMENT_ARTICLE_ERROR,
@@ -28,6 +29,11 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case SET_ARTICLES:
+            return {
+                ...state,
+                articles: action.payload
+            };
+        case ADD_ARTICLES:
             return {
                 ...state,
                 articles: [...state.articles, ...action.payload]
