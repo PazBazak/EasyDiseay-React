@@ -8,10 +8,19 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import {Route, Switch} from 'react-router';
 import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import {createMuiTheme} from "@material-ui/core";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {clearSelectedArticle} from "./global_state/actions/articlesActions";
+import Popup from "./components/utils/Popup";
+import BouncePage from "./components/Pages/BouncePage";
 
 function App() {
+    const dispatch = useDispatch();
     const isDark = useSelector(state => state.themeState.isDark);
+    const isBouncePageOpened = useSelector(state => state.articleState.isArticleSelected);
+
+    const closeBouncePage = () => {
+        dispatch(clearSelectedArticle());
+    };
 
     // creating a global theme
     const globalTheme = useMemo(() =>
@@ -43,6 +52,11 @@ function App() {
                     <Route path={'/disease/:id'} component={DiseasePage}/>
                     <Route component={NotFoundPage}/>
                 </Switch>
+                <Popup isOpened={isBouncePageOpened}
+                       isFullWidth={true}
+                       onClose={closeBouncePage}>
+                    <BouncePage/>
+                </Popup>
             </Router>
         </ThemeProvider>
     );
