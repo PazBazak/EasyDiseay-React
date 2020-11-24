@@ -1,5 +1,7 @@
 import {
     SET_ARTICLES,
+    SET_DISEASE_ARTICLES,
+    ADD_DISEASE_ARTICLES,
     SET_ARTICLES_COUNT,
     LIKE_ARTICLE_ERROR,
     SET_IS_LIKE_ARTICLE_ERROR_RAISE,
@@ -7,10 +9,13 @@ import {
     ADD_COMMENT_ARTICLE_ERROR,
     SET_SELECTED_ARTICLE,
     CLEAR_SELECTED_ARTICLE,
+    SET_CHOSEN_DISEASE,
 } from "../actions/types";
 
 const initialState = {
     articles: [],
+    diseaseArticles: [],
+    chosenDisease: null,
     articlesCount: null,
     isLikeArticleErrorRaise: false,
     isAddCommentArticleErrorRaise: false,
@@ -31,6 +36,21 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 articlesCount: action.payload
+            };
+        case SET_DISEASE_ARTICLES:
+            return {
+                ...state,
+                diseaseArticles: action.payload
+            };
+        case ADD_DISEASE_ARTICLES:
+            return {
+                ...state,
+                diseaseArticles: [...state.diseaseArticles, ...action.payload]
+            };
+        case SET_CHOSEN_DISEASE:
+            return {
+                ...state,
+                chosenDisease: action.payload
             };
         case  LIKE_ARTICLE_ERROR:
             return {

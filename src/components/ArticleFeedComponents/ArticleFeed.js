@@ -19,8 +19,13 @@ const useStyles = makeStyles((theme) => ({
 
 function ArticleFeed({diseaseId}) {
     const dispatch = useDispatch();
+
     const articles = useSelector(state => state.articleState.articles);
+    const diseaseArticles = useSelector(state => state.articleState.diseaseArticles);
     const articlesCount = useSelector(state => state.articleState.articlesCount);
+    const chosenDisease = useSelector(state => state.articleState.chosenDisease);
+
+    const [isDiseasePage, setIsDiseasePage] = useState(false);
 
     const classes = useStyles();
     const [page, setPage] = useState(1);
@@ -30,11 +35,18 @@ function ArticleFeed({diseaseId}) {
         dispatch(fetchArticles(page));
     };
 
+    const fetchMoreArticlesForDisease = () => {
+        setPage(page + 1);
+        dispatch(fetchArticlesForDisease(diseaseId, page, chosenDisease !== diseaseId));
+    };
+
     useEffect(() => {
         if (diseaseId === undefined) {
             dispatch(fetchArticles(page));
+            setIsDiseasePage(false);
         } else {
-            dispatch(fetchArticlesForDisease(diseaseId, 10));
+            dispatch(fetchArticlesForDisease(diseaseId, page, chosenDisease !== diseaseId));
+            setIsDiseasePage(true);
         }
         // eslint-disable-next-line
     }, [diseaseId]);
@@ -42,16 +54,20 @@ function ArticleFeed({diseaseId}) {
     return (
         <div className={classes.articleFeed + ' col'} id={'ArticleDiv'}>
             <InfiniteScroll
-                dataLength={articles.length}
-                next={fetchMoreArticles}
-                hasMore={articles.length < articlesCount}
-                loader={<BoxLoading />}
+                dataLength={isDiseasePage ? diseaseArticles.length : articles.length}
+                next={isDiseasePage ? fetchMoreArticlesForDisease: fetchMoreArticles}
+                hasMore={isDiseasePage ? diseaseArticles.length < articlesCount : articles.length < articlesCount}
+                loader={<BoxLoading/>}
                 scrollableTarget={'ArticleDiv'}
-                endMessage={"No more articles!"}
+                endMessage={isDiseasePage ? "No more articles for this disease!" : "No more articles!"}
             >
-                {articles.map(article => (
-                    <Feed key={article.id} article={article} />
-                ))}
+                {isDiseasePage ? diseaseArticles.map(article => (
+                        <Feed key={article.id} article={article}/>
+                    ))
+                    :
+                    articles.map(article => (
+                        <Feed key={article.id} article={article}/>
+                    ))}
             </InfiniteScroll>
         </div>
     )

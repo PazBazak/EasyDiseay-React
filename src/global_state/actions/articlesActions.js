@@ -1,12 +1,15 @@
 import {
     ADD_COMMENT_ARTICLE_ERROR,
+    CLEAR_SELECTED_ARTICLE,
+    ADD_DISEASE_ARTICLES,
     LIKE_ARTICLE_ERROR,
-    SET_IS_ADD_COMMENT_ARTICLE_ERROR_RAISE,
-    SET_IS_LIKE_ARTICLE_ERROR_RAISE,
     SET_ARTICLES,
     SET_ARTICLES_COUNT,
+    SET_CHOSEN_DISEASE,
+    SET_DISEASE_ARTICLES,
+    SET_IS_ADD_COMMENT_ARTICLE_ERROR_RAISE,
+    SET_IS_LIKE_ARTICLE_ERROR_RAISE,
     SET_SELECTED_ARTICLE,
-    CLEAR_SELECTED_ARTICLE,
 } from "./types";
 import preMadeFeeds from "../../data_sources/articles";
 
@@ -21,8 +24,8 @@ export const fetchArticles = page => async dispatch => {
             process.env.REACT_APP_LATESTS_ARTICLES_API_URL);
 
         const jsonArticles = await fetchedArticles.json();
-        await dispatch({type: SET_ARTICLES, payload: reformatArticles(jsonArticles.results)});
         await dispatch({type: SET_ARTICLES_COUNT, payload: jsonArticles.count});
+        await dispatch({type: SET_ARTICLES, payload: reformatArticles(jsonArticles.results)});
     } catch (e) {
         console.log('Could not fetch Articles!');
         await dispatch({type: SET_ARTICLES, payload: reformatArticles(preMadeFeeds)});
@@ -32,14 +35,21 @@ export const fetchArticles = page => async dispatch => {
 
 // Fetch articles for Disease ID
 // Should call 'reformatArticles' function before sent the articles to the next step.
-export const fetchArticlesForDisease = (diseasesId, numOfArticles) => async (dispatch) => {
+export const fetchArticlesForDisease = (diseasesId, page, isNewDisease = true) => async (dispatch) => {
     try {
-        const fetchedArticles = await fetch(`${process.env.REACT_APP_DISEASES_API_URL}${diseasesId}/${numOfArticles}/`);
+        const fetchedArticles = await fetch(`${process.env.REACT_APP_DISEASES_API_URL}${diseasesId}/latest_articles/?page=${page}`);
         const jsonArticles = await fetchedArticles.json();
-        await dispatch({type: SET_ARTICLES, payload: jsonArticles});
+        await dispatch({type: SET_ARTICLES_COUNT, payload: jsonArticles.count});
+        await dispatch({type: SET_CHOSEN_DISEASE, payload: diseasesId});
+
+        isNewDisease ?
+            await dispatch({type: SET_DISEASE_ARTICLES, payload: reformatArticles(jsonArticles.results)})
+            :
+            await dispatch({type: ADD_DISEASE_ARTICLES, payload: reformatArticles(jsonArticles.results)});
+
     } catch (e) {
         console.log('Could not get this diseases id articles');
-        await dispatch({type: SET_ARTICLES, payload: reformatArticles(preMadeFeeds)});
+        await dispatch({type: SET_DISEASE_ARTICLES, payload: reformatArticles(preMadeFeeds)});
     }
 };
 
