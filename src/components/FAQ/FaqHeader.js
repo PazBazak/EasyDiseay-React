@@ -7,14 +7,15 @@ import Box from "@material-ui/core/Box"
 const useStyle = makeStyles((theme) => ({
     faqHeader: {
         backgroundColor: '#71c2ff',
-        padding: theme.spacing(5)
+        padding: theme.spacing(5),
+        textAlign: 'center'
     },
     title: {
-
+        marginBottom: '32px'
     }
 }));
 
-function FaqHeader() {
+const FaqHeader = () => {
     const classes = useStyle();
 
     return (
@@ -29,6 +30,6 @@ function FaqHeader() {
             <FaqSearchBar />
         </Box>
     );
-}
+};
 
 export default FaqHeader;
