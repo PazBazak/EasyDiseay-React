@@ -11,7 +11,10 @@ const useStyle = makeStyles((theme) => ({
         textAlign: 'center'
     },
     title: {
-        marginBottom: '32px'
+        marginBottom: theme.spacing(4)
+    },
+    subTitle: {
+        marginTop: theme.spacing(4)
     }
 }));
 
@@ -27,7 +30,13 @@ const FaqHeader = () => {
             >
                 How can we help you?
             </Typography>
-            <FaqSearchBar />
+            <FaqSearchBar/>
+            <Typography variant={'body1'}
+                        align={'center'}
+                        className={classes.subTitle}
+            >
+                You can also browse the topics below to find what you are looking for.
+            </Typography>
         </Box>
     );
 };
