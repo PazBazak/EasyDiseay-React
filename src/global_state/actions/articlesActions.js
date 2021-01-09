@@ -16,7 +16,7 @@ import preMadeFeeds from "../../data_sources/articles";
 
 // Fetch all articles from API
 // Should call 'reformatArticles' function before sent the articles to the next step.
-export const fetchArticles = (page, addArticles = false) => async dispatch => {
+export const fetchArticlesAndReplace = page => async dispatch => {
     try {
         // if there's page in the input, it will fetch that page, if not, first page!
         const fetchedArticles = await fetch(page ?
@@ -26,11 +26,26 @@ export const fetchArticles = (page, addArticles = false) => async dispatch => {
 
         const jsonArticles = await fetchedArticles.json();
         await dispatch({type: SET_ARTICLES_COUNT, payload: jsonArticles.count});
+        await dispatch({type: SET_ARTICLES, payload: reformatArticles(jsonArticles.results)});
 
-        addArticles ?
-            await dispatch({type: ADD_ARTICLES, payload: reformatArticles(jsonArticles.results)})
+    } catch (e) {
+        console.log('Could not fetch Articles!');
+        await dispatch({type: SET_ARTICLES, payload: reformatArticles(preMadeFeeds)});
+        await dispatch({type: SET_ARTICLES_COUNT, payload: preMadeFeeds.length});
+    }
+};
+
+export const fetchArticlesAndAdd = page => async dispatch => {
+    try {
+        // if there's page in the input, it will fetch that page, if not, first page!
+        const fetchedArticles = await fetch(page ?
+            `${process.env.REACT_APP_LATESTS_ARTICLES_API_URL}?page=${page}`
             :
-            await dispatch({type: SET_ARTICLES, payload: reformatArticles(jsonArticles.results)});
+            process.env.REACT_APP_LATESTS_ARTICLES_API_URL);
+
+        const jsonArticles = await fetchedArticles.json();
+        await dispatch({type: SET_ARTICLES_COUNT, payload: jsonArticles.count});
+        await dispatch({type: ADD_ARTICLES, payload: reformatArticles(jsonArticles.results)})
 
     } catch (e) {
         console.log('Could not fetch Articles!');

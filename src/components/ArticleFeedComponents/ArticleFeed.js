@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchArticles, fetchArticlesForDisease} from "../../global_state/actions/articlesActions";
+import {fetchArticlesAndReplace, fetchArticlesForDisease, fetchArticlesAndAdd} from "../../global_state/actions/articlesActions";
 import {makeStyles} from "@material-ui/core/styles";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {BoxLoading} from "../utils/LoadingsTypes";
@@ -32,7 +32,7 @@ function ArticleFeed({diseaseId}) {
 
     const fetchMoreArticles = () => {
         setArticlesPaginationPage(articlesPaginationPage + 1);
-        dispatch(fetchArticles(articlesPaginationPage, true));
+        dispatch(fetchArticlesAndAdd(articlesPaginationPage));
     };
 
     const fetchMoreArticlesForDisease = () => {
@@ -42,7 +42,7 @@ function ArticleFeed({diseaseId}) {
 
     useEffect(() => {
         if (diseaseId === undefined) {
-            dispatch(fetchArticles(articlesPaginationPage));
+            dispatch(fetchArticlesAndReplace(articlesPaginationPage));
             setIsDiseasePage(false);
         } else {
             dispatch(fetchArticlesForDisease(diseaseId, articlesPaginationPage, chosenDisease !== diseaseId));
