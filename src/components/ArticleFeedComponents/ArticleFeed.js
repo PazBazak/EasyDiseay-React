@@ -41,13 +41,12 @@ function ArticleFeed({diseaseId}) {
     };
 
     useEffect(() => {
-        if (diseaseId === undefined) {
-            dispatch(fetchArticlesAndReplace(articlesPaginationPage));
-            setIsDiseasePage(false);
-        } else {
+        diseaseId === undefined ?
+            dispatch(fetchArticlesAndReplace(articlesPaginationPage))
+            :
             dispatch(fetchArticlesForDisease(diseaseId, articlesPaginationPage, chosenDisease !== diseaseId));
-            setIsDiseasePage(true);
-        }
+
+        setIsDiseasePage(diseaseId !== undefined)
         // eslint-disable-next-line
     }, [diseaseId]);
 
