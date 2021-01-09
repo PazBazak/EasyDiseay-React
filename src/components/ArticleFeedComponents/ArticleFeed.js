@@ -28,24 +28,24 @@ function ArticleFeed({diseaseId}) {
     const [isDiseasePage, setIsDiseasePage] = useState(false);
 
     const classes = useStyles();
-    const [page, setPage] = useState(1);
+    const [articlesPaginationPage, setArticlesPaginationPage] = useState(1);
 
     const fetchMoreArticles = () => {
-        setPage(page + 1);
-        dispatch(fetchArticles(page, true));
+        setArticlesPaginationPage(articlesPaginationPage + 1);
+        dispatch(fetchArticles(articlesPaginationPage, true));
     };
 
     const fetchMoreArticlesForDisease = () => {
-        setPage(page + 1);
-        dispatch(fetchArticlesForDisease(diseaseId, page, chosenDisease !== diseaseId));
+        setArticlesPaginationPage(articlesPaginationPage + 1);
+        dispatch(fetchArticlesForDisease(diseaseId, articlesPaginationPage, chosenDisease !== diseaseId));
     };
 
     useEffect(() => {
         if (diseaseId === undefined) {
-            dispatch(fetchArticles(page));
+            dispatch(fetchArticles(articlesPaginationPage));
             setIsDiseasePage(false);
         } else {
-            dispatch(fetchArticlesForDisease(diseaseId, page, chosenDisease !== diseaseId));
+            dispatch(fetchArticlesForDisease(diseaseId, articlesPaginationPage, chosenDisease !== diseaseId));
             setIsDiseasePage(true);
         }
         // eslint-disable-next-line
