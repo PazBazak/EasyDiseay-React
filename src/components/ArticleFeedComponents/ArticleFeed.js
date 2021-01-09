@@ -1,9 +1,10 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchArticlesAndReplace, fetchArticlesForDisease, fetchArticlesAndAdd} from "../../global_state/actions/articlesActions";
+import {makeStyles} from "@material-ui/core/styles";
+import InfiniteScroll from "react-infinite-scroll-component";
 import {BoxLoading} from "../utils/LoadingsTypes";
 import Feed from "./Feed";
-import {useDispatch, useSelector} from "react-redux";
-import {fetchArticles, fetchArticlesForDisease} from "../../global_state/actions/articlesActions";
-import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
     articleFeed: {
@@ -18,27 +19,56 @@ const useStyles = makeStyles((theme) => ({
 
 function ArticleFeed({diseaseId}) {
     const dispatch = useDispatch();
+
     const articles = useSelector(state => state.articleState.articles);
+    const diseaseArticles = useSelector(state => state.articleState.diseaseArticles);
+    const articlesCount = useSelector(state => state.articleState.articlesCount);
+    const chosenDisease = useSelector(state => state.articleState.chosenDisease);
+
+    const [isDiseasePage, setIsDiseasePage] = useState(false);
+
     const classes = useStyles();
+    const [articlesPaginationPage, setArticlesPaginationPage] = useState(1);
+
+    const fetchMoreArticles = () => {
+        setArticlesPaginationPage(articlesPaginationPage + 1);
+        dispatch(fetchArticlesAndAdd(articlesPaginationPage));
+    };
+
+    const fetchMoreArticlesForDisease = () => {
+        setArticlesPaginationPage(articlesPaginationPage + 1);
+        dispatch(fetchArticlesForDisease(diseaseId, articlesPaginationPage, chosenDisease !== diseaseId));
+    };
 
     useEffect(() => {
         if (diseaseId === undefined) {
-            dispatch(fetchArticles());
+            dispatch(fetchArticlesAndReplace(articlesPaginationPage));
+            setIsDiseasePage(false);
         } else {
-            dispatch(fetchArticlesForDisease(diseaseId, 10));
+            dispatch(fetchArticlesForDisease(diseaseId, articlesPaginationPage, chosenDisease !== diseaseId));
+            setIsDiseasePage(true);
         }
         // eslint-disable-next-line
     }, [diseaseId]);
 
-
     return (
-        <div className={classes.articleFeed + ' col'}>
-            {articles.length > 0 ? articles.map(article =>
-                    <Feed
-                        key={article.id}
-                        article={article}/>)
-                :
-                <BoxLoading/>}
+        <div className={classes.articleFeed + ' col'} id={'ArticleDiv'}>
+            <InfiniteScroll
+                dataLength={isDiseasePage ? diseaseArticles.length : articles.length}
+                next={isDiseasePage ? fetchMoreArticlesForDisease: fetchMoreArticles}
+                hasMore={isDiseasePage ? diseaseArticles.length < articlesCount : articles.length < articlesCount}
+                loader={<BoxLoading/>}
+                scrollableTarget={'ArticleDiv'}
+                endMessage={isDiseasePage ? "No more articles for this disease!" : "No more articles!"}
+            >
+                {isDiseasePage ? diseaseArticles.map(article => (
+                        <Feed key={article.id} article={article}/>
+                    ))
+                    :
+                    articles.map(article => (
+                        <Feed key={article.id} article={article}/>
+                    ))}
+            </InfiniteScroll>
         </div>
     )
 }

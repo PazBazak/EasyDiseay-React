@@ -1,37 +1,76 @@
 import {
+    ADD_ARTICLES,
     ADD_COMMENT_ARTICLE_ERROR,
+    ADD_DISEASE_ARTICLES,
+    CLEAR_SELECTED_ARTICLE,
     LIKE_ARTICLE_ERROR,
+    SET_ARTICLES,
+    SET_ARTICLES_COUNT,
+    SET_CHOSEN_DISEASE,
+    SET_DISEASE_ARTICLES,
     SET_IS_ADD_COMMENT_ARTICLE_ERROR_RAISE,
     SET_IS_LIKE_ARTICLE_ERROR_RAISE,
-    SET_ARTICLES,
     SET_SELECTED_ARTICLE,
-    CLEAR_SELECTED_ARTICLE,
 } from "./types";
 import preMadeFeeds from "../../data_sources/articles";
 
 // Fetch all articles from API
 // Should call 'reformatArticles' function before sent the articles to the next step.
-export const fetchArticles = () => async dispatch => {
+export const fetchArticlesAndReplace = page => async dispatch => {
     try {
-        const fetchedArticles = await fetch(process.env.REACT_APP_ARTICLES_API_URL);
+        // if there's page in the input, it will fetch that page, if not, first page!
+        const fetchedArticles = await fetch(page ?
+            `${process.env.REACT_APP_LATESTS_ARTICLES_API_URL}?page=${page}`
+            :
+            process.env.REACT_APP_LATESTS_ARTICLES_API_URL);
+
         const jsonArticles = await fetchedArticles.json();
-        await dispatch({type: SET_ARTICLES, payload: reformatArticles(jsonArticles)});
+        await dispatch({type: SET_ARTICLES_COUNT, payload: jsonArticles.count});
+        await dispatch({type: SET_ARTICLES, payload: reformatArticles(jsonArticles.results)});
+
     } catch (e) {
         console.log('Could not fetch Articles!');
         await dispatch({type: SET_ARTICLES, payload: reformatArticles(preMadeFeeds)});
+        await dispatch({type: SET_ARTICLES_COUNT, payload: preMadeFeeds.length});
+    }
+};
+
+export const fetchArticlesAndAdd = page => async dispatch => {
+    try {
+        // if there's page in the input, it will fetch that page, if not, first page!
+        const fetchedArticles = await fetch(page ?
+            `${process.env.REACT_APP_LATESTS_ARTICLES_API_URL}?page=${page}`
+            :
+            process.env.REACT_APP_LATESTS_ARTICLES_API_URL);
+
+        const jsonArticles = await fetchedArticles.json();
+        await dispatch({type: SET_ARTICLES_COUNT, payload: jsonArticles.count});
+        await dispatch({type: ADD_ARTICLES, payload: reformatArticles(jsonArticles.results)})
+
+    } catch (e) {
+        console.log('Could not fetch Articles!');
+        await dispatch({type: SET_ARTICLES, payload: reformatArticles(preMadeFeeds)});
+        await dispatch({type: SET_ARTICLES_COUNT, payload: preMadeFeeds.length});
     }
 };
 
 // Fetch articles for Disease ID
 // Should call 'reformatArticles' function before sent the articles to the next step.
-export const fetchArticlesForDisease = (diseasesId, numOfArticles) => async (dispatch) => {
+export const fetchArticlesForDisease = (diseasesId, page, isNewDisease = true) => async (dispatch) => {
     try {
-        const fetchedArticles = await fetch(`${process.env.REACT_APP_DISEASES_API_URL}${diseasesId}/${numOfArticles}/`);
+        const fetchedArticles = await fetch(`${process.env.REACT_APP_DISEASES_API_URL}${diseasesId}/latest_articles/?page=${page}`);
         const jsonArticles = await fetchedArticles.json();
-        await dispatch({type: SET_ARTICLES, payload: jsonArticles});
+        await dispatch({type: SET_ARTICLES_COUNT, payload: jsonArticles.count});
+        await dispatch({type: SET_CHOSEN_DISEASE, payload: diseasesId});
+
+        isNewDisease ?
+            await dispatch({type: SET_DISEASE_ARTICLES, payload: reformatArticles(jsonArticles.results)})
+            :
+            await dispatch({type: ADD_DISEASE_ARTICLES, payload: reformatArticles(jsonArticles.results)});
+
     } catch (e) {
         console.log('Could not get this diseases id articles');
-        await dispatch({type: SET_ARTICLES, payload: reformatArticles(preMadeFeeds)});
+        await dispatch({type: SET_DISEASE_ARTICLES, payload: reformatArticles(preMadeFeeds)});
     }
 };
 
